@@ -1,0 +1,101 @@
+body {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5F5; /* Light gray background */
+    /* background-image: url('abstract-pattern.jpg'); */ /* Uncomment this line if you fix the image issue */
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #007BFF; /* Blue header */
+    color: #fff; /* White text */
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid #FF6600; /* Orange border */
+}
+
+.hero-text {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white overlay */
+}
+
+/* Slide container and slides */
+.slide-container {
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    padding: 20px;
+}
+
+.slide.active {
+    display: block;
+}
+
+.slide-navigation {
+    text-align: center;
+}
+
+.prev-btn, .next-btn {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Additional styles */
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.5;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #007BFF; /* Blue links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #007BFF; /* Blue buttons */
+    color: #fff;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #007BFF;
+    color: #fff;
+}
