@@ -10,6 +10,7 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            position: relative; /* Added to help position the modal */
         }
         header {
             background-color: #333;
@@ -45,6 +46,7 @@
             height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* Change cursor to pointer for the main image */
         }
         .thumbnail-row {
             display: flex;
@@ -75,6 +77,39 @@
             bottom: 0;
             width: 100%;
         }
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+            backdrop-filter: blur(5px); /* Blur effect for the background only */
+            display: flex; /* Use flex to center the content */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%; /* Adjust width to be wider */
+            max-width: 900px; /* Maximum width */
+            position: relative; /* To position the close button */
+            z-index: 1001; /* Ensure modal content is on top */
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001; /* Ensure close button is on top */
+        }
     </style>
 </head>
 <body>
@@ -86,10 +121,9 @@
         <a href="#">Gallery</a>
         <a href="#">Blog</a>
         <a href="#">Contact</a>
+        <a href="../index.html" class="btn photography-btn">HOME</a>
     </nav>
 </header>
-
-<a href="../index.html" class="btn">Back to Portfolio</a>
 
 <div class="hero">
     <h1>Capturing the world through my lens</h1>
@@ -98,13 +132,19 @@
 
 <div class="gallery-section">
     <h2>Gallery</h2>
-    <img id="mainImage" src="image1.jpg" alt="Main Image">
+    <img id="mainImage" src="image1.jpg" alt="Main Image" onclick="openModal()">
     <div class="thumbnail-row">
         <img class="thumbnail" src="image1.jpg" alt="Thumbnail 1" onclick="changeImage('image1.jpg')">
         <img class="thumbnail" src="image2.jpg" alt="Thumbnail 2" onclick="changeImage('image2.jpg')">
         <img class="thumbnail" src="image3.jpg" alt="Thumbnail 3" onclick="changeImage('image3.jpg')">
-        <img class="thumbnail" src="image4.jpg" alt="Thumbnail 4" onclick="changeImage('image4.jpg')">
+        <img class="thumbnail" src="image4.jpeg" alt="Thumbnail 4" onclick="changeImage('image4.jpeg')">
     </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal(event)">&times;</span>
+    <img class="modal-content" id="modalImage">
 </div>
 
 <div class="additional-section">
@@ -121,7 +161,7 @@
 
 <script>
     // Array of image sources for the slideshow
-    const imageSources = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg'];
+    const imageSources = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpeg'];
 
     // Current index of the slideshow
     let currentIndex = 0;
@@ -131,6 +171,24 @@
         document.getElementById('mainImage').src = imageSrc;
         currentIndex = imageSources.indexOf(imageSrc); // Update the current index to prevent conflict with auto-slide
     }
+
+    // Function to open the modal
+    function openModal() {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        modal.style.display = "flex"; // Show the modal with flex
+        modalImage.src = document.getElementById('mainImage').src; // Set the modal image source
+    }
+
+    // Function to close the modal
+    function closeModal(event) {
+        if (event) event.stopPropagation(); // Prevent the click on the close button from triggering the modal close
+        const modal = document.getElementById('imageModal');
+        modal.style.display = "none"; // Hide the modal
+    }
+
+    // Set initial state of the modal to be hidden
+    document.getElementById('imageModal').style.display = "none";
 
     // Function to change the image automatically
     function autoChangeImage() {
