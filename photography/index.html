@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohith Kumar Photography</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            text-align: center;
+            margin: 50px 0;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .gallery-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+        #mainImage {
+            width: 70%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .thumbnail-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .thumbnail {
+            width: 100px;
+            height: 70px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+        .additional-section {
+            margin: 50px 0;
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Rohith Kumar Photography</h1>
+    <nav>
+        <a href="#">About</a>
+        <a href="#">Gallery</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<a href="../index.html" class="btn">Back to Portfolio</a>
+
+<div class="hero">
+    <h1>Capturing the world through my lens</h1>
+    <p>Welcome to my photography blog where I share my passion for visual storytelling.</p>
+</div>
+
+<div class="gallery-section">
+    <h2>Gallery</h2>
+    <img id="mainImage" src="image1.jpg" alt="Main Image">
+    <div class="thumbnail-row">
+        <img class="thumbnail" src="image1.jpg" alt="Thumbnail 1" onclick="changeImage('image1.jpg')">
+        <img class="thumbnail" src="image2.jpg" alt="Thumbnail 2" onclick="changeImage('image2.jpg')">
+        <img class="thumbnail" src="image3.jpg" alt="Thumbnail 3" onclick="changeImage('image3.jpg')">
+        <img class="thumbnail" src="image4.jpg" alt="Thumbnail 4" onclick="changeImage('image4.jpg')">
+    </div>
+</div>
+
+<div class="additional-section">
+    <h2>About Me</h2>
+    <p>Hi! I'm Rohith Kumar, a passionate photographer with a love for capturing moments. I believe that every picture tells a story, and I strive to convey emotions through my lens.</p>
+    
+    <h2>My Work</h2>
+    <p>Here you will find a selection of my favorite photographs, ranging from nature and landscapes to portraits and events. I hope you enjoy exploring my work as much as I enjoyed creating it!</p>
+</div>
+
+<footer>
+    <p>&copy; 2024 Rohith Kumar. All rights reserved.</p>
+</footer>
+
+<script>
+    // Array of image sources for the slideshow
+    const imageSources = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg'];
+
+    // Current index of the slideshow
+    let currentIndex = 0;
+
+    // Function to change the main image
+    function changeImage(imageSrc) {
+        document.getElementById('mainImage').src = imageSrc;
+        currentIndex = imageSources.indexOf(imageSrc); // Update the current index to prevent conflict with auto-slide
+    }
+
+    // Function to change the image automatically
+    function autoChangeImage() {
+        currentIndex = (currentIndex + 1) % imageSources.length;  // Loop over the images
+        changeImage(imageSources[currentIndex]);
+    }
+
+    // Set interval to automatically change image every 30 seconds (30000 ms)
+    setInterval(autoChangeImage, 30000);
+</script>
+
+</body>
+</html>

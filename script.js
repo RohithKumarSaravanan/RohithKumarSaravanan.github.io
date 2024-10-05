@@ -1,0 +1,1 @@
+// Remove the JavaScript code for slide handling
