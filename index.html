@@ -12,15 +12,16 @@
     <img src="your_profile_pic.jpeg" alt="Your Profile Photo" class="profile-photo">
     <h1>Rohith Kumar Saravanan</h1>
     <p>Full Stack Developer</p>
-    <a href="photography/index.html" class="btn">Photography</a>
+    <a href="photography/index.html" class="button photography">Photography</a>
     <nav>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+      <!--<a href="#photography" class="button photography">Photography</a>-->
+      <a href="#experience" class="button other">Experience</a>
+      <a href="#skills" class="button other">Skills</a>
+      <a href="#education" class="button other">Education</a>
+      <a href="#contact" class="button other">Contact</a>
+
     </nav>
   </header>
-  
-
   
   <main>
     <div id="progress-message">Website development still in progress...</div>
@@ -91,24 +92,48 @@
       </ul>
     </section>
 
-    <section id="contact">
-      <h3>Contact</h3>
-      <p>
-          <a href="mailto:s.rohithkumar1998@gmail.com">
-              <i class="fas fa-envelope"></i> s.rohithkumar1998@gmail.com
-          </a>
-          <br>
-          <a href="https://www.linkedin.com/in/srohithkumar">
-              <i class="fab fa-linkedin"></i> LinkedIn
-          </a>
-      </p>
+    <!-- New Education Section -->
+    <section id="education">
+      <h3><span class="education-icon">🎓</span>Education</h3>
+      <div class="education-item">
+          <h4>University of New Brunswick</h4>
+          <p>Master's Degree in Computer Science</p>
+          <p>Sep 2023 - Dec 2024</p>
+          <p>Focused on advanced software development, cybersecurity, and management courses.</p>
+      </div>
+      <div class="education-item">
+          <h4>Sree Vidyanikethan Education Trust (SVET), Tirupati</h4>
+          <p>Bachelor's Degree in Computer Science and Systems Engineering</p>
+          <p>2016 - 2020</p>
+          <p>Developed a strong foundation in software engineering, algorithms, and system architecture.</p>
+      </div>
+  </section>
+  
+
+  <section id="contact">
+    <h3>Contact Me</h3>
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fab fa-linkedin"></i>
+        <a href="https://www.linkedin.com/in/srohithkumar" class="contact-link">LinkedIn</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:s.rohithkumar1998@gmail.com" class="contact-link">s.rohithkumar1998@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Fredericton, New Brunswick, Canada</span>
+      </div>
+      
+    </div>
   </section>
   
   
   </main>
 
   <footer>
-    &copy; 2023 Rohith Kumar Saravanan
+    &copy; 2024 Rohith Kumar Saravanan
   </footer>
 
   <script src="script.js"></script>

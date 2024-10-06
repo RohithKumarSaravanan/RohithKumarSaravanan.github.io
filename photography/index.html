@@ -138,14 +138,20 @@
         <img class="thumbnail" src="image2.jpg" alt="Thumbnail 2" onclick="changeImage('image2.jpg')">
         <img class="thumbnail" src="image3.jpg" alt="Thumbnail 3" onclick="changeImage('image3.jpg')">
         <img class="thumbnail" src="image4.jpeg" alt="Thumbnail 4" onclick="changeImage('image4.jpeg')">
+        <img class="thumbnail" src="image5.jpg" alt="Thumbnail 3" onclick="changeImage('image5.jpg')">
     </div>
 </div>
 
 <!-- Modal Structure -->
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal(event)">&times;</span>
+    <button class="nav-button left" onclick="prevImage()">&#10094;</button> <!-- Left Arrow -->
     <img class="modal-content" id="modalImage">
+    <button class="nav-button right" onclick="nextImage()">&#10095;</button> <!-- Right Arrow -->
 </div>
+
+
+
 
 <div class="additional-section">
     <h2>About Me</h2>

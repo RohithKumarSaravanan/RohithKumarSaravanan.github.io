@@ -207,3 +207,24 @@ footer {
     font-weight: bold; /* Make the button text bold */
     font-size: 16px; /* Increase font size */
 }
+
+.nav-button {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white; /* White color for the arrows */
+    border: none; /* Remove default border */
+    font-size: 30px; /* Size of the arrows */
+    cursor: pointer; /* Pointer cursor */
+    position: absolute; /* Position absolutely within the modal */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for the height of the button */
+    z-index: 1002; /* Ensure buttons are above the modal content */
+    padding: 10px; /* Add some padding */
+}
+
+.nav-button.left {
+    left: 10px; /* Position on the left */
+}
+
+.nav-button.right {
+    right: 10px; /* Position on the right */
+}

@@ -1,27 +1,30 @@
 body {
     font-family: Roboto, sans-serif;
     margin: 0;
-    padding: 20px; /* Added padding for buffer */
-    background-color: #F5F5F5; /* Light gray background */
+    padding: 20px;
+    background-image: url('image5.jpg'); /* Full-page background image */
     background-size: cover;
     background-attachment: fixed;
 }
 
 .container {
-    max-width: 800px; /* Limit the width for a more structured layout */
-    margin: auto; /* Center the container */
-    background-color: #fff; /* White background for the container */
-    border-radius: 15px; /* Rounded edges for the container */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-    padding: 20px; /* Padding inside the container */
+    max-width: 800px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
 }
 
 header {
     text-align: center;
     padding: 20px;
-    background-color: #007BFF; /* Blue header */
-    color: #fff; /* White text */
-    border-radius: 15px; /* Rounded edges */
+    background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent background */
+    color: #fff; /* Text color */
+    border-top-left-radius: 15px; /* Top left curved border */
+    border-top-right-radius: 15px; /* Top right curved border */
+    border-bottom: 2px solid #007BFF; /* Keep the bottom edge sharp */
+    margin-bottom: -20px; /* Pull header down to connect with main */
 }
 
 .profile-photo {
@@ -29,28 +32,28 @@ header {
     height: 150px;
     border-radius: 50%;
     margin-bottom: 10px;
-    border: 2px solid #FF6600; /* Orange border */
+    border: 2px solid #FF6600;
 }
 
 .slide-container {
     position: relative;
-    max-width: 100%; /* Full width */
+    max-width: 100%;
     margin: auto;
     overflow: hidden;
 }
 
 .slide {
-    display: none; /* Hide all slides by default */
+    display: none;
     padding: 20px;
-    border: 5px solid #007BFF; /* Border color */
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Floating effect */
-    margin: 20px 0; /* Add margin for spacing */
-    background-color: #fff; /* White background for contrast */
+    border: 5px solid #007BFF;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
 }
 
 .slide.active {
-    display: block; /* Show the active slide */
+    display: block;
 }
 
 .slide-navigation {
@@ -65,7 +68,7 @@ header {
     padding: 10px 15px;
     cursor: pointer;
     margin: 5px;
-    border-radius: 5px; /* Rounded button edges */
+    border-radius: 5px;
 }
 
 .prev-btn:hover, .next-btn:hover {
@@ -78,163 +81,250 @@ header {
 
 section {
     margin-bottom: 40px;
-    padding: 20px; /* Add padding for sections */
-    border: 2px solid #007BFF; /* Section border */
-    border-radius: 15px; /* Rounded corners for sections */
-    background-color: #fff; /* White background for sections */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for sections */
+    padding: 20px;
+    border: 2px solid #007BFF;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
+    color: #007BFF;
 }
 
-p {
-    line-height: 1.5;
+h3 {
+    margin: 10px 0;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+    list-style-type: none;
+    padding-left: 0;
 }
 
-li {
+ul li {
     margin-bottom: 10px;
 }
 
-a {
-    color: #007BFF; /* Blue links */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-button {
-    background-color: #007BFF; /* Blue buttons */
-    color: #fff;
-}
-
-footer {
-    text-align: center;
+#education {
     padding: 20px;
-    background-color: #007BFF;
-    color: #fff;
-    border-radius: 0 0 15px 15px; /* Rounded bottom edges */
-}
-
-.project {
     border: 2px solid #007BFF;
-    padding: 15px;
+    border-radius: 15px;
+    background-color: rgba(227, 242, 253, 0.9); /* Semi-transparent light blue */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Space above the education section */
+}
+
+#education h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #007BFF; /* Heading color */
+    border-bottom: 2px solid #007BFF; /* Underline for the heading */
+    padding-bottom: 5px; /* Padding below the heading */
+}
+
+#education p {
+    margin-bottom: 10px;
+    font-size: 16px; /* Font size for description */
+    line-height: 1.5; /* Spacing between lines */
+}
+
+.education-item {
+    border: 1px solid #007BFF; /* Border around each item */
     border-radius: 10px;
-    margin-bottom: 20px;
-    background-color: #fff; /* White background for contrast */
+    padding: 15px;
+    margin-bottom: 15px; /* Space between items */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for items */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    h2 {
-        font-size: 24px;
-    }
-
-    .profile-photo {
-        width: 120px;
-        height: 120px;
-    }
+.education-item h4 {
+    margin: 0;
+    color: #FF6600; /* Different color for institution names */
+    font-size: 20px; /* Font size for institution */
 }
 
-.btn {
-    display: inline-block;
-    align-items: center;
-    padding: 12px 20px;
-    margin: 20px 0;
-    background-color: #FF6600; /* Orange background for the button */
-    color: white; /* White text */
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+.education-item p {
+    margin: 5px 0; /* Spacing around paragraphs */
 }
 
-.btn:hover {
-    background-color: #e65c00; /* Darker orange on hover */
+/* Optional: Add an icon for education */
+.education-icon {
+    font-size: 30px; /* Icon size */
+    color: #FF6600; /* Icon color */
+    float: left; /* Aligns icon to the left */
+    margin-right: 10px; /* Space between icon and text */
 }
 
-.photography-btn {
-    font-weight: bold; /* Make the button text bold */
-    font-size: 16px; /* Increase font size */
-}
-
-/* Contact Section */
 #contact {
-    padding: 20px; /* Added padding for spacing */
-    border: 2px solid #007BFF; /* Border color */
-    border-radius: 15px; /* Rounded corners */
-    background-color: #fff; /* White background for contrast */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    margin-bottom: 40px; /* Spacing from next section */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease; /* Animation effect */
+    margin: auto; /* Center the section */
+    width: 90%; /* Limit the width of the contact section */
+    max-width: 600px; /* Max width for larger screens */
+    margin-bottom: 40px; /* Increase space below the contact section */
+}
+
+
+
+#contact:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
 }
 
 #contact h3 {
-    font-size: 28px; /* Heading size */
-    margin-bottom: 15px; /* Space below heading */
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 20px; /* Spacing below the heading */
+    text-align: center; /* Center the heading */
+    color: #007BFF; /* Color for headings */
+    border-bottom: 2px solid #007BFF; /* Underline */
+    padding-bottom: 10px; /* Padding below the heading */
 }
 
-#contact p {
-    line-height: 1.6; /* Improved line height for readability */
+.contact-info {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 15px; /* Space between items */
 }
 
+.contact-item {
+    display: flex;
+    align-items: center; /* Align icons and text */
+    padding: 15px; /* Padding for contact items */
+    background-color: transparent; /* Transparent background */
+    border-radius: 10px; /* Rounded corners */
+    transition: border 0.3s, color 0.3s, transform 0.3s; /* Transition effects */
+    box-shadow: none; /* No shadow effect */
+    width: fit-content; /* Make the button fit the text */
+    margin: 0 auto; /* Center the items within the section */
+}
+
+.contact-item:hover {
+    border: 2px solid #007BFF; /* Add border on hover */
+    transform: scale(1.05); /* Enlarge slightly on hover */
+}
+
+.contact-item:hover .contact-link,
+.contact-item:hover span {
+    color: white; /* Change text color to white on hover */
+}
+
+.contact-item i {
+    margin-right: 15px; /* Space between icon and text */
+    color: #FF6600; /* Color for icons */
+    font-size: 24px; /* Icon size */
+}
+
+.contact-link {
+    text-decoration: none; /* Remove underline */
+    color: #007BFF; /* Text color */
+    font-size: 18px; /* Font size for text */
+    transition: color 0.3s; /* Transition for text color */
+}
+
+.contact-link:hover {
+    color: white; /* Change link color to white on hover */
+}
+
+
+#contact p, #contact a {
+    color: #007BFF; /* Default text color */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+#contact p:hover, #contact a:hover {
+    color: #0056b3; /* Change text color to a darker blue on hover */
+    border: none; /* Remove border on hover */
+}
+
+#contact h3 {
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 10px;
+    color: #007BFF; /* Color for headings */
+    border-bottom: 2px solid transparent; /* Keep the underline hidden by default */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+#contact h3:hover {
+    border-bottom: 2px solid hsl(0, 0%, 100%); /* Show border on hover */
+}
+
+/* Ensure the links are styled consistently */
 #contact a {
-    display: inline-flex; /* Use inline-flex for alignment with icons */
-    align-items: center; /* Center the icon with text */
-    margin: 10px 0; /* Space between links */
-    padding: 10px 15px; /* Padding around the links */
-    color: #007BFF; /* Link color */
-    text-decoration: none; /* No underline */
-    border: 2px solid transparent; /* Transparent border for hover effect */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
-}
-
-#contact a i {
-    margin-right: 8px; /* Space between icon and text */
-    font-size: 18px; /* Icon size */
+    text-decoration: none; /* Remove underline */
+    color: #007BFF; /* Default link color */
 }
 
 #contact a:hover {
-    background-color: #e0f7ff; /* Light blue background on hover */
-    border-color: #007BFF; /* Border color change on hover */
-    text-decoration: underline; /* Underline on hover */
+    color: #0056b3; /* Change link color on hover */
+    text-decoration: none; /* Ensure underline does not appear */
 }
 
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+
+footer {
+    text-align: center;
+    margin-top: -20px; /* Pull footer up to connect with header */
+    font-size: 14px;
+    background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent blue background */
+    border-bottom-left-radius: 15px; /* Bottom left curved border */
+    border-bottom-right-radius: 15px; /* Bottom right curved border */
+    border-top: 2px solid #007BFF; /* Keep the top edge sharp */
+    padding: 10px; /* Padding for better appearance */
+    color: white; /* White text color */
 }
 
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 80%; /* Adjust width as needed */
-    max-width: 700px; /* Maximum width */
+/* Button styles */
+.button {
+    display: inline-block;
+    padding: 12px 24px; /* Adjusted padding */
+    margin: 10px;
+    border-radius: 25px; /* Rounded edges */
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none; /* Remove underline */
+    color: #007BFF; /* Text color */
+    background-color: transparent; /* Transparent background */
+    border: 2px solid #007BFF; /* Border color */
+    transition: background-color 0.3s, transform 0.3s; /* Transition effects */
 }
 
-.close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
+/* Button hover effects */
+.button:hover {
+    background-color: white; /* Change background to white on hover */
+    color: #007BFF; /* Keep text color */
+    transform: scale(1.1); /* Enlarge slightly on hover */
+}
+
+/* Specific button styles */
+.button.photography {
+    background-color: #FF6600; /* Orange background */
     color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
+}
+
+.button.photography:hover {
+    background-color: white; /* Change to white on hover */
+    color: #FF6600; /* Text color changes to orange */
+    transform: scale(1.1); /* Enlarge slightly on hover */
+}
+
+.button.other {
+    background-color: #007BFF; /* Blue background */
+    color: white;
+}
+
+.button.other:hover {
+    background-color: white; /* Change to white on hover */
+    color: #007BFF; /* Text color changes to blue */
+    transform: scale(1.1); /* Enlarge slightly on hover */
 }
 
 
+/* Additional styles for the experience section */
+#experience {
+    padding: 20px; /* Add padding to create space */
+    margin-top: 20px; /* Optional: space between header and experience */
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white for experience section */
+    border-radius: 15px; /* Rounded corners for experience section */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
