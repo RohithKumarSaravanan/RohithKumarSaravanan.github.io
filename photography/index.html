@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohith Kumar Photography</title>
+    <link rel="icon" href="ProfilePicture.jpg" type="image/jpg">
+
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            position: relative; /* Added to help position the modal */
+            position: relative;
         }
         header {
             background-color: #333;
@@ -42,28 +44,84 @@
             margin-top: 50px;
         }
         #mainImage {
-            width: 70%;
-            height: auto;
+            max-width: 100%; /* Allow the image to scale down but not exceed 100% of its container */
+            max-height: 80vh; /* Limit the height to 70% of the viewport height */
+            height: auto; /* Maintain aspect ratio */
+            width: auto; /* Automatically adjust width based on the height */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer; /* Change cursor to pointer for the main image */
         }
-        .thumbnail-row {
-            display: flex;
-            justify-content: center;
+        .thumbnail-container {
+            width: 100%;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            white-space: nowrap; /* Prevent thumbnails from wrapping */
             margin-top: 20px;
+            padding: 10px 0; /* Padding for spacing */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative; /* Set position to relative for absolute positioning of thumbnails */
         }
+
+        .thumbnail-wrapper {
+            display: flex;
+            transition: transform 0.3s ease; /* Smooth transition */
+            position: relative;
+            overflow: hidden; /* Hide overflowing thumbnails */
+        }
+
         .thumbnail {
-            width: 100px;
-            height: 70px;
+            width: 120px; /* Increased width */
+            height: 80px; /* Increased height */
             margin: 0 10px;
             cursor: pointer;
             border-radius: 5px;
-            transition: transform 0.2s;
+            transition: transform 0.3s, box-shadow 0.2s; /* Add box-shadow transition */
+            transform-style: preserve-3d; /* Enable 3D transformations */
+            overflow: visible; /* Allow overflow */
+            position: relative; /* Set position to relative */
+            z-index: 0; /* Ensure default z-index */
         }
+
         .thumbnail:hover {
-            transform: scale(1.1);
+            transform: scale(1) translateY(-5px) rotateY(5deg); /* Scale up and move up */
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4); /* Add a more pronounced shadow effect on hover */
+            z-index: 1; /* Ensure the hovered thumbnail appears above others */
         }
+
+
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 1;
+        }
+
+        .scroll-button:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: scale(1); /* Slightly enlarge button on hover */
+        }
+
+        .scroll-button.left {
+            left: 10px;
+        }
+
+        .scroll-button.right {
+            right: 10px;
+        }
+
+        /* Hide buttons when the container is not scrollable */
+        .scroll-button.hidden {
+            display: none;
+        }
+
         .additional-section {
             margin: 50px 0;
             text-align: center;
@@ -79,26 +137,26 @@
         }
         /* Modal Styles */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
+            display: none;
+            position: fixed;
+            z-index: 1000;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
-            backdrop-filter: blur(5px); /* Blur effect for the background only */
-            display: flex; /* Use flex to center the content */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .modal-content {
             margin: auto;
             display: block;
-            width: 90%; /* Adjust width to be wider */
-            max-width: 900px; /* Maximum width */
-            position: relative; /* To position the close button */
-            z-index: 1001; /* Ensure modal content is on top */
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            z-index: 1001;
         }
         .close {
             position: absolute;
@@ -108,7 +166,7 @@
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 1001; /* Ensure close button is on top */
+            z-index: 1001;
         }
     </style>
 </head>
@@ -131,9 +189,12 @@
 </div>
 
 <div class="gallery-section">
-    <h2>Gallery</h2>
-    <img id="mainImage" src="image1.jpg" alt="Main Image" onclick="openModal()">
-    <div class="thumbnail-row">
+    <img id="mainImage" src="image1.jpg" alt="Main Image" onclick="openModal()"> <!-- Main Image added here -->
+</div>
+
+<div class="thumbnail-container">
+    <button class="scroll-button left" onclick="scrollLeft()">&#10094;</button>
+    <div class="thumbnail-wrapper" id="thumbnailWrapper">
         <img class="thumbnail" src="image1.jpg" alt="Thumbnail 1" onclick="changeImage('image1.jpg')">
         <img class="thumbnail" src="image2.jpg" alt="Thumbnail 2" onclick="changeImage('image2.jpg')">
         <img class="thumbnail" src="image3.jpg" alt="Thumbnail 3" onclick="changeImage('image3.jpg')">
@@ -145,19 +206,24 @@
         <img class="thumbnail" src="image9.jpeg" alt="Thumbnail 9" onclick="changeImage('image9.jpeg')">
         <img class="thumbnail" src="image10.jpeg" alt="Thumbnail 10" onclick="changeImage('image10.jpeg')">
         <img class="thumbnail" src="image11.jpeg" alt="Thumbnail 11" onclick="changeImage('image11.jpeg')">
+        <img class="thumbnail" src="image12.jpeg" alt="Thumbnail 12" onclick="changeImage('image12.jpeg')">
+        <img class="thumbnail" src="image13.jpeg" alt="Thumbnail 13" onclick="changeImage('image13.jpeg')">
+        <img class="thumbnail" src="image14.jpeg" alt="Thumbnail 14" onclick="changeImage('image14.jpeg')">
+        <img class="thumbnail" src="image15.jpeg" alt="Thumbnail 15" onclick="changeImage('image15.jpeg')">
+        <img class="thumbnail" src="image16.jpeg" alt="Thumbnail 16" onclick="changeImage('image16.jpeg')">
+        <img class="thumbnail" src="image17.jpeg" alt="Thumbnail 17" onclick="changeImage('image17.jpeg')">
     </div>
+    <button class="scroll-button right" onclick="scrollRight()">&#10095;</button>
 </div>
+
 
 <!-- Modal Structure -->
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal(event)">&times;</span>
-    <button class="nav-button left" onclick="prevImage()">&#10094;</button> <!-- Left Arrow -->
+    <button class="nav-button left" onclick="prevImage()">&#10094;</button>
     <img class="modal-content" id="modalImage">
-    <button class="nav-button right" onclick="nextImage()">&#10095;</button> <!-- Right Arrow -->
+    <button class="nav-button right" onclick="nextImage()">&#10095;</button>
 </div>
-
-
-
 
 <div class="additional-section">
     <h2>About Me</h2>
@@ -172,45 +238,77 @@
 </footer>
 
 <script>
-    // Array of image sources for the slideshow
-    const imageSources = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpeg'];
-
-    // Current index of the slideshow
+    const imageSources = [
+        'image1.jpg', 
+        'image2.jpg', 
+        'image3.jpg', 
+        'image4.jpeg',
+        'image5.jpg',
+        'image6.jpeg',
+        'image7.jpeg',
+        'image8.jpeg',
+        'image9.jpeg',
+        'image10.jpeg',
+        'image11.jpeg',
+        'image12.jpeg',
+        'image13.jpeg',
+        'image14.jpeg',
+        'image15.jpeg',
+        'image16.jpeg',
+        'image17.jpeg'
+    ];
     let currentIndex = 0;
-
-    // Function to change the main image
-    function changeImage(imageSrc) {
-        document.getElementById('mainImage').src = imageSrc;
-        currentIndex = imageSources.indexOf(imageSrc); // Update the current index to prevent conflict with auto-slide
+    function scrollLeft() {
+        const wrapper = document.getElementById('thumbnailWrapper');
+        const scrollAmount = 110; // Adjust the amount to scroll
+        wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     }
 
-    // Function to open the modal
+    function scrollRight() {
+        const wrapper = document.getElementById('thumbnailWrapper');
+        const scrollAmount = 110; // Adjust the amount to scroll
+        wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+
+    function changeImage(imageSrc) {
+        document.getElementById('mainImage').src = imageSrc;
+        currentIndex = imageSources.indexOf(imageSrc);
+    }
+
     function openModal() {
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
-        modal.style.display = "flex"; // Show the modal with flex
-        modalImage.src = document.getElementById('mainImage').src; // Set the modal image source
+        modal.style.display = "flex";
+        modalImage.src = document.getElementById('mainImage').src;
+        currentIndex = imageSources.indexOf(modalImage.src); // Update currentIndex when opening modal
     }
 
-    // Function to close the modal
     function closeModal(event) {
-        if (event) event.stopPropagation(); // Prevent the click on the close button from triggering the modal close
+        if (event) event.stopPropagation();
         const modal = document.getElementById('imageModal');
-        modal.style.display = "none"; // Hide the modal
+        modal.style.display = "none";
     }
 
-    // Set initial state of the modal to be hidden
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + imageSources.length) % imageSources.length; // Loop back to end if at start
+        document.getElementById('modalImage').src = imageSources[currentIndex];
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % imageSources.length; // Loop back to start if at end
+        document.getElementById('modalImage').src = imageSources[currentIndex];
+    }
+
     document.getElementById('imageModal').style.display = "none";
 
-    // Function to change the image automatically
     function autoChangeImage() {
-        currentIndex = (currentIndex + 1) % imageSources.length;  // Loop over the images
+        currentIndex = (currentIndex + 1) % imageSources.length;
         changeImage(imageSources[currentIndex]);
     }
 
-    // Set interval to automatically change image every 30 seconds (30000 ms)
     setInterval(autoChangeImage, 30000);
 </script>
+
 
 </body>
 </html>
