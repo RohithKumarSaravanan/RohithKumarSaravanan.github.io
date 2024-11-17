@@ -52,6 +52,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer; /* Change cursor to pointer for the main image */
         }
+        #mainImage:hover{
+            transform: scale(1) translateY(-5px) rotateY(5deg); /* Scale up and move up */
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4); /* Add a more pronounced shadow effect on hover */
+            z-index: 1; /* Ensure the hovered thumbnail appears above others */
+        }
         .thumbnail-container {
             width: 100%;
             overflow-x: auto; /* Enable horizontal scrolling */
@@ -168,6 +173,13 @@
             cursor: pointer;
             z-index: 1001;
         }
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
     </style>
 </head>
 <body>
@@ -189,8 +201,11 @@
 </div>
 
 <div class="gallery-section">
-    <img id="mainImage" src="image1.jpg" alt="Main Image" onclick="openModal()"> <!-- Main Image added here -->
+    <img id="mainImage" src="image1.jpg" alt="Main Image" onclick="openModal()"> <!-- Main Image -->
+    <h2 id="imageTitle">Image 1 Title</h2>
+    <p id="imageSummary">This is the summary for Image 1. A beautiful landscape capturing the serene beauty of nature.</p>
 </div>
+
 
 <div class="thumbnail-container">
     <button class="scroll-button left" onclick="scrollLeft()">&#10094;</button>
@@ -238,24 +253,24 @@
 </footer>
 
 <script>
-    const imageSources = [
-        'image1.jpg', 
-        'image2.jpg', 
-        'image3.jpg', 
-        'image4.jpeg',
-        'image5.jpg',
-        'image6.jpeg',
-        'image7.jpeg',
-        'image8.jpeg',
-        'image9.jpeg',
-        'image10.jpeg',
-        'image11.jpeg',
-        'image12.jpeg',
-        'image13.jpeg',
-        'image14.jpeg',
-        'image15.jpeg',
-        'image16.jpeg',
-        'image17.jpeg'
+    const imageDetails = [
+        { src: 'image1.jpg', title: 'Golden Horizon', summary: '"An evening sky painted with hues of orange, as the sun dips beyond the horizon, casting a serene glow over the fading day."' },
+        { src: 'image2.jpg', title: 'Whispers of the Shore', summary: '"A riverside scene where tall grasses sway gently, with bridge pillars peeking through, evoking the texture and a natural beauty that feels like a real oil painting."' },
+        { src: 'image3.jpg', title: 'Sunset Pathway', summary: '"The golden hour illuminates an empty roadway, stretching towards the vibrant sunset. Soft light reflects off the cityscape, creating a tranquil evening view."' },
+        { src: 'image4.jpeg', title: 'Reflections at Dusk', summary: '"As the last rays of sunlight fade, city lights begin to shimmer on the river’s surface, casting reflections of buildings and trees, blending nature with urban serenity."' },
+        { src: 'image5.jpg', title: 'Cinematic Skies', summary: '"A breathtaking display of clouds dances in shades of orange and light blue, creating a stunning cinematic backdrop that captures the essence of a vibrant sunset."' },
+        { src: 'image6.jpeg', title: 'Whispers of the Shore II', summary: '"In a cinematic frame, river shore plants sway gracefully, with a blurred bridge softly framing the background, enhancing the tranquility of nature’s beauty."' },
+        { src: 'image7.jpeg', title: 'Stormy Crossings', summary: '"A bridge looms beneath a brooding sky, its streetlights dark as ominous clouds gather overhead, signaling the approach of rain."' },
+        { src: 'image8.jpeg', title: 'Golden River Beneath Trees and Hills', summary: '"As the sunset casts a golden hue over the river, layers of trees and hills create a serene backdrop against a sky adorned with soft pink and white clouds."' },
+        { src: 'image9.jpeg', title: 'Harmony of Nature', summary: '"This serene scene captures the lush river shore, where vibrant plants meet the flowing water, surrounded by trees and gentle hills, all under a sweeping sky that embodies the tranquility of nature."' },
+        { src: 'image10.jpeg', title: 'Evening Run by the River', summary: '"As dusk descends, runners chase the fading light along a winding road, where grass whispers the days secrets. A tranquil river flows beside them, embraced by rolling hills, while the sky blushes in soft orange hues, inviting dreams of evening adventures."' },
+        { src: 'image11.jpeg', title: 'Silent Blooms', summary: '"In a tapestry of green, delicate white flowers peek through the grass, their whispers mingling with the soft sighs of the wind. Behind this vibrant scene, the blurred silhouette of aged red buildings stands watch, holding the secrets of days gone by."' },
+        { src: 'image12.jpeg', title: 'Image 12 Title', summary: 'A magnificent architectural wonder.' },
+        { src: 'image13.jpeg', title: 'Image 13 Title', summary: 'A wildlife shot showcasing the majestic beauty of nature.' },
+        { src: 'image14.jpeg', title: 'Image 14 Title', summary: 'A picturesque mountain range.' },
+        { src: 'image15.jpeg', title: 'Image 15 Title', summary: 'A winter wonderland covered in snow.' },
+        { src: 'image16.jpeg', title: 'Image 16 Title', summary: 'A bustling marketplace full of life.' },
+        { src: 'image17.jpeg', title: 'Image 17 Title', summary: 'A vibrant autumn scene full of warm colors.' }
     ];
     let currentIndex = 0;
     function scrollLeft() {
@@ -271,8 +286,18 @@
     }
 
     function changeImage(imageSrc) {
-        document.getElementById('mainImage').src = imageSrc;
-        currentIndex = imageSources.indexOf(imageSrc);
+        const mainImage = document.getElementById('mainImage');
+        const imageTitle = document.getElementById('imageTitle');
+        const imageSummary = document.getElementById('imageSummary');
+        
+        const selectedImage = imageDetails.find(image => image.src === imageSrc);
+        
+        if (selectedImage) {
+            mainImage.src = selectedImage.src;
+            imageTitle.innerText = selectedImage.title;
+            imageSummary.innerText = selectedImage.summary;
+            currentIndex = imageDetails.indexOf(selectedImage); // Update currentIndex based on selected image
+        }
     }
 
     function openModal() {
@@ -280,7 +305,7 @@
         const modalImage = document.getElementById('modalImage');
         modal.style.display = "flex";
         modalImage.src = document.getElementById('mainImage').src;
-        currentIndex = imageSources.indexOf(modalImage.src); // Update currentIndex when opening modal
+        currentIndex = imageDetails.indexOf(image => image.src === modalImage.src); // Update currentIndex when opening modal
     }
 
     function closeModal(event) {
@@ -290,23 +315,27 @@
     }
 
     function prevImage() {
-        currentIndex = (currentIndex - 1 + imageSources.length) % imageSources.length; // Loop back to end if at start
-        document.getElementById('modalImage').src = imageSources[currentIndex];
+        currentIndex = (currentIndex - 1 + imageDetails.length) % imageDetails.length; // Loop back to end if at start
+        document.getElementById('modalImage').src = imageDetails[currentIndex];
     }
 
     function nextImage() {
-        currentIndex = (currentIndex + 1) % imageSources.length; // Loop back to start if at end
-        document.getElementById('modalImage').src = imageSources[currentIndex];
+        currentIndex = (currentIndex + 1) % imageDetails.length; // Loop back to start if at end
+        document.getElementById('modalImage').src = imageDetails[currentIndex];
     }
 
     document.getElementById('imageModal').style.display = "none";
 
     function autoChangeImage() {
-        currentIndex = (currentIndex + 1) % imageSources.length;
-        changeImage(imageSources[currentIndex]);
+        currentIndex = (currentIndex + 1) % imageDetails.length;
+        changeImage(imageDetails[currentIndex]);
     }
 
     setInterval(autoChangeImage, 30000);
+
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    }, false);
 </script>
 
 
