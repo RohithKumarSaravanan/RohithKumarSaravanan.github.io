@@ -40,3 +40,6 @@ function generatePoem() {
     document.getElementById('poem').innerText = selectedPoem.Poem;
     document.getElementById('emotion').innerText = `Emotion: ${selectedPoem.Emotion}`;
 }
+
+// Attach `generatePoem` to the global scope
+window.generatePoem = generatePoem;
