@@ -5,13 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Poem Generator</title>
   <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <style>
+    /* Basic Reset */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* Heading Styling */
+    h1 {
+      color: #4caf50;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Button Styling */
+    button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Poem Display Styling */
+    div {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      text-align: center;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      max-width: 600px;
+    }
+
+    #poem {
+      font-size: 1.5rem;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+
+    #emotion {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <h1>Poem Generator</h1>
   <button onclick="generatePoem()">Generate Random Poem</button>
   <div>
-    <h2 id="poem"></h2>
-    <p id="emotion"></p>
+    <h2 id="poem">Your poem will appear here...</h2>
+    <p id="emotion">Emotion will appear here...</p>
   </div>
 
   <!-- Load your script after the body -->
