@@ -55,17 +55,21 @@
       max-width: 600px;
     }
 
-    #poem {
-      font-size: 1.5rem;
-      font-style: italic;
-      margin-bottom: 0.5rem;
-      color: #555;
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-sizing: border-box;
     }
 
-    #emotion {
+    #emotion-output {
       font-size: 1.2rem;
       font-weight: bold;
-      color: #333;
+      color: #4caf50;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
@@ -75,6 +79,14 @@
   <div>
     <h2 id="poem">Your poem will appear here...</h2>
     <p id="emotion">Emotion will appear here...</p>
+  </div>
+
+  <!-- New Section for Inputting a Poem -->
+  <div>
+    <h2>Enter Your Poem</h2>
+    <textarea id="userPoem" rows="5" placeholder="Type your poem here..."></textarea>
+    <button onclick="predictEmotion()">Predict Emotion</button>
+    <p id="emotion-output">Emotion will appear here...</p>
   </div>
 
   <!-- Load your script after the body -->
