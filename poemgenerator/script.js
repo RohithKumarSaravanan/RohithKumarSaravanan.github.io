@@ -37,9 +37,10 @@ function generatePoem() {
     const selectedPoem = poems[randomIndex];
 
     // Display the poem and its emotion
-    document.getElementById('poem').innerText = selectedPoem.Poem;
-    document.getElementById('emotion').innerText = `Emotion: ${selectedPoem.Emotion}`;
+    document.getElementById('poem').innerText = selectedPoem.Poem || "No poem text available.";
+    document.getElementById('emotion').innerText = `Emotion: ${selectedPoem.Emotion || "Unknown"}`;
 }
+
 
 // Attach `generatePoem` to the global scope
 window.generatePoem = generatePoem;
