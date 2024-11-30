@@ -34,8 +34,8 @@ function generatePoem() {
     const selectedPoem = poemData[randomIndex];
 
     // Display the poem and its emotion
-    document.getElementById('poem').innerText = selectedPoem.poem || "No poem available.";
-    document.getElementById('emotion').innerText = `Emotion: ${selectedPoem.emotion || "Unknown"}`;
+    document.getElementById('Poem').innerText = selectedPoem.poem || "No poem available.";
+    document.getElementById('Emotion').innerText = `Emotion: ${selectedPoem.emotion || "Unknown"}`;
 }
 
 // Call the function to load the poem data when the script runs
