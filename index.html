@@ -1,314 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohith Kumar Photography</title>
-    <link rel="icon" href="ProfilePicture.jpg" type="image/jpg">
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            position: relative;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .hero {
-            text-align: center;
-            margin: 50px 0;
-        }
-        .hero h1 {
-            font-size: 2.5em;
-        }
-        .hero p {
-            font-size: 1.2em;
-            margin: 10px 0;
-        }
-        .gallery-section {
-            text-align: center;
-            margin-top: 50px;
-        }
-        #mainImage {
-            max-width: 100%; /* Allow the image to scale down but not exceed 100% of its container */
-            max-height: 80vh; /* Limit the height to 70% of the viewport height */
-            height: auto; /* Maintain aspect ratio */
-            width: auto; /* Automatically adjust width based on the height */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            cursor: pointer; /* Change cursor to pointer for the main image */
-        }
-        .thumbnail-container {
-            width: 100%;
-            overflow-x: auto; /* Enable horizontal scrolling */
-            white-space: nowrap; /* Prevent thumbnails from wrapping */
-            margin-top: 20px;
-            padding: 10px 0; /* Padding for spacing */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative; /* Set position to relative for absolute positioning of thumbnails */
-        }
-
-        .thumbnail-wrapper {
-            display: flex;
-            transition: transform 0.3s ease; /* Smooth transition */
-            position: relative;
-            overflow: hidden; /* Hide overflowing thumbnails */
-        }
-
-        .thumbnail {
-            width: 120px; /* Increased width */
-            height: 80px; /* Increased height */
-            margin: 0 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: transform 0.3s, box-shadow 0.2s; /* Add box-shadow transition */
-            transform-style: preserve-3d; /* Enable 3D transformations */
-            overflow: visible; /* Allow overflow */
-            position: relative; /* Set position to relative */
-            z-index: 0; /* Ensure default z-index */
-        }
-
-        .thumbnail:hover {
-            transform: scale(1) translateY(-5px) rotateY(5deg); /* Scale up and move up */
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4); /* Add a more pronounced shadow effect on hover */
-            z-index: 1; /* Ensure the hovered thumbnail appears above others */
-        }
-
-
-        .scroll-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.8);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
-            z-index: 1;
-        }
-
-        .scroll-button:hover {
-            background-color: rgba(255, 255, 255, 1);
-            transform: scale(1); /* Slightly enlarge button on hover */
-        }
-
-        .scroll-button.left {
-            left: 10px;
-        }
-
-        .scroll-button.right {
-            right: 10px;
-        }
-
-        /* Hide buttons when the container is not scrollable */
-        .scroll-button.hidden {
-            display: none;
-        }
-
-        .additional-section {
-            margin: 50px 0;
-            text-align: center;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 90%;
-            max-width: 900px;
-            position: relative;
-            z-index: 1001;
-        }
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 1001;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rohith Kumar Saravanan | Full Stack Developer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM9l+8Od+v0jt1RfZ0Y5vY1NfC5gg6tC1Y6fL3" crossorigin="anonymous">
 </head>
 <body>
-
-<header>
-    <h1>Rohith Kumar Photography</h1>
+  <header class="nav-bar" id="navbar">
+    <img src="your_profile_pic.jpeg" alt="Your Profile Photo" class="profile-photo">
+    <h1>Rohith Kumar Saravanan</h1>
+    <p>Full Stack Developer</p>
+    <a href="photography/index.html" class="button photography">Photography</a>
     <nav>
-        <a href="#">About</a>
-        <a href="#">Gallery</a>
-        <a href="#">Blog</a>
-        <a href="#">Contact</a>
-        <a href="../index.html" class="btn photography-btn">HOME</a>
+      <a href="#experience" class="button other">Experience</a>
+      <a href="#skills" class="button other">Skills</a>
+      <a href="#education" class="button other">Education</a>
+      <a href="#contact" class="button other">Contact</a>
     </nav>
-</header>
-
-<div class="hero">
-    <h1>Capturing the world through my lens</h1>
-    <p>Welcome to my photography blog where I share my passion for visual storytelling.</p>
-</div>
-
-<div class="gallery-section">
-    <img id="mainImage" src="image1.jpg" alt="Main Image" onclick="openModal()"> <!-- Main Image added here -->
-</div>
-
-<div class="thumbnail-container">
-    <button class="scroll-button left" onclick="scrollLeft()">&#10094;</button>
-    <div class="thumbnail-wrapper" id="thumbnailWrapper">
-        <img class="thumbnail" src="image1.jpg" alt="Thumbnail 1" onclick="changeImage('image1.jpg')">
-        <img class="thumbnail" src="image2.jpg" alt="Thumbnail 2" onclick="changeImage('image2.jpg')">
-        <img class="thumbnail" src="image3.jpg" alt="Thumbnail 3" onclick="changeImage('image3.jpg')">
-        <img class="thumbnail" src="image4.jpeg" alt="Thumbnail 4" onclick="changeImage('image4.jpeg')">
-        <img class="thumbnail" src="image5.jpg" alt="Thumbnail 5" onclick="changeImage('image5.jpg')">
-        <img class="thumbnail" src="image6.jpeg" alt="Thumbnail 6" onclick="changeImage('image6.jpeg')">
-        <img class="thumbnail" src="image7.jpeg" alt="Thumbnail 7" onclick="changeImage('image7.jpeg')">
-        <img class="thumbnail" src="image8.jpeg" alt="Thumbnail 8" onclick="changeImage('image8.jpeg')">
-        <img class="thumbnail" src="image9.jpeg" alt="Thumbnail 9" onclick="changeImage('image9.jpeg')">
-        <img class="thumbnail" src="image10.jpeg" alt="Thumbnail 10" onclick="changeImage('image10.jpeg')">
-        <img class="thumbnail" src="image11.jpeg" alt="Thumbnail 11" onclick="changeImage('image11.jpeg')">
-        <img class="thumbnail" src="image12.jpeg" alt="Thumbnail 12" onclick="changeImage('image12.jpeg')">
-        <img class="thumbnail" src="image13.jpeg" alt="Thumbnail 13" onclick="changeImage('image13.jpeg')">
-        <img class="thumbnail" src="image14.jpeg" alt="Thumbnail 14" onclick="changeImage('image14.jpeg')">
-        <img class="thumbnail" src="image15.jpeg" alt="Thumbnail 15" onclick="changeImage('image15.jpeg')">
-        <img class="thumbnail" src="image16.jpeg" alt="Thumbnail 16" onclick="changeImage('image16.jpeg')">
-        <img class="thumbnail" src="image17.jpeg" alt="Thumbnail 17" onclick="changeImage('image17.jpeg')">
-    </div>
-    <button class="scroll-button right" onclick="scrollRight()">&#10095;</button>
-</div>
-
-
-<!-- Modal Structure -->
-<div id="imageModal" class="modal">
-    <span class="close" onclick="closeModal(event)">&times;</span>
-    <button class="nav-button left" onclick="prevImage()">&#10094;</button>
-    <img class="modal-content" id="modalImage">
-    <button class="nav-button right" onclick="nextImage()">&#10095;</button>
-</div>
-
-<div class="additional-section">
-    <h2>About Me</h2>
-    <p>Hi! I'm Rohith Kumar, a passionate photographer with a love for capturing moments. I believe that every picture tells a story, and I strive to convey emotions through my lens.</p>
+  </header>
+  
+  <main>
+    <div id="progress-message">Website development still in progress...</div>
     
-    <h2>My Work</h2>
-    <p>Here you will find a selection of my favorite photographs, ranging from nature and landscapes to portraits and events. I hope you enjoy exploring my work as much as I enjoyed creating it!</p>
-</div>
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="slide-container">
+        <div class="slide active">
+          <h3>Digital Specialist Engineer</h3>
+          <p>Infosys • Full-time • Sep 2020 - Aug 2023</p>
+          <p>Hyderabad, Telangana, India</p>
+          <p>
+            As a Digital Specialist Engineer at Infosys, I delivered innovative software solutions that enhanced operational efficiency and client satisfaction. Collaborating with cross-functional teams, I designed and implemented scalable applications aligned with client requirements and industry best practices. My key responsibilities included:
+          </p>
+          <ul>
+            <li>Code Development: Designed and developed secure, high-performance code for digital transformation initiatives using .NET, Flask/Flask-RESTful, and Angular, achieving a 30% improvement in application performance and 25% increase in user retention through strategic optimization and user feedback integration.</li>
+            <li>Client Engagement: Engaged directly with clients and senior consultants to gather software requirements, emphasizing the importance of strong client relationships for tailored solutions.</li>
+            <li>Project Management: Managed project lifecycles with Jira, overseeing task tracking and team collaboration.</li>
+            <li>Cloud Deployment: Assisted with cloud tasks, facilitating application deployment on Azure.</li>
+            <li>Continuous Improvement: Took initiative to learn and implement new functionalities with client approval.</li>
+          </ul>
+          <p>Technologies/Platforms: .NET (ASP.NET Core), Flask/Flask-RESTful, Angular, TypeScript, SQL Server Management Studio, PostgreSQL, Azure Cloud, Jira.</p>
+        </div>
 
-<footer>
-    <p>&copy; 2024 Rohith Kumar. All rights reserved.</p>
-</footer>
+        <div class="slide">
+          <h3>Student Housekeeping Associate</h3>
+          <p>University of New Brunswick • Contract Full-time • May 2024 - Aug 2024</p>
+          <p>Fredericton, New Brunswick, Canada</p>
+          <p>
+            In my role as a Student Housekeeping Associate, I had the opportunity to engage with a diverse range of customers, enhancing my communication and interpersonal skills.
+          </p>
+        </div>
 
-<script>
-    const imageSources = [
-        'image1.jpg', 
-        'image2.jpg', 
-        'image3.jpg', 
-        'image4.jpeg',
-        'image5.jpg',
-        'image6.jpeg',
-        'image7.jpeg',
-        'image8.jpeg',
-        'image9.jpeg',
-        'image10.jpeg',
-        'image11.jpeg',
-        'image12.jpeg',
-        'image13.jpeg',
-        'image14.jpeg',
-        'image15.jpeg',
-        'image16.jpeg',
-        'image17.jpeg'
-    ];
-    let currentIndex = 0;
-    function scrollLeft() {
-        const wrapper = document.getElementById('thumbnailWrapper');
-        const scrollAmount = 110; // Adjust the amount to scroll
-        wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    }
+        <div class="slide">
+          <h3>HMR Store Associate</h3>
+          <p>Atlantic Superstore • Permanent Part-time • Sep 2023 - Present</p>
+          <p>Fredericton, New Brunswick, Canada</p>
+          <p>
+            In my role, I skillfully prepare a range of fast food items while effectively managing online and onsite orders.
+          </p>
+        </div>
 
-    function scrollRight() {
-        const wrapper = document.getElementById('thumbnailWrapper');
-        const scrollAmount = 110; // Adjust the amount to scroll
-        wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
+        <div class="slide">
+          <h3>Student - Kitchen Helper</h3>
+          <p>Compass Group Canada • Permanent Part-time • Oct 2023 - Present</p>
+          <p>Fredericton, New Brunswick, Canada</p>
+          <p>
+            In my current role, I have gained diverse experience as an assistant chef and bartender, showcasing strong organizational and communication skills.
+          </p>
+        </div>
 
-    function changeImage(imageSrc) {
-        document.getElementById('mainImage').src = imageSrc;
-        currentIndex = imageSources.indexOf(imageSrc);
-    }
+        <!-- Navigation buttons -->
+        <div class="slide-navigation">
+          <button class="prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+          <button class="next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+      </div>
+    </section>
 
-    function openModal() {
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        modal.style.display = "flex";
-        modalImage.src = document.getElementById('mainImage').src;
-        currentIndex = imageSources.indexOf(modalImage.src); // Update currentIndex when opening modal
-    }
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Programming Languages: Python, C/C++, Java, JavaScript, TypeScript</li>
+        <li>Frameworks & Technologies: Flask, .NET (ASP.NET Core), Angular</li>
+        <li>Databases: MS SQL, PostgreSQL</li>
+        <li>Cloud Technologies: Azure</li>
+        <li>Tools: Jira, Postman, SQL Server Management Studio</li>
+      </ul>
+    </section>
 
-    function closeModal(event) {
-        if (event) event.stopPropagation();
-        const modal = document.getElementById('imageModal');
-        modal.style.display = "none";
-    }
+    <!-- Poem Generator Section -->
+    <section id="poem-generator">
+      <h2>Projects</h2>
+      <a href="poemgenerator/index.html" class="button">Random Poem Generator</a>
+      <a href="movierecommender/index.html" class="button">Movie Recommender</a>
+    </section>
 
-    function prevImage() {
-        currentIndex = (currentIndex - 1 + imageSources.length) % imageSources.length; // Loop back to end if at start
-        document.getElementById('modalImage').src = imageSources[currentIndex];
-    }
+    <!-- New Education Section -->
+    <section id="education">
+      <h3><span class="education-icon">🎓</span>Education</h3>
+      <div class="education-item">
+          <h4>University of New Brunswick</h4>
+          <p>Master's Degree in Computer Science</p>
+          <p>Sep 2023 - Dec 2024</p>
+          <p>Focused on advanced software development, cybersecurity, and management courses.</p>
+      </div>
+      <div class="education-item">
+          <h4>Sree Vidyanikethan Education Trust (SVET), Tirupati</h4>
+          <p>Bachelor's Degree in Computer Science and Systems Engineering</p>
+          <p>2016 - 2020</p>
+          <p>Developed a strong foundation in software engineering, algorithms, and system architecture.</p>
+      </div>
+  </section>
+  
 
-    function nextImage() {
-        currentIndex = (currentIndex + 1) % imageSources.length; // Loop back to start if at end
-        document.getElementById('modalImage').src = imageSources[currentIndex];
-    }
+  <section id="contact">
+    <h3>Contact Me</h3>
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fab fa-linkedin"></i>
+        <a href="https://www.linkedin.com/in/srohithkumar" class="contact-link">LinkedIn</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:s.rohithkumar1998@gmail.com" class="contact-link">s.rohithkumar1998@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Fredericton, New Brunswick, Canada</span>
+      </div>
+      
+    </div>
+  </section>
+  
+  </main>
 
-    document.getElementById('imageModal').style.display = "none";
+  <footer>
+    &copy; 2024 Rohith Kumar Saravanan
+  </footer>
 
-    function autoChangeImage() {
-        currentIndex = (currentIndex + 1) % imageSources.length;
-        changeImage(imageSources[currentIndex]);
-    }
-
-    setInterval(autoChangeImage, 30000);
-</script>
-
-
+  <script src="script.js"></script>
 </body>
 </html>
