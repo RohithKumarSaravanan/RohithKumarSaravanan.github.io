@@ -34,14 +34,11 @@ function generatePoem() {
     const selectedPoem = poemData[randomIndex];
 
     // Display the poem and its emotion
-    document.getElementById('Poem').innerText = selectedPoem.poem || "No poem available.";
-    document.getElementById('Emotion').innerText = `Emotion: ${selectedPoem.emotion || "Unknown"}`;
+    document.getElementById('poem').innerText = selectedPoem['Poem'] || "No poem available.";
+    document.getElementById('emotion').innerText = `Emotion: ${selectedPoem['Emotion'] || "Unknown"}`;
 }
 
-// Call the function to load the poem data when the script runs
-window.onload = loadPoemData;
-
-// Existing function for emotion prediction based on user input
+// Function to predict the emotion based on user input
 function predictEmotion() {
     const userPoem = document.getElementById('userPoem').value.trim();
 
@@ -69,3 +66,6 @@ function predictEmotion() {
     // Display the detected emotion
     document.getElementById('emotion-output').innerText = `Emotion: ${detectedEmotion}`;
 }
+
+// Call the function to load the poem data when the script runs
+window.onload = loadPoemData;

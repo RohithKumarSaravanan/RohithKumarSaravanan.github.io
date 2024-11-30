@@ -3,93 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Poem Generator</title>
+  <title>Poem Vibes</title>
   <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
   <style>
     /* Basic Reset */
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #A1C4FD, #A8E6CF); /* Light blue and light green gradient */
       color: #333;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      overflow: hidden;
     }
 
     /* Heading Styling */
     h1 {
-      color: #4caf50;
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      color: #ffffff;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+      animation: pop 1s ease-in-out;
     }
 
     /* Button Styling */
     button {
-      background-color: #4caf50;
+      background: #4caf50;
       color: white;
       border: none;
-      padding: 0.7rem 1.5rem;
+      padding: 0.9rem 2rem;
       font-size: 1.2rem;
       cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
+      border-radius: 50px;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
     }
 
     button:hover {
-      background-color: #45a049;
+      background: #45a049;
+      transform: scale(1.1);
+    }
+
+    /* Poem Container Styling */
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 2rem;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      margin-top: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     /* Poem Display Styling */
-    div {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      text-align: center;
-      background: white;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      max-width: 600px;
+    #poem {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      animation: fade-in 1.5s ease-in-out;
+    }
+
+    #poem::before,
+    #poem::after {
+      content: "✒️";
+      margin: 0 0.5rem;
+    }
+
+    #emotion {
+      font-size: 1.2rem;
+      color: #ffffff;
     }
 
     textarea {
       width: 100%;
       padding: 1rem;
       margin-top: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      border: none;
+      border-radius: 10px;
       font-size: 1rem;
-      box-sizing: border-box;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      font-family: inherit;
+      resize: none;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    textarea::placeholder {
+      color: #888;
     }
 
     #emotion-output {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       font-weight: bold;
       color: #4caf50;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
+      animation: fade-in 1s;
+    }
+
+    /* Position Emotion Output for Visibility */
+    #emotion-output {
+      position: fixed;
+      bottom: 1rem;
+      text-align: center;
+      width: 100%;
+      color: #ffeb3b; /* Bright Yellow */
+    }
+
+    /* Animations */
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <h1>Poem Generator</h1>
+  <h1>Poem Vibes 🎨</h1>
   <button onclick="generatePoem()">Generate Random Poem</button>
-  <div>
+  <div class="container">
     <h2 id="poem">Your poem will appear here...</h2>
-    <p id="emotion">Emotion will appear here...</p>
+    <p id="emotion">Emotion: Waiting for your vibes...</p>
   </div>
 
-  <!-- New Section for Inputting a Poem -->
-  <div>
-    <h2>Enter Your Poem</h2>
-    <textarea id="userPoem" rows="5" placeholder="Type your poem here..."></textarea>
+  <div class="container">
+    <h2>📝 Write Your Poem</h2>
+    <textarea id="userPoem" rows="5" placeholder="Type your poetic magic here..."></textarea>
     <button onclick="predictEmotion()">Predict Emotion</button>
-    <p id="emotion-output">Emotion will appear here...</p>
   </div>
 
-  <!-- Load your script after the body -->
+  <p id="emotion-output">Emotion: ???</p>
+
+  <!-- Load your script -->
   <script src="script.js"></script>
 </body>
 </html>
