@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Language</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #36d1dc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #5b86e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Your Preferred Language or Country</h1>
+        <form id="language-form">
+            <label for="language">Choose Language:</label>
+            <select id="language" required>
+                <option value="" disabled selected>Select a language</option>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Korean">Korean</option>
+                <option value="German">German</option>
+                <option value="Mandarin">Mandarin</option>
+                <option value="Other">Other</option>
+            </select>
+            <button type="submit">Find Movies</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('language-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get selected language
+            const language = document.getElementById('language').value;
+
+            if (!language) {
+                alert("Please select a language!");
+                return;
+            }
+
+            // Save the language to localStorage
+            localStorage.setItem('selectedLanguage', language);
+
+            // Redirect to the final movie recommendation page
+            window.location.href = "results.html";
+        });
+    </script>
+</body>
+</html>

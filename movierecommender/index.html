@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Spinner</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #ff7e5f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #feb47b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mood Spinner: Your Movie Mood Matchmaker</h1>
+        <form id="mood-form">
+            <label for="mood">How was your day?</label>
+            <textarea id="mood" placeholder="Type here..." required></textarea>
+            <button type="submit">Find Movies</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('mood-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission behavior
+            
+            const mood = document.getElementById('mood').value.trim();
+
+            // Check if mood input is empty
+            if (!mood) {
+                alert("Please share how your day went!");
+                return;
+            }
+
+            // Mock NLP Analysis (store data and redirect)
+            let genres = [];
+            if (mood.toLowerCase().includes("happy")) genres = ["Comedy", "Adventure"];
+            if (mood.toLowerCase().includes("sad")) genres = ["Drama", "Romance"];
+            if (mood.toLowerCase().includes("excited")) genres = ["Action", "Sci-Fi"];
+            if (genres.length === 0) genres = ["Drama", "Mystery"]; // Default genres
+
+            // Store genres in local storage for the next page
+            localStorage.setItem('suggestedGenres', JSON.stringify(genres));
+            
+            // Redirect to the genres page
+            window.location.href = "genres.html";
+        });
+    </script>
+</body>
+</html>

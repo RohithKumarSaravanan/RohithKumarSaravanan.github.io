@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Movie Recommendations</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .movies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .movie {
+            background: #f8f8f8;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .movie img {
+            width: 100%;
+            height: auto;
+        }
+        .movie h3 {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #444;
+        }
+        .movie p {
+            margin: 0 0 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        button {
+            background: #ff9966;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #ff5e62;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Personalized Movie Recommendations</h1>
+        <div class="movies" id="movies-container">
+            <!-- Movie cards will be dynamically generated here -->
+        </div>
+        <button onclick="startOver()">Start Over</button>
+    </div>
+    <script>
+        // Sample dataset of movies
+        const movieDataset = [
+            { title: "Inception", genre: "Sci-Fi", language: "English", image: "https://via.placeholder.com/200x300?text=Inception" },
+            { title: "Parasite", genre: "Thriller", language: "Korean", image: "https://via.placeholder.com/200x300?text=Parasite" },
+            { title: "3 Idiots", genre: "Comedy", language: "Hindi", image: "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/3_idiots_poster.jpg/220px-3_idiots_poster.jpg" },
+            { title: "Amélie", genre: "Romance", language: "French", image: "https://via.placeholder.com/200x300?text=Amelie" },
+            { title: "Spirited Away", genre: "Fantasy", language: "Japanese", image: "https://via.placeholder.com/200x300?text=Spirited+Away" },
+            { title: "The Dark Knight", genre: "Action", language: "English", image: "https://via.placeholder.com/200x300?text=The+Dark+Knight" }
+        ];
+
+        // Fetch user preferences from localStorage
+        const selectedGenres = JSON.parse(localStorage.getItem('selectedGenres')) || [];
+        const selectedLanguage = localStorage.getItem('selectedLanguage') || "";
+
+        const moviesContainer = document.getElementById('movies-container');
+
+        // Filter and display movies based on user preferences
+        const recommendedMovies = movieDataset.filter(movie => 
+            selectedGenres.includes(movie.genre) && movie.language === selectedLanguage
+        );
+
+        if (recommendedMovies.length > 0) {
+            recommendedMovies.forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie');
+                movieCard.innerHTML = `
+                    <img src="${movie.image}" alt="${movie.title}">
+                    <h3>${movie.title}</h3>
+                    <p>${movie.genre} | ${movie.language}</p>
+                `;
+                moviesContainer.appendChild(movieCard);
+            });
+        } else {
+            moviesContainer.innerHTML = `<p>No movies found for your preferences. Try again!</p>`;
+        }
+
+        // Reset and go back to the start
+        function startOver() {
+            localStorage.clear();
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
