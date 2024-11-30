@@ -1,3 +1,47 @@
+let poemData = [];
+
+// Load the Excel file when the page loads
+async function loadPoemData() {
+    try {
+        const response = await fetch('poem_with_Emotions.xlsx');
+        const data = await response.arrayBuffer();
+        const workbook = XLSX.read(data, { type: 'array' });
+
+        // Assuming the first sheet contains the poems and emotions
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+
+        // Convert the sheet to JSON format
+        const jsonData = XLSX.utils.sheet_to_json(sheet);
+
+        // Store the data globally for later use
+        poemData = jsonData;
+        console.log('Poem data loaded:', poemData);
+    } catch (error) {
+        console.error('Error loading the poem data:', error);
+    }
+}
+
+// Function to generate a random poem
+function generatePoem() {
+    if (poemData.length === 0) {
+        alert("Poem data not loaded yet. Please try again later.");
+        return;
+    }
+
+    // Pick a random poem
+    const randomIndex = Math.floor(Math.random() * poemData.length);
+    const selectedPoem = poemData[randomIndex];
+
+    // Display the poem and its emotion
+    document.getElementById('poem').innerText = selectedPoem.poem || "No poem available.";
+    document.getElementById('emotion').innerText = `Emotion: ${selectedPoem.emotion || "Unknown"}`;
+}
+
+// Call the function to load the poem data when the script runs
+window.onload = loadPoemData;
+
+// Existing function for emotion prediction based on user input
 function predictEmotion() {
     const userPoem = document.getElementById('userPoem').value.trim();
 
