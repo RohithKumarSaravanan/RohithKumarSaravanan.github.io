@@ -16,22 +16,45 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    // ... (Keep the same theme config as your previous code) ...
                     colors: {
-                        'brand-bg': '#f8f9fa', 'brand-surface': '#ffffff', 'brand-primary': '#0d9488',
-                        'brand-primary-dark': '#0f766e', 'brand-secondary': '#c026d3', 'brand-highlight': '#f59e0b',
-                        'brand-text': '#212529', 'brand-text-muted': '#6c757d', 'brand-text-on-accent': '#ffffff',
+                        // --- Creative & Premium Palette ---
+                        'brand-bg': '#f8f9fa',          // Very light gray base
+                        'brand-surface': '#ffffff',     // White for cards/surfaces
+                        'brand-primary': '#0d9488',     // Teal 600 (Primary Accent)
+                        'brand-primary-dark': '#0f766e',// Teal 700
+                        'brand-secondary': '#c026d3',   // Fuchsia 600 (Secondary Accent)
+                        'brand-highlight': '#f59e0b',    // Amber 500 (Highlight)
+                        'brand-text': '#212529',         // Near black for text
+                        'brand-text-muted': '#6c757d',    // Gray for muted text
+                        'brand-text-on-accent': '#ffffff',// White text on dark accents
                     },
                     fontFamily: {
-                        sans: ['Poppins', 'Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'], display: ['Playfair Display', 'serif']
+                        sans: ['Poppins', 'Inter', 'sans-serif'], // Poppins for general sans
+                        serif: ['Playfair Display', 'serif'], // Expressive serif
+                        display: ['Playfair Display', 'serif'] // Alias for headings
                     },
-                    borderRadius: { '4xl': '2rem', '5xl': '3rem' },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '3rem',
+                    },
                     boxShadow: {
-                        'subtle': '0 4px 15px rgba(0, 0, 0, 0.05)', 'lifted': '0 10px 30px rgba(0, 0, 0, 0.07)',
-                        'interactive': '0 6px 20px rgba(13, 148, 136, 0.2)', 'hover-float': '0 12px 35px rgba(0, 0, 0, 0.1)'
+                        'subtle': '0 4px 15px rgba(0, 0, 0, 0.05)',
+                        'lifted': '0 10px 30px rgba(0, 0, 0, 0.07)',
+                        'interactive': '0 6px 20px rgba(13, 148, 136, 0.2)', // Shadow using primary color
+                        'hover-float': '0 12px 35px rgba(0, 0, 0, 0.1)' // Shadow for hover
                     },
-                    animation: { /* ... animations ... */ },
-                    keyframes: { /* ... keyframes ... */ }
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                        'scale-in': 'scaleIn 0.5s ease-out forwards',
+                        'pulse-subtle': 'pulseSubtle 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(25px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        pulseSubtle: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '.85' } }
+                    }
                 }
             }
         }
@@ -49,7 +72,7 @@
         .text-gradient-primary { @apply text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary; }
         .text-gradient-highlight { @apply text-transparent bg-clip-text bg-gradient-to-r from-brand-secondary to-brand-highlight; }
 
-        /* Style for the simple popup image size */
+        /* Style for the new simple popup image size */
         #simplePopupModal img {
             max-width: 70vw;
             max-height: 70vh;
@@ -65,14 +88,27 @@
                 <a href="#" class="text-3xl font-bold font-serif italic text-gradient-primary hover:opacity-80 transition duration-300">
                     RK<span class="text-brand-text text-xl">.photo</span>
                 </a>
+
                 <div class="hidden md:flex items-center space-x-10">
-                     <a href="#gallery" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium group"> Gallery <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-brand-primary"></span> </a>
-                     <a href="#about" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium group"> About <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-brand-primary"></span> </a>
-                     <a href="#contact" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium px-5 py-2 rounded-full border-2 border-brand-secondary hover:bg-brand-secondary hover:text-brand-text-on-accent"> Contact <i class="fa-solid fa-arrow-right-long ml-1 text-xs"></i> </a>
+                    <a href="#gallery" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium group">
+                        Gallery <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-brand-primary"></span>
+                    </a>
+                    <a href="#about" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium group">
+                        About <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-brand-primary"></span>
+                    </a>
+                    <a href="#contact" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium px-5 py-2 rounded-full border-2 border-brand-secondary hover:bg-brand-secondary hover:text-brand-text-on-accent">
+                       Contact <i class="fa-solid fa-arrow-right-long ml-1 text-xs"></i>
+                    </a>
                 </div>
-                <div class="md:hidden"> <button id="menu-toggle" class="text-brand-text hover:text-brand-primary focus:outline-none"> <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg> </button> </div>
+
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-brand-text hover:text-brand-primary focus:outline-none">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
             </div>
         </nav>
+
         <div id="mobile-menu" class="md:hidden hidden bg-brand-surface absolute w-full shadow-lifted rounded-b-2xl">
             <a href="#gallery" class="block px-6 py-4 text-brand-text hover:bg-brand-primary/10 transition duration-300 font-medium">Gallery</a>
             <a href="#about" class="block px-6 py-4 text-brand-text hover:bg-brand-primary/10 transition duration-300 font-medium">About</a>
@@ -84,11 +120,19 @@
         <section class="relative min-h-[85vh] lg:min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-br from-teal-50 via-rose-50 to-amber-50 pt-32 pb-16">
             <div class="container mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
                 <div class="z-10 animate-fade-in-up">
-                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight text-brand-text"> Capturing Life's <span class="text-gradient-primary italic">Vibrant</span> Essence. </h1>
-                    <p class="text-lg sm:text-xl text-brand-text-muted mb-10 max-w-xl"> Welcome! I'm Rohith Kumar, a photographer exploring the beauty in moments big and small. Let's discover the world through my lens. </p>
+                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight text-brand-text">
+                        Capturing Life's <span class="text-gradient-primary italic">Vibrant</span> Essence.
+                    </h1>
+                    <p class="text-lg sm:text-xl text-brand-text-muted mb-10 max-w-xl">
+                        Welcome! I'm Rohith Kumar, a photographer exploring the beauty in moments big and small. Let's discover the world through my lens.
+                    </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#gallery" class="inline-flex items-center justify-center bg-brand-primary hover:bg-brand-primary-dark text-brand-text-on-accent font-semibold py-3 px-8 rounded-full shadow-interactive hover:shadow-lifted transition duration-300 transform hover:-translate-y-1"> View My Work <i class="fa-solid fa-camera-retro ml-2"></i> </a>
-                        <a href="#about" class="inline-flex items-center justify-center border-2 border-brand-text/50 hover:border-brand-text text-brand-text font-medium py-3 px-8 rounded-full hover:bg-brand-text/5 transition duration-300"> Learn More <i class="fa-solid fa-arrow-down-long ml-2 text-xs"></i> </a>
+                        <a href="#gallery" class="inline-flex items-center justify-center bg-brand-primary hover:bg-brand-primary-dark text-brand-text-on-accent font-semibold py-3 px-8 rounded-full shadow-interactive hover:shadow-lifted transition duration-300 transform hover:-translate-y-1">
+                            View My Work <i class="fa-solid fa-camera-retro ml-2"></i>
+                        </a>
+                        <a href="#about" class="inline-flex items-center justify-center border-2 border-brand-text/50 hover:border-brand-text text-brand-text font-medium py-3 px-8 rounded-full hover:bg-brand-text/5 transition duration-300">
+                            Learn More <i class="fa-solid fa-arrow-down-long ml-2 text-xs"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="relative h-80 lg:h-auto lg:aspect-w-1 lg:aspect-h-1 animate-scale-in" style="animation-delay: 0.2s;">
@@ -103,14 +147,13 @@
             <div class="container mx-auto px-6 lg:px-8">
                 <div class="text-center mb-16 animate-fade-in-up">
                     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Gallery</h2>
-                    <p class="text-lg text-brand-text-muted max-w-2xl mx-auto">Select a thumbnail to view it larger below. Click the main image for an enlarged popup.</p>
+                    <p class="text-lg text-brand-text-muted max-w-2xl mx-auto">A selection of moments captured through my lens. Click thumbnails for details or the main image for a larger view.</p>
                 </div>
 
-                <figure class="mb-16 sm:mb-20 bg-brand-surface rounded-3xl shadow-lifted p-4 md:p-6 lg:p-8 animate-scale-in group">
-                    <div class="relative w-full h-auto flex justify-center items-center min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
+                <figure class="mb-16 sm:mb-20 bg-brand-surface rounded-3xl shadow-lifted p-4 md:p-6 lg:p-8 animate-scale-in group"> <div class="relative w-full h-auto flex justify-center items-center min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
                         <img id="mainImage" src="image1.jpg" alt="Main showcase image"
                             class="block w-full h-auto max-h-[80vh] object-contain rounded-2xl cursor-pointer transition-all duration-300 ease-in-out group-hover:shadow-hover-float transform group-hover:scale-[1.02]">
-                    </div>
+                            </div>
                     <figcaption id="mainImageCaption" class="mt-6 text-center animate-fade-in" style="animation-delay: 0.3s;">
                         <h3 id="imageTitle" class="text-xl sm:text-2xl font-semibold mb-2 text-gradient-highlight">Image Title</h3>
                         <p id="imageSummary" class="text-base sm:text-lg text-brand-text-muted max-w-3xl mx-auto px-4">Image summary goes here.</p>
@@ -135,28 +178,36 @@
                             <p>My style blends vibrant colors with authentic moments...</p>
                             <p>Let's connect and create something memorable together!</p>
                         </div>
-                        <a href="#contact" class="mt-8 inline-flex items-center text-brand-primary font-semibold group"> Contact Me <i class="fa-solid fa-chevron-right ml-2 text-xs group-hover:translate-x-1 transition-transform duration-300"></i> </a>
+                        <a href="#contact" class="mt-8 inline-flex items-center text-brand-primary font-semibold group">
+                            Contact Me <i class="fa-solid fa-chevron-right ml-2 text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
+                        </a>
                     </div>
                     <div class="lg:col-span-2 relative h-96 lg:h-[600px] animate-scale-in" style="animation-delay: 0.2s;">
                         <img src="ProfilePicture.jpg" alt="Rohith Kumar Portrait" class="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-lifted">
-                        <div class="absolute -bottom-6 -right-6 bg-gradient-to-br from-brand-secondary to-brand-highlight p-4 rounded-2xl shadow-lg text-brand-text-on-accent"> <i class="fa-solid fa-camera text-3xl"></i> </div>
+                        <div class="absolute -bottom-6 -right-6 bg-gradient-to-br from-brand-secondary to-brand-highlight p-4 rounded-2xl shadow-lg text-brand-text-on-accent">
+                            <i class="fa-solid fa-camera text-3xl"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="py-20 sm:py-28 bg-gradient-to-br from-teal-600 via-teal-700 to-fuchsia-700 text-brand-text-on-accent">
-            <div class="container mx-auto px-6 lg:px-8 text-center">
+             <div class="container mx-auto px-6 lg:px-8 text-center">
                 <div class="animate-fade-in-up">
                     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">Get In Touch</h2>
-                    <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10 opacity-90"> Have a project in mind... </p>
-                    <a href="mailto:your.email@example.com" class="inline-block bg-white hover:bg-opacity-90 text-brand-primary font-bold py-4 px-10 rounded-full shadow-lifted transition duration-300 transform hover:scale-105 text-lg"> <i class="fa-regular fa-paper-plane mr-2"></i> Send Email </a>
+                    <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10 opacity-90">
+                        Have a project in mind...
+                    </p>
+                    <a href="mailto:your.email@example.com" class="inline-block bg-white hover:bg-opacity-90 text-brand-primary font-bold py-4 px-10 rounded-full shadow-lifted transition duration-300 transform hover:scale-105 text-lg">
+                        <i class="fa-regular fa-paper-plane mr-2"></i> Send Email
+                    </a>
                 </div>
                 <div class="mt-12 flex justify-center space-x-6 animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <a href="#" aria-label="LinkedIn Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
-                    <a href="#" aria-label="Instagram Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-instagram fa-2x"></i></a>
-                    <a href="#" aria-label="Twitter Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-twitter fa-2x"></i></a>
-                </div>
+                     <a href="#" aria-label="LinkedIn Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
+                     <a href="#" aria-label="Instagram Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-instagram fa-2x"></i></a>
+                     <a href="#" aria-label="Twitter Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-twitter fa-2x"></i></a>
+                 </div>
             </div>
         </section>
     </main>
@@ -167,6 +218,19 @@
              <p class="mt-2 opacity-60">Design powered by Tailwind CSS.</p>
         </div>
     </footer>
+
+    <div id="imageModal" class="fixed inset-0 z-[999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true" role="dialog" aria-modal="true">
+        <button id="modalClose" class="absolute top-5 right-5 sm:top-8 sm:right-8 text-white/70 hover:text-white z-[1001] text-4xl transition duration-300 hover:rotate-90" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
+        <button id="modalPrev" class="absolute left-3 sm:left-5 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-3 transition duration-300 hover:bg-white/10 rounded-full" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <button id="modalNext" class="absolute right-3 sm:right-5 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-3 transition duration-300 hover:bg-white/10 rounded-full" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        <div id="modalContentDetailed" class="relative max-w-full max-h-full animate-scale-in flex flex-col items-center">
+             <img id="modalImage" src="" alt="Full size view" class="block max-h-[80vh] max-w-[90vw] w-auto h-auto object-contain rounded-xl shadow-2xl mb-4">
+             <div id="modalCaption" class="text-center max-w-xl px-4">
+                <h3 id="modalTitle" class="text-white text-lg font-medium mb-1"></h3>
+                <p id="modalSummary" class="text-white/70 text-sm"></p>
+            </div>
+        </div>
+    </div>
 
     <div id="simplePopupModal" class="fixed inset-0 z-[1000] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true" role="dialog" aria-modal="true">
          <button id="simplePopupClose" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/70 hover:text-white z-[1001] text-3xl transition duration-300 hover:scale-110" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
@@ -204,8 +268,15 @@
             const imageTitle = document.getElementById('imageTitle');
             const imageSummary = document.getElementById('imageSummary');
             const thumbnailGrid = document.getElementById('thumbnailGrid');
-            // REMOVED Detailed Modal Elements
-            // Simple Popup Modal Elements
+            // Detailed Modal Elements
+            const detailedModal = document.getElementById('imageModal');
+            const detailedModalImage = document.getElementById('modalImage');
+            const detailedModalTitle = document.getElementById('modalTitle');
+            const detailedModalSummary = document.getElementById('modalSummary');
+            const detailedModalCloseBtn = document.getElementById('modalClose');
+            const detailedModalPrevBtn = document.getElementById('modalPrev');
+            const detailedModalNextBtn = document.getElementById('modalNext');
+            // Simple Popup Modal Elements - NEW
             const simplePopupModal = document.getElementById('simplePopupModal');
             const simplePopupImage = document.getElementById('simplePopupImage');
             const simplePopupCloseBtn = document.getElementById('simplePopupClose');
@@ -217,7 +288,7 @@
             const animatedElements = document.querySelectorAll('.animate-when-visible');
 
             // --- State ---
-            let currentIndex = 0; // Index of image shown in main display
+            let currentIndex = 0;
             let autoChangeInterval = null;
 
             // --- Functions ---
@@ -227,7 +298,7 @@
                 thumbnailGrid.innerHTML = '';
                 imageDetails.forEach((detail, index) => {
                     const thumbContainer = document.createElement('div');
-                    thumbContainer.className = 'aspect-w-16 aspect-h-10 group';
+                    thumbContainer.className = 'aspect-w-16 aspect-h-10 group'; // Or your preferred aspect ratio
                     const img = document.createElement('img');
                     img.src = detail.src;
                     img.alt = `Thumbnail: ${detail.title}`;
@@ -263,7 +334,55 @@
                 stopAutoChange();
             }
 
-            // REMOVED Detailed Modal Functions
+            // --- DETAILED Modal Functions ---
+             function updateDetailedModalContent(index) { // Renamed for clarity
+                 if (index < 0 || index >= imageDetails.length) return;
+                 const detail = imageDetails[index];
+                 detailedModalImage.classList.add('opacity-0','transition-opacity','duration-150');
+                 setTimeout(() => {
+                     detailedModalImage.src = detail.src;
+                     detailedModalImage.alt = `Full size view of ${detail.title}`;
+                     detailedModalImage.classList.remove('opacity-0');
+                 }, 150);
+                 detailedModalTitle.textContent = detail.title;
+                 detailedModalSummary.textContent = detail.summary;
+                 // currentIndex is updated before calling this or by nav buttons
+             }
+
+             function openDetailedModal(index) {
+                 if (!detailedModal) return;
+                 currentIndex = index; // Ensure index is correct
+                 updateDetailedModalContent(currentIndex);
+                 detailedModal.classList.remove('opacity-0', 'pointer-events-none');
+                 detailedModal.classList.add('opacity-100');
+                 detailedModal.querySelector('#modalContentDetailed').classList.add('animate-scale-in');
+                 detailedModal.setAttribute('aria-hidden', 'false');
+                 document.body.style.overflow = 'hidden';
+                 stopAutoChange();
+             }
+
+             function closeDetailedModal() {
+                 if (!detailedModal) return;
+                 detailedModal.classList.add('opacity-0');
+                 detailedModal.classList.remove('opacity-100');
+                 detailedModal.querySelector('#modalContentDetailed').classList.remove('animate-scale-in');
+                 setTimeout(() => {
+                     detailedModal.classList.add('pointer-events-none');
+                     detailedModal.setAttribute('aria-hidden', 'true');
+                     document.body.style.overflow = '';
+                 }, 300);
+             }
+
+            function showPrevDetailedModalImage() {
+                 const newIndex = (currentIndex - 1 + imageDetails.length) % imageDetails.length;
+                 currentIndex = newIndex;
+                 updateDetailedModalContent(currentIndex);
+             }
+             function showNextDetailedModalImage() {
+                 const newIndex = (currentIndex + 1) % imageDetails.length;
+                 currentIndex = newIndex;
+                 updateDetailedModalContent(currentIndex);
+             }
 
             // --- SIMPLE Popup Modal Functions ---
             function openSimplePopup() {
@@ -290,34 +409,45 @@
                 }, 300);
             }
 
-            // REMOVED Auto Change Functions (or keep if desired for main display)
-             function stopAutoChange() {
+            // --- Auto Image Change ---
+            // function autoChangeImage() { /* ... no changes ... */ } // Logic is fine
+            // function startAutoChange(interval = 20000) { /* ... no changes ... */ } // Logic is fine
+            function stopAutoChange() {
                  if (autoChangeInterval) {
                      clearInterval(autoChangeInterval);
                      autoChangeInterval = null;
                  }
-             }
-            // --- Other Helper Functions ---
-            function toggleMobileMenu() { if(mobileMenu) mobileMenu.classList.toggle('hidden'); }
-            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { threshold: 0.1 });
-            function observeAnimatedElements() { animatedElements.forEach(el => observer.observe(el)); }
-            function handleScroll() { if(siteHeader) { siteHeader.classList.toggle('shadow-md', window.scrollY > 50); siteHeader.classList.toggle('shadow-subtle', window.scrollY <= 50); } }
-            function updateFooterYear() { if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear(); }
+            }
+            function toggleMobileMenu() { /* ... no changes ... */ }
 
-            // --- Add Thumbnail Event Listeners (MODIFIED) ---
+            // --- Scroll/Animation Observer ---
+             const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+            }, { threshold: 0.1 });
+             function observeAnimatedElements() { animatedElements.forEach(el => observer.observe(el)); }
+             function handleScroll() {
+                 if(siteHeader) {
+                    siteHeader.classList.toggle('shadow-md', window.scrollY > 50);
+                    siteHeader.classList.toggle('shadow-subtle', window.scrollY <= 50);
+                 }
+             }
+             function updateFooterYear() { if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear(); }
+
+
+            // --- Add Thumbnail Event Listeners ---
             function addThumbnailListeners() {
                  document.querySelectorAll('.thumbnail').forEach(thumbnail => {
                      const index = parseInt(thumbnail.dataset.index, 10);
-                     // THUMBNAILS ONLY update the main display
+                     // THUMBNAILS open the DETAILED modal
                      thumbnail.addEventListener('click', () => {
-                         updateMainDisplay(index, true); // Update main display and scroll it into view
-                         // NO modal open call here
+                         updateMainDisplay(index, false); // Update main display but don't scroll page
+                         openDetailedModal(index);    // Open the detailed modal
                      });
                      thumbnail.addEventListener('keydown', (e) => {
                          if (e.key === 'Enter' || e.key === ' ') {
                              e.preventDefault();
-                             updateMainDisplay(index, true);
-                             // NO modal open call here
+                             updateMainDisplay(index, false);
+                             openDetailedModal(index);
                          }
                      });
                  });
@@ -329,30 +459,37 @@
                  mainImage.addEventListener('click', openSimplePopup);
                  mainImage.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSimplePopup(); } });
              }
-            // REMOVED Detailed Modal Listeners
-            // Simple Popup Listeners
-            if(simplePopupCloseBtn) simplePopupCloseBtn.addEventListener('click', closeSimplePopup);
-            if(simplePopupModal) simplePopupModal.addEventListener('click', (e) => { if (e.target === simplePopupModal) closeSimplePopup(); });
+             // Detailed Modal Listeners
+             if(detailedModalCloseBtn) detailedModalCloseBtn.addEventListener('click', closeDetailedModal);
+             if(detailedModalPrevBtn) detailedModalPrevBtn.addEventListener('click', showPrevDetailedModalImage);
+             if(detailedModalNextBtn) detailedModalNextBtn.addEventListener('click', showNextDetailedModalImage);
+             if(detailedModal) detailedModal.addEventListener('click', (e) => { if (e.target === detailedModal) closeDetailedModal(); });
+             // Simple Popup Listeners
+             if(simplePopupCloseBtn) simplePopupCloseBtn.addEventListener('click', closeSimplePopup);
+             if(simplePopupModal) simplePopupModal.addEventListener('click', (e) => { if (e.target === simplePopupModal) closeSimplePopup(); });
 
-            // Simplified Keyboard listener for ESCAPE key
-            document.addEventListener('keydown', (e) => {
-                 // Only handles simple popup now
-                 if (simplePopupModal && !simplePopupModal.classList.contains('pointer-events-none')) {
+             // Combined Keyboard listener
+             document.addEventListener('keydown', (e) => {
+                 if (detailedModal && !detailedModal.classList.contains('pointer-events-none')) {
+                     if (e.key === 'Escape') closeDetailedModal();
+                     else if (e.key === 'ArrowLeft') showPrevDetailedModalImage();
+                     else if (e.key === 'ArrowRight') showNextDetailedModalImage();
+                 } else if (simplePopupModal && !simplePopupModal.classList.contains('pointer-events-none')) {
                      if (e.key === 'Escape') closeSimplePopup();
                  }
-            });
+             });
 
-            // Other listeners
-            if(menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
-            if(mobileMenu) mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMobileMenu));
-            window.addEventListener('scroll', handleScroll, { passive: true });
-            document.addEventListener('contextmenu', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); }, false);
+             // Other listeners
+             if(menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
+             if(mobileMenu) mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMobileMenu));
+             window.addEventListener('scroll', handleScroll, { passive: true });
+             document.addEventListener('contextmenu', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); }, false);
 
             // --- Initialisation ---
             populateThumbnails();
             if (imageDetails.length > 0) updateMainDisplay(0);
             updateFooterYear();
-            // Auto change can be optionally started: startAutoChange();
+            // startAutoChange(); // Auto-start optional
             handleScroll();
             observeAnimatedElements();
 
