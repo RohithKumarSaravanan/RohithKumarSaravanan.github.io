@@ -3,435 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohith Kumar | Vibrant Photography</title>
+    <title>Rohith Kumar | Creative Photography Portfolio</title>
     <link rel="icon" href="ProfilePicture.jpg" type="image/jpg">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    // ... (Keep the same theme config as your previous code) ...
                     colors: {
-                        // --- NEW Light & Colorful Palette ---
-                        'brand-primary': '#ffffff',       // White background
-                        'brand-secondary': '#f1f5f9',     // Slate 100 (light gray)
-                        'brand-accent': '#2563eb',       // Blue 600 (Vibrant Blue)
-                        'brand-accent-hover': '#1d4ed8',   // Blue 700
-                        'brand-highlight': '#f97316',    // Orange 500 (Vibrant Orange)
-                        'brand-text-light': '#f8fafc',     // Slate 50 (Very light text, for dark backgrounds)
-                        'brand-text-dark': '#1e293b',      // Slate 800 (Dark text for light backgrounds)
-                        'brand-text-muted': '#64748b',     // Slate 500 (Muted text)
-                        // --- Keep darks for specific elements if needed ---
-                        'brand-dark-bg': '#1e293b',       // Slate 800 (Optional dark bg)
+                        'brand-bg': '#f8f9fa', 'brand-surface': '#ffffff', 'brand-primary': '#0d9488',
+                        'brand-primary-dark': '#0f766e', 'brand-secondary': '#c026d3', 'brand-highlight': '#f59e0b',
+                        'brand-text': '#212529', 'brand-text-muted': '#6c757d', 'brand-text-on-accent': '#ffffff',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Poppins', 'Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'], display: ['Playfair Display', 'serif']
                     },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-out forwards',
-                        'slide-up': 'slideUp 0.5s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    },
+                    borderRadius: { '4xl': '2rem', '5xl': '3rem' },
                     boxShadow: {
-                         'text': '0 2px 4px rgba(0,0,0,0.1)',
-                         'text-sm': '0 1px 3px rgba(0,0,0,0.1)',
-                    }
+                        'subtle': '0 4px 15px rgba(0, 0, 0, 0.05)', 'lifted': '0 10px 30px rgba(0, 0, 0, 0.07)',
+                        'interactive': '0 6px 20px rgba(13, 148, 136, 0.2)', 'hover-float': '0 12px 35px rgba(0, 0, 0, 0.1)'
+                    },
+                    animation: { /* ... animations ... */ },
+                    keyframes: { /* ... keyframes ... */ }
                 }
             }
         }
     </script>
 
     <style type="text/tailwindcss">
-        /* Base styles adjusted for light theme */
-        body {
-            @apply bg-brand-primary text-brand-text-dark font-sans antialiased;
+        body { @apply bg-brand-bg text-brand-text font-sans antialiased text-base leading-relaxed; }
+        h1, h2, h3, h4, h5, h6 { @apply font-display font-bold; }
+        .animate-when-visible { opacity: 0; transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+        .animate-when-visible.is-visible { opacity: 1; transform: none !important; }
+        .animate-fade-in-up { @apply animate-when-visible translate-y-8; }
+        .animate-fade-in { @apply animate-when-visible; }
+        .animate-scale-in { @apply animate-when-visible scale-95; }
+        [class*='aspect-w-'] > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
+        .text-gradient-primary { @apply text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary; }
+        .text-gradient-highlight { @apply text-transparent bg-clip-text bg-gradient-to-r from-brand-secondary to-brand-highlight; }
+
+        /* Style for the simple popup image size */
+        #simplePopupModal img {
+            max-width: 70vw;
+            max-height: 70vh;
         }
-        /* Style scrollbars (optional) */
-        ::-webkit-scrollbar {
-             width: 8px;
-         }
-         ::-webkit-scrollbar-track {
-             @apply bg-brand-secondary; /* Light gray track */
-         }
-         ::-webkit-scrollbar-thumb {
-             @apply bg-brand-accent rounded; /* Blue thumb */
-         }
-         ::-webkit-scrollbar-thumb:hover {
-             @apply bg-brand-accent-hover; /* Darker blue thumb */
-         }
-         /* Animation utility classes */
-         .animate-on-scroll {
-            opacity: 0;
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-            transform: translateY(30px);
-         }
-         .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-         }
     </style>
 
 </head>
 <body class="overflow-x-hidden">
 
-    <header id="site-header" class="bg-brand-primary/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-md transition-all duration-300">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="#" class="text-2xl font-bold font-serif text-brand-highlight hover:opacity-80 transition duration-300">
-                    Rohith Kumar
+    <header id="site-header" class="bg-brand-bg/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 shadow-subtle">
+        <nav class="container mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <a href="#" class="text-3xl font-bold font-serif italic text-gradient-primary hover:opacity-80 transition duration-300">
+                    RK<span class="text-brand-text text-xl">.photo</span>
                 </a>
-
-                <div class="hidden md:flex space-x-8">
-                    <a href="#gallery" class="text-brand-text-dark hover:text-brand-accent transition duration-300 font-medium">Gallery</a>
-                    <a href="#about" class="text-brand-text-dark hover:text-brand-accent transition duration-300 font-medium">About</a>
-                    <a href="#contact" class="text-brand-text-dark hover:text-brand-accent transition duration-300 font-medium">Contact</a>
+                <div class="hidden md:flex items-center space-x-10">
+                     <a href="#gallery" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium group"> Gallery <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-brand-primary"></span> </a>
+                     <a href="#about" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium group"> About <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-brand-primary"></span> </a>
+                     <a href="#contact" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium px-5 py-2 rounded-full border-2 border-brand-secondary hover:bg-brand-secondary hover:text-brand-text-on-accent"> Contact <i class="fa-solid fa-arrow-right-long ml-1 text-xs"></i> </a>
                 </div>
-
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-brand-text-dark hover:text-brand-accent focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
+                <div class="md:hidden"> <button id="menu-toggle" class="text-brand-text hover:text-brand-primary focus:outline-none"> <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg> </button> </div>
             </div>
         </nav>
-
-        <div id="mobile-menu" class="md:hidden hidden bg-brand-secondary absolute w-full shadow-xl">
-            <a href="#gallery" class="block px-4 py-3 text-brand-text-dark hover:bg-brand-accent hover:text-brand-text-light transition duration-300">Gallery</a>
-            <a href="#about" class="block px-4 py-3 text-brand-text-dark hover:bg-brand-accent hover:text-brand-text-light transition duration-300">About</a>
-            <a href="#contact" class="block px-4 py-3 text-brand-text-dark hover:bg-brand-accent hover:text-brand-text-light transition duration-300">Contact</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-brand-surface absolute w-full shadow-lifted rounded-b-2xl">
+            <a href="#gallery" class="block px-6 py-4 text-brand-text hover:bg-brand-primary/10 transition duration-300 font-medium">Gallery</a>
+            <a href="#about" class="block px-6 py-4 text-brand-text hover:bg-brand-primary/10 transition duration-300 font-medium">About</a>
+            <a href="#contact" class="block px-6 py-4 text-brand-text hover:bg-brand-primary/10 transition duration-300 font-medium">Contact</a>
         </div>
     </header>
 
     <main>
-        <section class="relative h-[80vh] min-h-[500px] flex items-center justify-center text-center bg-brand-secondary">
-            <div class="absolute inset-0 z-0">
-                <img src="image1.jpg" alt="Hero Background Image" class="object-cover w-full h-full opacity-60 md:opacity-80">
-                 <div class="absolute inset-0 bg-gradient-to-t from-brand-secondary via-brand-secondary/30 to-transparent"></div>
+        <section class="relative min-h-[85vh] lg:min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-br from-teal-50 via-rose-50 to-amber-50 pt-32 pb-16">
+            <div class="container mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+                <div class="z-10 animate-fade-in-up">
+                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight text-brand-text"> Capturing Life's <span class="text-gradient-primary italic">Vibrant</span> Essence. </h1>
+                    <p class="text-lg sm:text-xl text-brand-text-muted mb-10 max-w-xl"> Welcome! I'm Rohith Kumar, a photographer exploring the beauty in moments big and small. Let's discover the world through my lens. </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#gallery" class="inline-flex items-center justify-center bg-brand-primary hover:bg-brand-primary-dark text-brand-text-on-accent font-semibold py-3 px-8 rounded-full shadow-interactive hover:shadow-lifted transition duration-300 transform hover:-translate-y-1"> View My Work <i class="fa-solid fa-camera-retro ml-2"></i> </a>
+                        <a href="#about" class="inline-flex items-center justify-center border-2 border-brand-text/50 hover:border-brand-text text-brand-text font-medium py-3 px-8 rounded-full hover:bg-brand-text/5 transition duration-300"> Learn More <i class="fa-solid fa-arrow-down-long ml-2 text-xs"></i> </a>
+                    </div>
+                </div>
+                <div class="relative h-80 lg:h-auto lg:aspect-w-1 lg:aspect-h-1 animate-scale-in" style="animation-delay: 0.2s;">
+                    <img src="image5.jpg" alt="Creative Photography Showcase" class="absolute inset-0 w-full h-full object-cover rounded-3xl lg:rounded-4xl shadow-lifted">
+                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-tr from-brand-secondary to-brand-highlight rounded-full opacity-30 blur-2xl hidden lg:block"></div>
+                </div>
             </div>
-
-            <div class="relative z-10 px-4 animate-fade-in">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4 text-brand-text-dark leading-tight shadow-text">
-                    Rohith Kumar <span class="text-brand-accent">Photography</span>
-                </h1>
-                <p class="text-lg sm:text-xl text-brand-text-muted mb-8 max-w-2xl mx-auto shadow-text-sm">
-                    Capturing the vibrant moments of life. Explore my visual narrative through color and light.
-                </p>
-                <a href="#gallery" class="inline-block bg-brand-accent hover:bg-brand-accent-hover text-brand-text-light font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
-                    Explore Gallery
-                </a>
-            </div>
+            <div class="absolute top-1/4 -left-20 w-60 h-60 bg-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
         </section>
 
-        <section id="gallery" class="py-16 sm:py-24 bg-brand-primary"> <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-center mb-12 sm:mb-16 text-brand-text-dark animate-on-scroll">Gallery Showcase</h2>
+        <section id="gallery" class="py-20 sm:py-28 bg-gradient-to-b from-white via-white to-brand-bg">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="text-center mb-16 animate-fade-in-up">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Gallery</h2>
+                    <p class="text-lg text-brand-text-muted max-w-2xl mx-auto">Select a thumbnail to view it larger below. Click the main image for an enlarged popup.</p>
+                </div>
 
-                <figure class="mb-12 sm:mb-16 relative group animate-on-scroll">
-                    <img id="mainImage" src="image1.jpg" alt="Main showcase image"
-                         class="w-full max-h-[75vh] object-cover rounded-xl shadow-2xl cursor-pointer transition duration-500 ease-in-out transform group-hover:scale-[1.02]">
-                    <div class="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition duration-500 rounded-xl"></div>
-                    <figcaption id="mainImageCaption" class="mt-6 text-center">
-                        <h3 id="imageTitle" class="text-xl sm:text-2xl font-semibold mb-2 text-brand-accent">Image Title</h3>
-                        <p id="imageSummary" class="text-sm sm:text-base text-brand-text-muted max-w-3xl mx-auto">Image summary goes here.</p>
+                <figure class="mb-16 sm:mb-20 bg-brand-surface rounded-3xl shadow-lifted p-4 md:p-6 lg:p-8 animate-scale-in group">
+                    <div class="relative w-full h-auto flex justify-center items-center min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
+                        <img id="mainImage" src="image1.jpg" alt="Main showcase image"
+                            class="block w-full h-auto max-h-[80vh] object-contain rounded-2xl cursor-pointer transition-all duration-300 ease-in-out group-hover:shadow-hover-float transform group-hover:scale-[1.02]">
+                    </div>
+                    <figcaption id="mainImageCaption" class="mt-6 text-center animate-fade-in" style="animation-delay: 0.3s;">
+                        <h3 id="imageTitle" class="text-xl sm:text-2xl font-semibold mb-2 text-gradient-highlight">Image Title</h3>
+                        <p id="imageSummary" class="text-base sm:text-lg text-brand-text-muted max-w-3xl mx-auto px-4">Image summary goes here.</p>
                     </figcaption>
                 </figure>
 
-                <h3 class="text-2xl font-semibold text-center mb-8 text-brand-text-dark animate-on-scroll">Select an Image</h3>
-                <div id="thumbnailGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6 animate-on-scroll">
+                <div id="thumbnailGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 animate-fade-in-up" style="animation-delay: 0.2s;">
                     </div>
             </div>
         </section>
 
-        <section id="about" class="py-16 sm:py-24 bg-brand-secondary"> <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    <div class="animate-on-scroll">
-                        <h2 class="text-3xl sm:text-4xl font-bold font-serif mb-6 text-brand-accent">About Me</h2>
-                        <p class="text-base sm:text-lg text-brand-text-dark mb-4 leading-relaxed">
-                            Hi! I'm Rohith Kumar, a passionate visual storyteller based in Fredericton, NB. My journey into photography began with a fascination for light, shadow, and the infinite stories waiting to be told in everyday moments.
-                        </p>
-                        <p class="text-base sm:text-lg text-brand-text-muted mb-6 leading-relaxed">
-                            I specialize in landscape, portrait, and event photography, striving to capture authentic emotions and perspectives with vibrant color and clarity. Let's create something beautiful together.
-                        </p>
-                        <a href="#contact" class="inline-block border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-text-light font-medium py-2 px-6 rounded-full transition duration-300">
-                            Get In Touch
-                        </a>
+        <section id="about" class="py-20 sm:py-28 overflow-hidden bg-brand-surface relative">
+             <div class="absolute -top-20 -left-20 w-72 h-72 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-gradient-to-tl from-brand-highlight/10 to-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="container mx-auto px-6 lg:px-8 relative z-10">
+                 <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+                    <div class="lg:col-span-3 animate-fade-in-up">
+                        <span class="text-sm font-semibold uppercase tracking-wider text-brand-primary mb-2 block">Meet the Artist</span>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">Rohith Kumar</h2>
+                        <div class="prose prose-lg text-brand-text-muted max-w-none space-y-6">
+                            <p>Hello! Based in Fredericton, NB, I'm driven by a love for visual storytelling...</p>
+                            <p>My style blends vibrant colors with authentic moments...</p>
+                            <p>Let's connect and create something memorable together!</p>
+                        </div>
+                        <a href="#contact" class="mt-8 inline-flex items-center text-brand-primary font-semibold group"> Contact Me <i class="fa-solid fa-chevron-right ml-2 text-xs group-hover:translate-x-1 transition-transform duration-300"></i> </a>
                     </div>
-                    <div class="relative h-80 md:h-96 lg:h-[500px] rounded-lg overflow-hidden shadow-xl animate-on-scroll" style="animation-delay: 0.2s;">
-                         <img src="ProfilePicture.jpg" alt="Rohith Kumar Portrait" class="absolute inset-0 w-full h-full object-cover object-center transform hover:scale-105 transition duration-500 ease-in-out">
-                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                    <div class="lg:col-span-2 relative h-96 lg:h-[600px] animate-scale-in" style="animation-delay: 0.2s;">
+                        <img src="ProfilePicture.jpg" alt="Rohith Kumar Portrait" class="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-lifted">
+                        <div class="absolute -bottom-6 -right-6 bg-gradient-to-br from-brand-secondary to-brand-highlight p-4 rounded-2xl shadow-lg text-brand-text-on-accent"> <i class="fa-solid fa-camera text-3xl"></i> </div>
                     </div>
                 </div>
             </div>
         </section>
 
-         <section id="contact" class="py-16 sm:py-24 bg-brand-primary"> <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                 <h2 class="text-3xl sm:text-4xl font-bold font-serif mb-6 text-brand-accent animate-on-scroll">Let's Connect</h2>
-                 <p class="text-base sm:text-lg text-brand-text-muted max-w-2xl mx-auto mb-10 animate-on-scroll" style="animation-delay: 0.1s;">
-                     Interested in collaborating, booking a session, or purchasing prints? I'd love to hear from you!
-                 </p>
-                 <div class="animate-on-scroll" style="animation-delay: 0.2s;">
-                     <a href="mailto:your.email@example.com" class="inline-block bg-brand-accent hover:bg-brand-accent-hover text-brand-text-light font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
-                         Send me an Email
-                     </a>
-                      <div class="mt-8 space-x-4 text-brand-text-muted">
-                         <a href="#" class="hover:text-brand-accent transition duration-300">LinkedIn</a> |
-                         <a href="#" class="hover:text-brand-accent transition duration-300">Instagram</a> |
-                         <a href="#" class="hover:text-brand-accent transition duration-300">Twitter</a>
-                     </div>
-                 </div>
+        <section id="contact" class="py-20 sm:py-28 bg-gradient-to-br from-teal-600 via-teal-700 to-fuchsia-700 text-brand-text-on-accent">
+            <div class="container mx-auto px-6 lg:px-8 text-center">
+                <div class="animate-fade-in-up">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">Get In Touch</h2>
+                    <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10 opacity-90"> Have a project in mind... </p>
+                    <a href="mailto:your.email@example.com" class="inline-block bg-white hover:bg-opacity-90 text-brand-primary font-bold py-4 px-10 rounded-full shadow-lifted transition duration-300 transform hover:scale-105 text-lg"> <i class="fa-regular fa-paper-plane mr-2"></i> Send Email </a>
+                </div>
+                <div class="mt-12 flex justify-center space-x-6 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <a href="#" aria-label="LinkedIn Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
+                    <a href="#" aria-label="Instagram Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="#" aria-label="Twitter Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-twitter fa-2x"></i></a>
+                </div>
             </div>
         </section>
-
     </main>
 
-    <footer class="py-8 bg-brand-secondary border-t border-slate-200"> <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-brand-text-muted">
-             <p>&copy; <span id="current-year"></span> Rohith Kumar Photography. All rights reserved. Built with Tailwind CSS.</p>
-             <p class="mt-1">Fredericton, New Brunswick, Canada</p>
+    <footer class="py-10 bg-brand-text text-brand-text-on-accent/70">
+        <div class="container mx-auto px-6 lg:px-8 text-center text-sm">
+             <p>&copy; <span id="current-year"></span> Rohith Kumar Photography. Crafted with <i class="fa-solid fa-heart text-brand-secondary/80 mx-1"></i> in Fredericton, NB.</p>
+             <p class="mt-2 opacity-60">Design powered by Tailwind CSS.</p>
         </div>
     </footer>
 
-    <div id="imageModal" class="fixed inset-0 z-[999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true" role="dialog" aria-modal="true">
-        <button id="modalClose" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/70 hover:text-white z-[1001] text-4xl transition duration-300" aria-label="Close image viewer">&times;</button>
-        <button id="modalPrev" class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-2 transition duration-300" aria-label="Previous image">&#10094;</button>
-        <button id="modalNext" class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-2 transition duration-300" aria-label="Next image">&#10095;</button>
-        <div class="relative max-w-full max-h-full">
-            <img id="modalImage" src="" alt="Full size view" class="block max-h-[90vh] max-w-[90vw] w-auto h-auto object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-95">
-        </div>
+    <div id="simplePopupModal" class="fixed inset-0 z-[1000] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true" role="dialog" aria-modal="true">
+         <button id="simplePopupClose" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/70 hover:text-white z-[1001] text-3xl transition duration-300 hover:scale-110" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
+         <div class="relative animate-scale-in">
+             <img id="simplePopupImage" src="" alt="Enlarged view" class="block w-auto h-auto object-contain rounded-lg shadow-xl">
+             </div>
     </div>
 
 
     <script>
-        // --- Image Data --- (Same as before)
-        const imageDetails = [
-            { src: 'image1.jpg', title: 'Golden Horizon', summary: '"An evening sky painted with hues of orange, as the sun dips beyond the horizon..."' },
-            { src: 'image2.jpg', title: 'Whispers of the Shore', summary: '"A riverside scene where tall grasses sway gently, bridge pillars peeking through..."' },
-            { src: 'image3.jpg', title: 'Sunset Pathway', summary: '"The golden hour illuminates an empty roadway, stretching towards the vibrant sunset..."' },
-            { src: 'image4.jpeg', title: 'Reflections at Dusk', summary: '"City lights begin to shimmer on the river’s surface, casting reflections..."' },
-            { src: 'image5.jpg', title: 'Cinematic Skies', summary: '"A breathtaking display of clouds dances in shades of orange and light blue..."' },
-            { src: 'image6.jpeg', title: 'Whispers of the Shore II', summary: '"In a cinematic frame, river shore plants sway gracefully, blurred bridge softly framing..."' },
-            { src: 'image7.jpeg', title: 'Stormy Crossings', summary: '"A bridge looms beneath a brooding sky, streetlights dark as ominous clouds gather..."' },
-            { src: 'image8.jpeg', title: 'Golden River', summary: '"The sunset casts a golden hue over the river, layers of trees and hills..."' },
-            { src: 'image9.jpeg', title: 'Harmony of Nature', summary: '"Lush river shore, where vibrant plants meet the flowing water, surrounded by trees..."' },
-            { src: 'image10.jpeg', title: 'Evening Run', summary: '"As dusk descends, runners chase the fading light along a winding road..."' },
-            { src: 'image11.jpeg', title: 'Silent Blooms', summary: '"Delicate white flowers peek through the grass, whispers mingling with soft sighs..."' },
-            { src: 'image12.jpeg', title: 'Architectural Wonder', summary: 'A magnificent architectural structure against the sky.' },
-            { src: 'image13.jpeg', title: 'Wildlife Beauty', summary: 'A wildlife shot showcasing the majestic beauty of nature.' },
-            { src: 'image14.jpeg', title: 'Mountain Range', summary: 'A picturesque mountain range under a clear sky.' },
-            { src: 'image15.jpeg', title: 'Winter Wonderland', summary: 'A serene winter wonderland covered in snow.' },
-            { src: 'image16.jpeg', title: 'Bustling Marketplace', summary: 'A vibrant and bustling marketplace full of life and color.' },
-            { src: 'image17.jpeg', title: 'Vibrant Autumn', summary: 'A vibrant autumn scene full of warm colors and falling leaves.' }
+        // --- Image Data ---
+        const imageDetails = [ /* ... Paste your imageDetails array here ... */
+             { src: 'image1.jpg', title: 'Golden Horizon', summary: '"An evening sky painted with hues of orange..."' },
+             { src: 'image2.jpg', title: 'Whispers of the Shore', summary: '"A riverside scene where tall grasses sway gently..."' },
+             { src: 'image3.jpg', title: 'Sunset Pathway', summary: '"The golden hour illuminates an empty roadway..."' },
+             { src: 'image4.jpeg', title: 'Reflections at Dusk', summary: '"City lights begin to shimmer on the river’s surface..."' },
+             { src: 'image5.jpg', title: 'Cinematic Skies', summary: '"A breathtaking display of clouds dances..."' },
+             { src: 'image6.jpeg', title: 'Whispers of the Shore II', summary: '"In a cinematic frame, river shore plants sway..."' },
+             { src: 'image7.jpeg', title: 'Stormy Crossings', summary: '"A bridge looms beneath a brooding sky..."' },
+             { src: 'image8.jpeg', title: 'Golden River', summary: '"The sunset casts a golden hue over the river..."' },
+             { src: 'image9.jpeg', title: 'Harmony of Nature', summary: '"Lush river shore, where vibrant plants meet..."' },
+             { src: 'image10.jpeg', title: 'Evening Run', summary: '"As dusk descends, runners chase the fading light..."' },
+             { src: 'image11.jpeg', title: 'Silent Blooms', summary: '"Delicate white flowers peek through the grass..."' },
+             { src: 'image12.jpeg', title: 'Architectural Wonder', summary: 'A magnificent architectural structure.' },
+             { src: 'image13.jpeg', title: 'Wildlife Beauty', summary: 'Majestic beauty of nature in a wildlife shot.' },
+             { src: 'image14.jpeg', title: 'Mountain Range', summary: 'A picturesque mountain range vista.' },
+             { src: 'image15.jpeg', title: 'Winter Wonderland', summary: 'A serene winter wonderland scene.' },
+             { src: 'image16.jpeg', title: 'Bustling Marketplace', summary: 'A vibrant marketplace full of life.' },
+             { src: 'image17.jpeg', title: 'Vibrant Autumn', summary: 'A vibrant autumn scene full of warm colors.' }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DOM Elements --- (References remain mostly the same)
+            // --- DOM Elements ---
             const mainImage = document.getElementById('mainImage');
             const imageTitle = document.getElementById('imageTitle');
             const imageSummary = document.getElementById('imageSummary');
             const thumbnailGrid = document.getElementById('thumbnailGrid');
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalCloseBtn = document.getElementById('modalClose');
-            const modalPrevBtn = document.getElementById('modalPrev');
-            const modalNextBtn = document.getElementById('modalNext');
+            // REMOVED Detailed Modal Elements
+            // Simple Popup Modal Elements
+            const simplePopupModal = document.getElementById('simplePopupModal');
+            const simplePopupImage = document.getElementById('simplePopupImage');
+            const simplePopupCloseBtn = document.getElementById('simplePopupClose');
+            // Other elements
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const siteHeader = document.getElementById('site-header');
             const currentYearSpan = document.getElementById('current-year');
-            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const animatedElements = document.querySelectorAll('.animate-when-visible');
 
             // --- State ---
-            let currentIndex = 0;
-            let autoChangeInterval;
+            let currentIndex = 0; // Index of image shown in main display
+            let autoChangeInterval = null;
 
-            // --- Functions --- (Logic remains largely the same, classes updated)
+            // --- Functions ---
 
             function populateThumbnails() {
+                if (!thumbnailGrid) return;
                 thumbnailGrid.innerHTML = '';
                 imageDetails.forEach((detail, index) => {
                     const thumbContainer = document.createElement('div');
-                    thumbContainer.className = 'aspect-w-3 aspect-h-2 group'; // Use Tailwind aspect ratio
-
+                    thumbContainer.className = 'aspect-w-16 aspect-h-10 group';
                     const img = document.createElement('img');
                     img.src = detail.src;
                     img.alt = `Thumbnail: ${detail.title}`;
                     img.dataset.index = index;
                     img.loading = 'lazy';
-                    // Adjusted classes for light theme
-                    img.className = `thumbnail object-cover w-full h-full rounded-md cursor-pointer border-2 border-transparent group-hover:border-brand-accent transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary`; // Offset from white
-
+                    img.className = `thumbnail object-cover w-full h-full rounded-xl cursor-pointer border-4 border-transparent group-hover:border-brand-primary transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:shadow-interactive focus:outline-none focus:ring-4 focus:ring-brand-primary/50 focus:ring-offset-2 focus:ring-offset-brand-bg`;
                     thumbContainer.appendChild(img);
                     thumbnailGrid.appendChild(thumbContainer);
                 });
-                addThumbnailListeners();
+                addThumbnailListeners(); // Add listeners after populating
             }
 
             function updateMainDisplay(index, smoothScroll = false) {
-                if (index < 0 || index >= imageDetails.length) return;
-
+                if (index < 0 || index >= imageDetails.length || !mainImage) return;
                 const detail = imageDetails[index];
                 mainImage.src = detail.src;
                 mainImage.alt = `${detail.title} - Main showcase image`;
-                imageTitle.textContent = detail.title;
-                imageSummary.textContent = detail.summary;
+                if(imageTitle) imageTitle.textContent = detail.title;
+                if(imageSummary) imageSummary.textContent = detail.summary;
                 currentIndex = index;
 
                 document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
-                    // Use accent color for active border
-                    thumb.classList.toggle('border-brand-accent', i === index);
-                    thumb.classList.toggle('opacity-100', i === index);
+                    thumb.classList.toggle('border-brand-primary', i === index);
+                    thumb.classList.toggle('shadow-interactive', i === index);
                     thumb.classList.toggle('scale-105', i === index);
                     thumb.classList.toggle('border-transparent', i !== index);
                 });
 
                 if (smoothScroll) {
-                    document.getElementById('gallery').querySelector('figure').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    const galleryFigure = document.getElementById('gallery')?.querySelector('figure');
+                    galleryFigure?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
-                startAutoChange(); // Restart timer
+                stopAutoChange();
             }
 
-            function openModal(index) {
-                if (index < 0 || index >= imageDetails.length) return;
-                currentIndex = index;
-                const detail = imageDetails[index];
-                modalImage.src = detail.src;
-                modalImage.alt = `Full size view of ${detail.title}`;
+            // REMOVED Detailed Modal Functions
 
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                modal.classList.add('opacity-100');
-                modalImage.classList.add('scale-100');
-                modalImage.classList.remove('scale-95');
-                modal.setAttribute('aria-hidden', 'false');
+            // --- SIMPLE Popup Modal Functions ---
+            function openSimplePopup() {
+                if (!simplePopupModal || !mainImage) return;
+                simplePopupImage.src = mainImage.src;
+                simplePopupImage.alt = mainImage.alt || "Enlarged view";
+                simplePopupModal.classList.remove('opacity-0', 'pointer-events-none');
+                simplePopupModal.classList.add('opacity-100');
+                simplePopupModal.querySelector(':scope > div').classList.add('animate-scale-in');
+                simplePopupModal.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
                 stopAutoChange();
             }
 
-            function closeModal() {
-                modal.classList.add('opacity-0');
-                modal.classList.remove('opacity-100');
-                modalImage.classList.remove('scale-100');
-                modalImage.classList.add('scale-95');
+            function closeSimplePopup() {
+                if (!simplePopupModal) return;
+                simplePopupModal.classList.add('opacity-0');
+                simplePopupModal.classList.remove('opacity-100');
+                simplePopupModal.querySelector(':scope > div').classList.remove('animate-scale-in');
                 setTimeout(() => {
-                   modal.classList.add('pointer-events-none');
-                   modal.setAttribute('aria-hidden', 'true');
-                   document.body.style.overflow = '';
-                   startAutoChange();
+                    simplePopupModal.classList.add('pointer-events-none');
+                    simplePopupModal.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
                 }, 300);
             }
 
-            function showModalImage(index) {
-                 if (index < 0 || index >= imageDetails.length) return;
-                 currentIndex = index;
-                 const detail = imageDetails[index];
-                 modalImage.classList.add('opacity-0', 'transition-opacity', 'duration-150');
-                 setTimeout(() => {
-                     modalImage.src = detail.src;
-                     modalImage.alt = `Full size view of ${detail.title}`;
-                     modalImage.classList.remove('opacity-0');
-                 }, 150);
-            }
-
-            function showPrevModalImage() {
-                const newIndex = (currentIndex - 1 + imageDetails.length) % imageDetails.length;
-                showModalImage(newIndex);
-            }
-            function showNextModalImage() {
-                const newIndex = (currentIndex + 1) % imageDetails.length;
-                showModalImage(newIndex);
-            }
-
-            function autoChangeImage() {
-                const nextIndex = (currentIndex + 1) % imageDetails.length;
-                updateMainDisplay(nextIndex);
-            }
-            function startAutoChange(interval = 15000) {
-               stopAutoChange();
-               autoChangeInterval = setInterval(autoChangeImage, interval);
-            }
-            function stopAutoChange() {
-               clearInterval(autoChangeInterval);
-            }
-
-            function toggleMobileMenu() {
-                mobileMenu.classList.toggle('hidden');
-            }
-
-            function handleScroll() {
-                // Adjusted header effect for light theme: Add subtle shadow
-                if (window.scrollY > 50) {
-                    siteHeader.classList.add('shadow-lg');
-                     siteHeader.classList.remove('shadow-md'); // Optional: increase shadow
-                } else {
-                    siteHeader.classList.remove('shadow-lg');
-                     siteHeader.classList.add('shadow-md');
-                }
-                 // Animation trigger remains the same
-                 animatedElements.forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom >= 100) {
-                        el.classList.add('is-visible');
-                    }
-                });
-            }
-
-             function updateFooterYear() {
-                 if (currentYearSpan) {
-                     currentYearSpan.textContent = new Date().getFullYear();
+            // REMOVED Auto Change Functions (or keep if desired for main display)
+             function stopAutoChange() {
+                 if (autoChangeInterval) {
+                     clearInterval(autoChangeInterval);
+                     autoChangeInterval = null;
                  }
              }
+            // --- Other Helper Functions ---
+            function toggleMobileMenu() { if(mobileMenu) mobileMenu.classList.toggle('hidden'); }
+            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { threshold: 0.1 });
+            function observeAnimatedElements() { animatedElements.forEach(el => observer.observe(el)); }
+            function handleScroll() { if(siteHeader) { siteHeader.classList.toggle('shadow-md', window.scrollY > 50); siteHeader.classList.toggle('shadow-subtle', window.scrollY <= 50); } }
+            function updateFooterYear() { if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear(); }
 
-             function addThumbnailListeners() {
+            // --- Add Thumbnail Event Listeners (MODIFIED) ---
+            function addThumbnailListeners() {
                  document.querySelectorAll('.thumbnail').forEach(thumbnail => {
-                    thumbnail.addEventListener('click', () => {
-                        const index = parseInt(thumbnail.dataset.index, 10);
-                        updateMainDisplay(index, true);
-                        stopAutoChange();
-                    });
-                    thumbnail.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
+                     const index = parseInt(thumbnail.dataset.index, 10);
+                     // THUMBNAILS ONLY update the main display
+                     thumbnail.addEventListener('click', () => {
+                         updateMainDisplay(index, true); // Update main display and scroll it into view
+                         // NO modal open call here
+                     });
+                     thumbnail.addEventListener('keydown', (e) => {
+                         if (e.key === 'Enter' || e.key === ' ') {
                              e.preventDefault();
-                             const index = parseInt(thumbnail.dataset.index, 10);
                              updateMainDisplay(index, true);
-                             stopAutoChange();
+                             // NO modal open call here
                          }
-                    });
-                });
-             }
+                     });
+                 });
+            }
 
-            // --- Event Listeners --- (Remain the same structure)
-            mainImage.addEventListener('click', () => openModal(currentIndex));
-            mainImage.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(currentIndex); } });
-            modalCloseBtn.addEventListener('click', closeModal);
-            modalPrevBtn.addEventListener('click', showPrevModalImage);
-            modalNextBtn.addEventListener('click', showNextModalImage);
-            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-            document.addEventListener('keydown', (e) => { if (!modal.classList.contains('pointer-events-none')) { if (e.key === 'Escape') closeModal(); else if (e.key === 'ArrowLeft') showPrevModalImage(); else if (e.key === 'ArrowRight') showNextModalImage(); } });
-            menuToggle.addEventListener('click', toggleMobileMenu);
-            mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMobileMenu));
-            window.addEventListener('scroll', handleScroll);
+            // --- Event Listeners Setup ---
+            if(mainImage) {
+                 // MAIN IMAGE opens the SIMPLE popup
+                 mainImage.addEventListener('click', openSimplePopup);
+                 mainImage.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSimplePopup(); } });
+             }
+            // REMOVED Detailed Modal Listeners
+            // Simple Popup Listeners
+            if(simplePopupCloseBtn) simplePopupCloseBtn.addEventListener('click', closeSimplePopup);
+            if(simplePopupModal) simplePopupModal.addEventListener('click', (e) => { if (e.target === simplePopupModal) closeSimplePopup(); });
+
+            // Simplified Keyboard listener for ESCAPE key
+            document.addEventListener('keydown', (e) => {
+                 // Only handles simple popup now
+                 if (simplePopupModal && !simplePopupModal.classList.contains('pointer-events-none')) {
+                     if (e.key === 'Escape') closeSimplePopup();
+                 }
+            });
+
+            // Other listeners
+            if(menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
+            if(mobileMenu) mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMobileMenu));
+            window.addEventListener('scroll', handleScroll, { passive: true });
             document.addEventListener('contextmenu', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); }, false);
 
             // --- Initialisation ---
             populateThumbnails();
-            updateMainDisplay(0);
+            if (imageDetails.length > 0) updateMainDisplay(0);
             updateFooterYear();
-            startAutoChange();
+            // Auto change can be optionally started: startAutoChange();
             handleScroll();
+            observeAnimatedElements();
 
         }); // End DOMContentLoaded
     </script>
