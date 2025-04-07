@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohith Kumar | Visionary Photography</title>
+    <title>Rohith Kumar | Vibrant Photography</title>
     <link rel="icon" href="ProfilePicture.jpg" type="image/jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,13 +17,17 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-primary': '#1a1a1a', // Dark background
-                        'brand-secondary': '#2a2a2a', // Slightly lighter dark
-                        'brand-accent': '#0891b2', // Cyan accent (Example)
-                        'brand-accent-hover': '#0e7490', // Darker cyan
-                        'brand-text-light': '#e5e5e5', // Light text
-                        'brand-text-dark': '#1a1a1a', // Dark text (for light backgrounds)
-                        'brand-highlight': '#f59e0b', // Amber highlight (Example)
+                        // --- NEW Light & Colorful Palette ---
+                        'brand-primary': '#ffffff',       // White background
+                        'brand-secondary': '#f1f5f9',     // Slate 100 (light gray)
+                        'brand-accent': '#2563eb',       // Blue 600 (Vibrant Blue)
+                        'brand-accent-hover': '#1d4ed8',   // Blue 700
+                        'brand-highlight': '#f97316',    // Orange 500 (Vibrant Orange)
+                        'brand-text-light': '#f8fafc',     // Slate 50 (Very light text, for dark backgrounds)
+                        'brand-text-dark': '#1e293b',      // Slate 800 (Dark text for light backgrounds)
+                        'brand-text-muted': '#64748b',     // Slate 500 (Muted text)
+                        // --- Keep darks for specific elements if needed ---
+                        'brand-dark-bg': '#1e293b',       // Slate 800 (Optional dark bg)
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -42,6 +46,10 @@
                             '0%': { opacity: '0', transform: 'translateY(20px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
+                    },
+                    boxShadow: {
+                         'text': '0 2px 4px rgba(0,0,0,0.1)',
+                         'text-sm': '0 1px 3px rgba(0,0,0,0.1)',
                     }
                 }
             }
@@ -49,24 +57,24 @@
     </script>
 
     <style type="text/tailwindcss">
-        /* Add custom base styles or components here if needed */
+        /* Base styles adjusted for light theme */
         body {
-            @apply bg-brand-primary text-brand-text-light font-sans antialiased;
+            @apply bg-brand-primary text-brand-text-dark font-sans antialiased;
         }
-        /* Style scrollbars for a cleaner look (optional) */
+        /* Style scrollbars (optional) */
         ::-webkit-scrollbar {
              width: 8px;
          }
          ::-webkit-scrollbar-track {
-             @apply bg-brand-secondary;
+             @apply bg-brand-secondary; /* Light gray track */
          }
          ::-webkit-scrollbar-thumb {
-             @apply bg-brand-accent rounded;
+             @apply bg-brand-accent rounded; /* Blue thumb */
          }
          ::-webkit-scrollbar-thumb:hover {
-             @apply bg-brand-accent-hover;
+             @apply bg-brand-accent-hover; /* Darker blue thumb */
          }
-         /* Custom class for entry animations */
+         /* Animation utility classes */
          .animate-on-scroll {
             opacity: 0;
             transition: opacity 0.7s ease-out, transform 0.7s ease-out;
@@ -76,27 +84,26 @@
             opacity: 1;
             transform: translateY(0);
          }
-
     </style>
 
 </head>
 <body class="overflow-x-hidden">
 
-    <header id="site-header" class="bg-brand-primary/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-lg transition-all duration-300">
+    <header id="site-header" class="bg-brand-primary/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-md transition-all duration-300">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="#" class="text-2xl font-bold font-serif text-brand-highlight hover:text-white transition duration-300">
+                <a href="#" class="text-2xl font-bold font-serif text-brand-highlight hover:opacity-80 transition duration-300">
                     Rohith Kumar
                 </a>
 
                 <div class="hidden md:flex space-x-8">
-                    <a href="#gallery" class="text-brand-text-light hover:text-brand-highlight transition duration-300 font-medium">Gallery</a>
-                    <a href="#about" class="text-brand-text-light hover:text-brand-highlight transition duration-300 font-medium">About</a>
-                    <a href="#contact" class="text-brand-text-light hover:text-brand-highlight transition duration-300 font-medium">Contact</a>
+                    <a href="#gallery" class="text-brand-text-dark hover:text-brand-accent transition duration-300 font-medium">Gallery</a>
+                    <a href="#about" class="text-brand-text-dark hover:text-brand-accent transition duration-300 font-medium">About</a>
+                    <a href="#contact" class="text-brand-text-dark hover:text-brand-accent transition duration-300 font-medium">Contact</a>
                 </div>
 
                 <div class="md:hidden">
-                    <button id="menu-toggle" class="text-brand-text-light hover:text-brand-highlight focus:outline-none">
+                    <button id="menu-toggle" class="text-brand-text-dark hover:text-brand-accent focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
@@ -106,99 +113,94 @@
         </nav>
 
         <div id="mobile-menu" class="md:hidden hidden bg-brand-secondary absolute w-full shadow-xl">
-            <a href="#gallery" class="block px-4 py-3 text-brand-text-light hover:bg-brand-accent hover:text-white transition duration-300">Gallery</a>
-            <a href="#about" class="block px-4 py-3 text-brand-text-light hover:bg-brand-accent hover:text-white transition duration-300">About</a>
-            <a href="#contact" class="block px-4 py-3 text-brand-text-light hover:bg-brand-accent hover:text-white transition duration-300">Contact</a>
+            <a href="#gallery" class="block px-4 py-3 text-brand-text-dark hover:bg-brand-accent hover:text-brand-text-light transition duration-300">Gallery</a>
+            <a href="#about" class="block px-4 py-3 text-brand-text-dark hover:bg-brand-accent hover:text-brand-text-light transition duration-300">About</a>
+            <a href="#contact" class="block px-4 py-3 text-brand-text-dark hover:bg-brand-accent hover:text-brand-text-light transition duration-300">Contact</a>
         </div>
     </header>
 
     <main>
-        <section class="relative h-[80vh] min-h-[500px] flex items-center justify-center text-center bg-gradient-to-b from-brand-primary via-transparent to-brand-primary">
+        <section class="relative h-[80vh] min-h-[500px] flex items-center justify-center text-center bg-brand-secondary">
             <div class="absolute inset-0 z-0">
-                <img src="image1.jpg" alt="Hero Background Image" class="object-cover w-full h-full opacity-40">
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-primary via-brand-primary/50 to-transparent"></div>
+                <img src="image1.jpg" alt="Hero Background Image" class="object-cover w-full h-full opacity-60 md:opacity-80">
+                 <div class="absolute inset-0 bg-gradient-to-t from-brand-secondary via-brand-secondary/30 to-transparent"></div>
             </div>
 
             <div class="relative z-10 px-4 animate-fade-in">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4 text-white leading-tight shadow-text">
-                    Rohith Kumar <span class="text-brand-highlight">Photography</span>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4 text-brand-text-dark leading-tight shadow-text">
+                    Rohith Kumar <span class="text-brand-accent">Photography</span>
                 </h1>
-                <p class="text-lg sm:text-xl text-brand-text-light/90 mb-8 max-w-2xl mx-auto shadow-text-sm">
-                    Capturing the fleeting moments of beauty that define our world. Explore my visual narrative.
+                <p class="text-lg sm:text-xl text-brand-text-muted mb-8 max-w-2xl mx-auto shadow-text-sm">
+                    Capturing the vibrant moments of life. Explore my visual narrative through color and light.
                 </p>
-                <a href="#gallery" class="inline-block bg-brand-accent hover:bg-brand-accent-hover text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                <a href="#gallery" class="inline-block bg-brand-accent hover:bg-brand-accent-hover text-brand-text-light font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
                     Explore Gallery
                 </a>
             </div>
         </section>
 
-        <section id="gallery" class="py-16 sm:py-24 bg-brand-secondary">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-center mb-12 sm:mb-16 animate-on-scroll">Gallery Showcase</h2>
+        <section id="gallery" class="py-16 sm:py-24 bg-brand-primary"> <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-center mb-12 sm:mb-16 text-brand-text-dark animate-on-scroll">Gallery Showcase</h2>
 
                 <figure class="mb-12 sm:mb-16 relative group animate-on-scroll">
                     <img id="mainImage" src="image1.jpg" alt="Main showcase image"
-                         class="w-full max-h-[75vh] object-cover rounded-lg shadow-2xl cursor-pointer transition duration-500 ease-in-out transform group-hover:scale-[1.02]">
-                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition duration-500 rounded-lg"></div>
+                         class="w-full max-h-[75vh] object-cover rounded-xl shadow-2xl cursor-pointer transition duration-500 ease-in-out transform group-hover:scale-[1.02]">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition duration-500 rounded-xl"></div>
                     <figcaption id="mainImageCaption" class="mt-6 text-center">
-                        <h3 id="imageTitle" class="text-xl sm:text-2xl font-semibold mb-2 text-brand-highlight">Image Title</h3>
-                        <p id="imageSummary" class="text-sm sm:text-base text-brand-text-light/80 max-w-3xl mx-auto">Image summary goes here.</p>
+                        <h3 id="imageTitle" class="text-xl sm:text-2xl font-semibold mb-2 text-brand-accent">Image Title</h3>
+                        <p id="imageSummary" class="text-sm sm:text-base text-brand-text-muted max-w-3xl mx-auto">Image summary goes here.</p>
                     </figcaption>
                 </figure>
 
-                <h3 class="text-2xl font-semibold text-center mb-8 animate-on-scroll">Select an Image</h3>
+                <h3 class="text-2xl font-semibold text-center mb-8 text-brand-text-dark animate-on-scroll">Select an Image</h3>
                 <div id="thumbnailGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6 animate-on-scroll">
                     </div>
             </div>
         </section>
 
-        <section id="about" class="py-16 sm:py-24 bg-brand-primary">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
+        <section id="about" class="py-16 sm:py-24 bg-brand-secondary"> <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
                     <div class="animate-on-scroll">
-                        <h2 class="text-3xl sm:text-4xl font-bold font-serif mb-6 text-brand-highlight">About Me</h2>
-                        <p class="text-base sm:text-lg text-brand-text-light/90 mb-4 leading-relaxed">
-                            Hi! I'm Rohith Kumar, a passionate visual storyteller based in [Your Location - e.g., Fredericton, NB]. My journey into photography began with a fascination for light, shadow, and the infinite stories waiting to be told in everyday moments.
+                        <h2 class="text-3xl sm:text-4xl font-bold font-serif mb-6 text-brand-accent">About Me</h2>
+                        <p class="text-base sm:text-lg text-brand-text-dark mb-4 leading-relaxed">
+                            Hi! I'm Rohith Kumar, a passionate visual storyteller based in Fredericton, NB. My journey into photography began with a fascination for light, shadow, and the infinite stories waiting to be told in everyday moments.
                         </p>
-                        <p class="text-base sm:text-lg text-brand-text-light/80 mb-6 leading-relaxed">
-                            I specialize in [mention your specialties - e.g., landscape, portrait, event photography], striving to capture authentic emotions and perspectives. Let's create something beautiful together.
+                        <p class="text-base sm:text-lg text-brand-text-muted mb-6 leading-relaxed">
+                            I specialize in landscape, portrait, and event photography, striving to capture authentic emotions and perspectives with vibrant color and clarity. Let's create something beautiful together.
                         </p>
-                        <a href="#contact" class="inline-block border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white font-medium py-2 px-6 rounded-full transition duration-300">
+                        <a href="#contact" class="inline-block border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-text-light font-medium py-2 px-6 rounded-full transition duration-300">
                             Get In Touch
                         </a>
                     </div>
-                    <div class="relative h-80 md:h-full rounded-lg overflow-hidden shadow-xl animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="relative h-80 md:h-96 lg:h-[500px] rounded-lg overflow-hidden shadow-xl animate-on-scroll" style="animation-delay: 0.2s;">
                          <img src="ProfilePicture.jpg" alt="Rohith Kumar Portrait" class="absolute inset-0 w-full h-full object-cover object-center transform hover:scale-105 transition duration-500 ease-in-out">
-                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-         <section id="contact" class="py-16 sm:py-24 bg-brand-secondary">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                 <h2 class="text-3xl sm:text-4xl font-bold font-serif mb-6 text-brand-highlight animate-on-scroll">Let's Connect</h2>
-                 <p class="text-base sm:text-lg text-brand-text-light/80 max-w-2xl mx-auto mb-10 animate-on-scroll" style="animation-delay: 0.1s;">
-                     Interested in collaborating, booking a session, or purchasing prints? Reach out!
+         <section id="contact" class="py-16 sm:py-24 bg-brand-primary"> <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                 <h2 class="text-3xl sm:text-4xl font-bold font-serif mb-6 text-brand-accent animate-on-scroll">Let's Connect</h2>
+                 <p class="text-base sm:text-lg text-brand-text-muted max-w-2xl mx-auto mb-10 animate-on-scroll" style="animation-delay: 0.1s;">
+                     Interested in collaborating, booking a session, or purchasing prints? I'd love to hear from you!
                  </p>
                  <div class="animate-on-scroll" style="animation-delay: 0.2s;">
-                     <a href="mailto:your.email@example.com" class="inline-block bg-brand-accent hover:bg-brand-accent-hover text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                     <a href="mailto:your.email@example.com" class="inline-block bg-brand-accent hover:bg-brand-accent-hover text-brand-text-light font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
                          Send me an Email
                      </a>
-                     <div class="mt-8 space-x-4 text-brand-text-light/70">
-                         <a href="#" class="hover:text-brand-highlight transition duration-300">LinkedIn</a> |
-                         <a href="#" class="hover:text-brand-highlight transition duration-300">Instagram</a> |
-                         <a href="#" class="hover:text-brand-highlight transition duration-300">Twitter</a>
+                      <div class="mt-8 space-x-4 text-brand-text-muted">
+                         <a href="#" class="hover:text-brand-accent transition duration-300">LinkedIn</a> |
+                         <a href="#" class="hover:text-brand-accent transition duration-300">Instagram</a> |
+                         <a href="#" class="hover:text-brand-accent transition duration-300">Twitter</a>
                      </div>
                  </div>
             </div>
         </section>
 
-
     </main>
 
-    <footer class="py-8 bg-brand-primary border-t border-brand-secondary/50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-brand-text-light/60">
+    <footer class="py-8 bg-brand-secondary border-t border-slate-200"> <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-brand-text-muted">
              <p>&copy; <span id="current-year"></span> Rohith Kumar Photography. All rights reserved. Built with Tailwind CSS.</p>
              <p class="mt-1">Fredericton, New Brunswick, Canada</p>
         </div>
@@ -206,10 +208,8 @@
 
     <div id="imageModal" class="fixed inset-0 z-[999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true" role="dialog" aria-modal="true">
         <button id="modalClose" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/70 hover:text-white z-[1001] text-4xl transition duration-300" aria-label="Close image viewer">&times;</button>
-
         <button id="modalPrev" class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-2 transition duration-300" aria-label="Previous image">&#10094;</button>
         <button id="modalNext" class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-2 transition duration-300" aria-label="Next image">&#10095;</button>
-
         <div class="relative max-w-full max-h-full">
             <img id="modalImage" src="" alt="Full size view" class="block max-h-[90vh] max-w-[90vw] w-auto h-auto object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-95">
         </div>
@@ -217,84 +217,70 @@
 
 
     <script>
-        // --- Image Data ---
-        // (Ensure paths are correct relative to this HTML file)
+        // --- Image Data --- (Same as before)
         const imageDetails = [
-            // Example data - Replace with your actual image details
-             { src: 'image1.jpg', title: 'Golden Horizon', summary: '"An evening sky painted with hues of orange, as the sun dips beyond the horizon..."' },
-             { src: 'image2.jpg', title: 'Whispers of the Shore', summary: '"A riverside scene where tall grasses sway gently, bridge pillars peeking through..."' },
-             { src: 'image3.jpg', title: 'Sunset Pathway', summary: '"The golden hour illuminates an empty roadway, stretching towards the vibrant sunset..."' },
-             { src: 'image4.jpeg', title: 'Reflections at Dusk', summary: '"City lights begin to shimmer on the river’s surface, casting reflections..."' },
-             { src: 'image5.jpg', title: 'Cinematic Skies', summary: '"A breathtaking display of clouds dances in shades of orange and light blue..."' },
-             { src: 'image6.jpeg', title: 'Whispers of the Shore II', summary: '"In a cinematic frame, river shore plants sway gracefully, blurred bridge softly framing..."' },
-             { src: 'image7.jpeg', title: 'Stormy Crossings', summary: '"A bridge looms beneath a brooding sky, streetlights dark as ominous clouds gather..."' },
-             { src: 'image8.jpeg', title: 'Golden River', summary: '"The sunset casts a golden hue over the river, layers of trees and hills..."' },
-             { src: 'image9.jpeg', title: 'Harmony of Nature', summary: '"Lush river shore, where vibrant plants meet the flowing water, surrounded by trees..."' },
-             { src: 'image10.jpeg', title: 'Evening Run', summary: '"As dusk descends, runners chase the fading light along a winding road..."' },
-             { src: 'image11.jpeg', title: 'Silent Blooms', summary: '"Delicate white flowers peek through the grass, whispers mingling with soft sighs..."' },
-             { src: 'image12.jpeg', title: 'Architectural Wonder', summary: 'A magnificent architectural structure against the sky.' },
-             { src: 'image13.jpeg', title: 'Wildlife Beauty', summary: 'A wildlife shot showcasing the majestic beauty of nature.' },
-             { src: 'image14.jpeg', title: 'Mountain Range', summary: 'A picturesque mountain range under a clear sky.' },
-             { src: 'image15.jpeg', title: 'Winter Wonderland', summary: 'A serene winter wonderland covered in snow.' },
-             { src: 'image16.jpeg', title: 'Bustling Marketplace', summary: 'A vibrant and bustling marketplace full of life and color.' },
-             { src: 'image17.jpeg', title: 'Vibrant Autumn', summary: 'A vibrant autumn scene full of warm colors and falling leaves.' }
-         ];
+            { src: 'image1.jpg', title: 'Golden Horizon', summary: '"An evening sky painted with hues of orange, as the sun dips beyond the horizon..."' },
+            { src: 'image2.jpg', title: 'Whispers of the Shore', summary: '"A riverside scene where tall grasses sway gently, bridge pillars peeking through..."' },
+            { src: 'image3.jpg', title: 'Sunset Pathway', summary: '"The golden hour illuminates an empty roadway, stretching towards the vibrant sunset..."' },
+            { src: 'image4.jpeg', title: 'Reflections at Dusk', summary: '"City lights begin to shimmer on the river’s surface, casting reflections..."' },
+            { src: 'image5.jpg', title: 'Cinematic Skies', summary: '"A breathtaking display of clouds dances in shades of orange and light blue..."' },
+            { src: 'image6.jpeg', title: 'Whispers of the Shore II', summary: '"In a cinematic frame, river shore plants sway gracefully, blurred bridge softly framing..."' },
+            { src: 'image7.jpeg', title: 'Stormy Crossings', summary: '"A bridge looms beneath a brooding sky, streetlights dark as ominous clouds gather..."' },
+            { src: 'image8.jpeg', title: 'Golden River', summary: '"The sunset casts a golden hue over the river, layers of trees and hills..."' },
+            { src: 'image9.jpeg', title: 'Harmony of Nature', summary: '"Lush river shore, where vibrant plants meet the flowing water, surrounded by trees..."' },
+            { src: 'image10.jpeg', title: 'Evening Run', summary: '"As dusk descends, runners chase the fading light along a winding road..."' },
+            { src: 'image11.jpeg', title: 'Silent Blooms', summary: '"Delicate white flowers peek through the grass, whispers mingling with soft sighs..."' },
+            { src: 'image12.jpeg', title: 'Architectural Wonder', summary: 'A magnificent architectural structure against the sky.' },
+            { src: 'image13.jpeg', title: 'Wildlife Beauty', summary: 'A wildlife shot showcasing the majestic beauty of nature.' },
+            { src: 'image14.jpeg', title: 'Mountain Range', summary: 'A picturesque mountain range under a clear sky.' },
+            { src: 'image15.jpeg', title: 'Winter Wonderland', summary: 'A serene winter wonderland covered in snow.' },
+            { src: 'image16.jpeg', title: 'Bustling Marketplace', summary: 'A vibrant and bustling marketplace full of life and color.' },
+            { src: 'image17.jpeg', title: 'Vibrant Autumn', summary: 'A vibrant autumn scene full of warm colors and falling leaves.' }
+        ];
 
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DOM Elements ---
+            // --- DOM Elements --- (References remain mostly the same)
             const mainImage = document.getElementById('mainImage');
             const imageTitle = document.getElementById('imageTitle');
             const imageSummary = document.getElementById('imageSummary');
             const thumbnailGrid = document.getElementById('thumbnailGrid');
-
-            // Modal Elements
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             const modalCloseBtn = document.getElementById('modalClose');
             const modalPrevBtn = document.getElementById('modalPrev');
             const modalNextBtn = document.getElementById('modalNext');
-
-            // Navigation Elements
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const siteHeader = document.getElementById('site-header');
-
-            // Footer Year
             const currentYearSpan = document.getElementById('current-year');
-
-            // Animation Elements
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
 
             // --- State ---
             let currentIndex = 0;
             let autoChangeInterval;
 
-            // --- Functions ---
+            // --- Functions --- (Logic remains largely the same, classes updated)
 
-            // Populate Thumbnail Grid
             function populateThumbnails() {
-                thumbnailGrid.innerHTML = ''; // Clear existing thumbnails
+                thumbnailGrid.innerHTML = '';
                 imageDetails.forEach((detail, index) => {
                     const thumbContainer = document.createElement('div');
-                    // Tailwind aspect ratio classes maintain consistency
-                    thumbContainer.className = 'aspect-w-3 aspect-h-2 group';
+                    thumbContainer.className = 'aspect-w-3 aspect-h-2 group'; // Use Tailwind aspect ratio
 
                     const img = document.createElement('img');
                     img.src = detail.src;
                     img.alt = `Thumbnail: ${detail.title}`;
                     img.dataset.index = index;
                     img.loading = 'lazy';
-                    // Tailwind classes for styling and interaction
-                    img.className = `thumbnail object-cover w-full h-full rounded-md cursor-pointer border-2 border-transparent group-hover:border-brand-highlight transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-brand-highlight focus:ring-offset-2 focus:ring-offset-brand-secondary`;
+                    // Adjusted classes for light theme
+                    img.className = `thumbnail object-cover w-full h-full rounded-md cursor-pointer border-2 border-transparent group-hover:border-brand-accent transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary`; // Offset from white
 
                     thumbContainer.appendChild(img);
                     thumbnailGrid.appendChild(thumbContainer);
                 });
-                 // Re-select thumbnails after population
                 addThumbnailListeners();
             }
 
-            // Update Main Image Display
             function updateMainDisplay(index, smoothScroll = false) {
                 if (index < 0 || index >= imageDetails.length) return;
 
@@ -305,27 +291,23 @@
                 imageSummary.textContent = detail.summary;
                 currentIndex = index;
 
-                 // Update active thumbnail styling
-                 document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
-                     thumb.classList.toggle('border-brand-highlight', i === index);
-                     thumb.classList.toggle('opacity-100', i === index); // Ensure active is fully opaque
-                     thumb.classList.toggle('scale-105', i === index); // Make active slightly larger
-                     thumb.classList.toggle('border-transparent', i !== index);
-                 });
+                document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
+                    // Use accent color for active border
+                    thumb.classList.toggle('border-brand-accent', i === index);
+                    thumb.classList.toggle('opacity-100', i === index);
+                    thumb.classList.toggle('scale-105', i === index);
+                    thumb.classList.toggle('border-transparent', i !== index);
+                });
 
-                 // Scroll main image section into view if triggered by thumbnail
-                 if (smoothScroll) {
+                if (smoothScroll) {
                     document.getElementById('gallery').querySelector('figure').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                 }
-
-                 // Restart auto-change timer on manual selection
-                 startAutoChange();
+                }
+                startAutoChange(); // Restart timer
             }
 
-            // --- Modal Functions ---
             function openModal(index) {
                 if (index < 0 || index >= imageDetails.length) return;
-                currentIndex = index; // Update index when opening
+                currentIndex = index;
                 const detail = imageDetails[index];
                 modalImage.src = detail.src;
                 modalImage.alt = `Full size view of ${detail.title}`;
@@ -335,181 +317,121 @@
                 modalImage.classList.add('scale-100');
                 modalImage.classList.remove('scale-95');
                 modal.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                stopAutoChange(); // Pause auto-change
+                document.body.style.overflow = 'hidden';
+                stopAutoChange();
             }
 
             function closeModal() {
                 modal.classList.add('opacity-0');
                 modal.classList.remove('opacity-100');
-                 modalImage.classList.remove('scale-100');
-                 modalImage.classList.add('scale-95'); // Shrink effect on close
-                // Use setTimeout to allow animation before disabling pointer events
+                modalImage.classList.remove('scale-100');
+                modalImage.classList.add('scale-95');
                 setTimeout(() => {
                    modal.classList.add('pointer-events-none');
                    modal.setAttribute('aria-hidden', 'true');
-                   document.body.style.overflow = ''; // Restore scrolling
-                   startAutoChange(); // Resume auto-change
-                }, 300); // Match transition duration
+                   document.body.style.overflow = '';
+                   startAutoChange();
+                }, 300);
             }
 
             function showModalImage(index) {
                  if (index < 0 || index >= imageDetails.length) return;
                  currentIndex = index;
                  const detail = imageDetails[index];
-
-                 // Fade out, change src, fade in effect (optional)
                  modalImage.classList.add('opacity-0', 'transition-opacity', 'duration-150');
                  setTimeout(() => {
                      modalImage.src = detail.src;
                      modalImage.alt = `Full size view of ${detail.title}`;
                      modalImage.classList.remove('opacity-0');
-                 }, 150); // Half of the fade time
+                 }, 150);
             }
 
             function showPrevModalImage() {
                 const newIndex = (currentIndex - 1 + imageDetails.length) % imageDetails.length;
                 showModalImage(newIndex);
             }
-
             function showNextModalImage() {
                 const newIndex = (currentIndex + 1) % imageDetails.length;
                 showModalImage(newIndex);
             }
 
-            // --- Auto Image Change ---
             function autoChangeImage() {
                 const nextIndex = (currentIndex + 1) % imageDetails.length;
-                updateMainDisplay(nextIndex); // Update main display only
+                updateMainDisplay(nextIndex);
             }
-
-            function startAutoChange(interval = 15000) { // Change every 15 seconds
-               stopAutoChange(); // Clear existing interval first
+            function startAutoChange(interval = 15000) {
+               stopAutoChange();
                autoChangeInterval = setInterval(autoChangeImage, interval);
             }
-
             function stopAutoChange() {
                clearInterval(autoChangeInterval);
             }
 
-            // --- Mobile Navigation ---
             function toggleMobileMenu() {
-                const isOpen = !mobileMenu.classList.contains('hidden');
                 mobileMenu.classList.toggle('hidden');
-                // Optional: Animate menu appearance
-                if (!isOpen) {
-                    // If opening, you could add animation classes
-                    // mobileMenu.classList.add('animate-slide-down'); // Requires defining this animation
-                } else {
-                    // mobileMenu.classList.remove('animate-slide-down');
-                }
             }
 
-            // --- Scroll Effects ---
             function handleScroll() {
-                // Header background change on scroll
+                // Adjusted header effect for light theme: Add subtle shadow
                 if (window.scrollY > 50) {
-                    siteHeader.classList.add('bg-brand-primary'); // More solid background
+                    siteHeader.classList.add('shadow-lg');
+                     siteHeader.classList.remove('shadow-md'); // Optional: increase shadow
                 } else {
-                    siteHeader.classList.remove('bg-brand-primary');
+                    siteHeader.classList.remove('shadow-lg');
+                     siteHeader.classList.add('shadow-md');
                 }
-
-                // Animate elements on scroll
-                animatedElements.forEach(el => {
+                 // Animation trigger remains the same
+                 animatedElements.forEach(el => {
                     const rect = el.getBoundingClientRect();
-                    // Check if element is within viewport (adjust offset as needed)
                     if (rect.top < window.innerHeight && rect.bottom >= 100) {
                         el.classList.add('is-visible');
                     }
-                    // Optional: Remove class if scrolled back up
-                    // else {
-                    //     el.classList.remove('is-visible');
-                    // }
                 });
             }
 
-            // --- Update Footer Year ---
              function updateFooterYear() {
                  if (currentYearSpan) {
                      currentYearSpan.textContent = new Date().getFullYear();
                  }
              }
 
-             // --- Add Thumbnail Event Listeners ---
              function addThumbnailListeners() {
                  document.querySelectorAll('.thumbnail').forEach(thumbnail => {
                     thumbnail.addEventListener('click', () => {
                         const index = parseInt(thumbnail.dataset.index, 10);
-                        updateMainDisplay(index, true); // Scroll main image into view
-                        stopAutoChange(); // Stop auto change on manual interaction
+                        updateMainDisplay(index, true);
+                        stopAutoChange();
                     });
-                     // Add keyboard accessibility
-                     thumbnail.addEventListener('keydown', (e) => {
-                         if (e.key === 'Enter' || e.key === ' ') {
+                    thumbnail.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
                              e.preventDefault();
                              const index = parseInt(thumbnail.dataset.index, 10);
                              updateMainDisplay(index, true);
                              stopAutoChange();
                          }
-                     });
+                    });
                 });
              }
 
-
-            // --- Event Listeners ---
-
-            // Thumbnail Clicks (Delegated listener could also be used)
-            // Handled by addThumbnailListeners after population
-
-            // Main Image Click (Open Modal)
+            // --- Event Listeners --- (Remain the same structure)
             mainImage.addEventListener('click', () => openModal(currentIndex));
-            mainImage.addEventListener('keydown', (e) => {
-                 if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openModal(currentIndex);
-                 }
-            });
-
-            // Modal Interactions
+            mainImage.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(currentIndex); } });
             modalCloseBtn.addEventListener('click', closeModal);
             modalPrevBtn.addEventListener('click', showPrevModalImage);
             modalNextBtn.addEventListener('click', showNextModalImage);
-            modal.addEventListener('click', (e) => { // Close if clicking background
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-            document.addEventListener('keydown', (e) => { // Keyboard nav for modal
-                if (!modal.classList.contains('pointer-events-none')) { // Check if modal is active
-                    if (e.key === 'Escape') closeModal();
-                    else if (e.key === 'ArrowLeft') showPrevModalImage();
-                    else if (e.key === 'ArrowRight') showNextModalImage();
-                }
-            });
-
-            // Mobile Menu Toggle
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', (e) => { if (!modal.classList.contains('pointer-events-none')) { if (e.key === 'Escape') closeModal(); else if (e.key === 'ArrowLeft') showPrevModalImage(); else if (e.key === 'ArrowRight') showNextModalImage(); } });
             menuToggle.addEventListener('click', toggleMobileMenu);
-            // Close mobile menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', toggleMobileMenu);
-            });
-
-             // Scroll Listener for effects
-             window.addEventListener('scroll', handleScroll);
-
-            // Prevent Right Click (Image Protection)
-            document.addEventListener('contextmenu', (e) => {
-                 if (e.target.tagName === 'IMG') { // Only prevent on images
-                     e.preventDefault();
-                 }
-             }, false);
+            mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMobileMenu));
+            window.addEventListener('scroll', handleScroll);
+            document.addEventListener('contextmenu', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); }, false);
 
             // --- Initialisation ---
-            populateThumbnails(); // Create thumbnails on load
-            updateMainDisplay(0); // Load the first image
-            updateFooterYear(); // Set the copyright year
-            startAutoChange(); // Start automatic image rotation
-            handleScroll(); // Initial check for scroll animations
+            populateThumbnails();
+            updateMainDisplay(0);
+            updateFooterYear();
+            startAutoChange();
+            handleScroll();
 
         }); // End DOMContentLoaded
     </script>
