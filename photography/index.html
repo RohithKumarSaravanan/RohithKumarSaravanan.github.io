@@ -136,12 +136,33 @@
                     </div>
                 </div>
                 <div class="relative h-80 lg:h-auto lg:aspect-w-1 lg:aspect-h-1 animate-scale-in" style="animation-delay: 0.2s;">
-                    <img src="image5.jpg" alt="Creative Photography Showcase" class="absolute inset-0 w-full h-full object-cover rounded-3xl lg:rounded-4xl shadow-lifted">
+                    <div class="absolute inset-0 overflow-hidden rounded-3xl lg:rounded-4xl shadow-lifted">
+                        <video
+                            autoplay
+                            loop
+                            muted
+                            playsinline
+                            class="absolute inset-0 w-full h-full object-cover"
+                            id="anotherVideo" >
+                            <source src="video2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                     <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-tr from-brand-secondary to-brand-highlight rounded-full opacity-30 blur-2xl hidden lg:block"></div>
                 </div>
             </div>
             <div class="absolute top-1/4 -left-20 w-60 h-60 bg-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
         </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            const backgroundVideo = document.getElementById('backgroundVideo');
+
+            const anotherVideo = document.getElementById('anotherVideo');
+            if (anotherVideo) {
+                anotherVideo.playbackRate = 0.6; // Example: Slow down to 60% speed
+            }
+            });
+        </script>
 
         <section id="gallery" class="py-20 sm:py-28 bg-gradient-to-b from-white via-white to-brand-bg">
             <div class="container mx-auto px-6 lg:px-8">
@@ -166,10 +187,10 @@
         </section>
 
         <section id="about" class="py-20 sm:py-28 overflow-hidden bg-brand-surface relative">
-             <div class="absolute -top-20 -left-20 w-72 h-72 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -top-20 -left-20 w-72 h-72 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-gradient-to-tl from-brand-highlight/10 to-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="container mx-auto px-6 lg:px-8 relative z-10">
-                 <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+                <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
                     <div class="lg:col-span-3 animate-fade-in-up">
                         <span class="text-sm font-semibold uppercase tracking-wider text-brand-primary mb-2 block">Meet the Artist</span>
                         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">Rohith Kumar</h2>
@@ -183,14 +204,38 @@
                         </a>
                     </div>
                     <div class="lg:col-span-2 relative h-96 lg:h-[600px] animate-scale-in" style="animation-delay: 0.2s;">
-                        <img src="ProfilePicture.jpg" alt="Rohith Kumar Portrait" class="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-lifted">
+                        <div class="absolute inset-0 overflow-hidden rounded-3xl shadow-lifted">
+                            <video
+                                autoplay
+                                loop
+                                muted
+                                playsinline
+                                class="absolute inset-0 w-full h-full object-cover"
+                                id="aboutVideo" >
+                                <source src="video1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="absolute bottom-4 right-4 w-24 h-24 rounded-full overflow-hidden shadow-md">
+                                <img src="small-profile.jpg" alt="Small Profile" class="w-full h-full object-cover">
+                            </div>
+                        </div>
                         <div class="absolute -bottom-6 -right-6 bg-gradient-to-br from-brand-secondary to-brand-highlight p-4 rounded-2xl shadow-lg text-brand-text-on-accent">
-                            <i class="fa-solid fa-camera text-3xl"></i>
+                            <img src="image5.jpg">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            // ... (Your existing JavaScript code for the home video) ...
+
+            const aboutVideo = document.getElementById('aboutVideo');
+            if (aboutVideo) {
+                aboutVideo.playbackRate = 0.6; // Example: Slow down to 75% speed
+            }
+            });
+        </script>
 
         <section id="contact" class="py-20 sm:py-28 bg-gradient-to-br from-teal-600 via-teal-700 to-fuchsia-700 text-brand-text-on-accent">
              <div class="container mx-auto px-6 lg:px-8 text-center">
