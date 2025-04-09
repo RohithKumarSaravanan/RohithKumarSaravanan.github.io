@@ -11,37 +11,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        // --- Creative & Premium Palette ---
-                        'brand-bg': '#f8f9fa',          // Very light gray base
-                        'brand-surface': '#ffffff',     // White for cards/surfaces
-                        'brand-primary': '#0d9488',     // Teal 600 (Primary Accent)
-                        'brand-primary-dark': '#0f766e',// Teal 700
-                        'brand-secondary': '#c026d3',   // Fuchsia 600 (Secondary Accent)
-                        'brand-highlight': '#f59e0b',    // Amber 500 (Highlight)
-                        'brand-text': '#212529',         // Near black for text
-                        'brand-text-muted': '#6c757d',    // Gray for muted text
-                        'brand-text-on-accent': '#ffffff',// White text on dark accents
+                        'brand-bg': '#f8f9fa',
+                        'brand-surface': '#ffffff',
+                        'brand-primary': '#0d9488',
+                        'brand-primary-dark': '#0f766e',
+                        'brand-secondary': '#c026d3',
+                        'brand-highlight': '#f59e0b',
+                        'brand-text': '#212529',
+                        'brand-text-muted': '#6c757d',
+                        'brand-text-on-accent': '#ffffff',
                     },
                     fontFamily: {
-                        sans: ['Poppins', 'Inter', 'sans-serif'], // Poppins for general sans
-                        serif: ['Playfair Display', 'serif'], // Expressive serif
-                        display: ['Playfair Display', 'serif'] // Alias for headings
+                        sans: ['Poppins', 'Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        display: ['Playfair Display', 'serif']
                     },
-                    borderRadius: {
-                        '4xl': '2rem',
-                        '5xl': '3rem',
-                    },
+                    borderRadius: { '4xl': '2rem', '5xl': '3rem', },
                     boxShadow: {
-                        'subtle': '0 4px 15px rgba(0, 0, 0, 0.05)',
-                        'lifted': '0 10px 30px rgba(0, 0, 0, 0.07)',
-                        'interactive': '0 6px 20px rgba(13, 148, 136, 0.2)', // Shadow using primary color
-                        'hover-float': '0 12px 35px rgba(0, 0, 0, 0.1)' // Shadow for hover
+                         'subtle': '0 4px 15px rgba(0, 0, 0, 0.05)',
+                         'lifted': '0 10px 30px rgba(0, 0, 0, 0.07)',
+                         'interactive': '0 6px 20px rgba(13, 148, 136, 0.2)',
+                         'hover-float': '0 12px 35px rgba(0, 0, 0, 0.1)'
                     },
                     animation: {
                         'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
@@ -50,10 +47,10 @@
                         'pulse-subtle': 'pulseSubtle 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
-                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(25px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
-                        pulseSubtle: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '.85' } }
+                         fadeInUp: { '0%': { opacity: '0', transform: 'translateY(25px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                         fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                         scaleIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                         pulseSubtle: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '.85' } }
                     }
                 }
             }
@@ -71,24 +68,122 @@
         [class*='aspect-w-'] > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
         .text-gradient-primary { @apply text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary; }
         .text-gradient-highlight { @apply text-transparent bg-clip-text bg-gradient-to-r from-brand-secondary to-brand-highlight; }
+        #simplePopupModal img { max-width: 70vw; max-height: 70vh; }
+    </style>
 
-        /* Style for the new simple popup image size */
-        #simplePopupModal img {
-            max-width: 70vw;
-            max-height: 70vh;
+    <style>
+        .intro-slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #222;
+        }
+        .intro-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            transition: transform 1.2s ease-in-out;
+            transform: translateY(100%);
+            z-index: 1;
+        }
+        .intro-overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .intro-overlay-text h1 {
+            margin: 0;
+            font-size: 3.5em;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .intro-overlay-text p {
+            margin: 10px 0 0;
+            font-size: 1.3em;
+            font-weight: 300;
+        }
+        .intro-top-nav {
+            position: absolute;
+            top: 30px;
+            z-index: 15;
+            color: black;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        .intro-top-nav.left { left: 40px; }
+        .intro-top-nav.right { right: 40px; }
+        .intro-top-nav.right span { margin-left: 25px; cursor: pointer; }
+        .intro-top-nav.right span:hover { opacity: 0.7; }
+        @media (max-width: 768px) {
+            .intro-overlay-text h1 { font-size: 2.5em; }
+            .intro-overlay-text p { font-size: 1em; }
+            .intro-top-nav { top: 20px; }
+            .intro-top-nav.left { left: 20px; }
+            .intro-top-nav.right { right: 20px; }
+            .intro-top-nav.right span { margin-left: 15px; }
+        }
+
+        .swiper-3d-gallery .swiper-slide {
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+        .swiper-3d-gallery.selection-active .swiper-slide:not(.selected-slide) {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .swiper-3d-gallery .selected-slide {
+            transform: scale(1.05) translateZ(40px) !important;
+            opacity: 1 !important;
+            z-index: 10 !important;
+        }
+        #enlarged-slide-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .text-shadow-lg {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .swiper-button-prev, .swiper-button-next {
+            z-index: 15 !important;
+        }
+        .swiper-3d-gallery.selection-active .swiper-button-prev,
+        .swiper-3d-gallery.selection-active .swiper-button-next {
+            opacity: 0.2;
+            pointer-events: none;
         }
     </style>
 
 </head>
 <body class="overflow-x-hidden">
 
-    <header id="site-header" class="bg-brand-bg/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 shadow-subtle">
+    <div class="intro-slideshow-container">
+        <div class="intro-slide" style="background-image: url('galary/photo1.jpg');"></div>
+        <div class="intro-slide" style="background-image: url('galary/photo2.jpg');"></div>
+        <div class="intro-slide" style="background-image: url('galary/photo3.jpg');"></div>
+        <div class="intro-overlay-text">
+            <h1>ROHITH KUMAR S</h1>
+            <p>Creative Photography</p>
+        </div>
+    </div>
+
+    <header id="site-header" class="fixed top-0 left-0 right-0 z-50 duration-300 transition-all hover:bg-brand-bg/80 hover:backdrop-blur-lg hover:shadow-subtle">
         <nav class="container mx-auto px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
+            <div class="flex justify-between items-center h-16">
                 <a href="#" class="text-3xl font-bold font-serif italic text-gradient-primary hover:opacity-80 transition duration-300">
                     RK<span class="text-brand-text text-xl">.photo</span>
                 </a>
-
                 <div class="hidden md:flex items-center space-x-10">
                     <a href="#gallery" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium group">
                         Gallery <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-brand-primary"></span>
@@ -97,10 +192,9 @@
                         About <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-brand-primary"></span>
                     </a>
                     <a href="#contact" class="text-brand-text hover:text-brand-primary transition duration-300 font-medium px-5 py-2 rounded-full border-2 border-brand-secondary hover:bg-brand-secondary hover:text-brand-text-on-accent">
-                       Contact <i class="fa-solid fa-arrow-right-long ml-1 text-xs"></i>
+                        Contact <i class="fa-solid fa-arrow-right-long ml-1 text-xs"></i>
                     </a>
                 </div>
-
                 <div class="md:hidden">
                     <button id="menu-toggle" class="text-brand-text hover:text-brand-primary focus:outline-none">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -108,7 +202,6 @@
                 </div>
             </div>
         </nav>
-
         <div id="mobile-menu" class="md:hidden hidden bg-brand-surface absolute w-full shadow-lifted rounded-b-2xl">
             <a href="#gallery" class="block px-6 py-4 text-brand-text hover:bg-brand-primary/10 transition duration-300 font-medium">Gallery</a>
             <a href="#about" class="block px-6 py-4 text-brand-text hover:bg-brand-primary/10 transition duration-300 font-medium">About</a>
@@ -118,200 +211,236 @@
 
     <main>
         <section class="relative min-h-[85vh] lg:min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-br from-teal-50 via-rose-50 to-amber-50 pt-32 pb-16">
-            <div class="container mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+             <div class="container mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
                 <div class="z-10 animate-fade-in-up">
-                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight text-brand-text">
-                        Capturing Life's <span class="text-gradient-primary italic">Vibrant</span> Essence.
-                    </h1>
-                    <p class="text-lg sm:text-xl text-brand-text-muted mb-10 max-w-xl">
-                        Welcome! I'm Rohith Kumar, a photographer exploring the beauty in moments big and small. Let's discover the world through my lens.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#gallery" class="inline-flex items-center justify-center bg-brand-primary hover:bg-brand-primary-dark text-brand-text-on-accent font-semibold py-3 px-8 rounded-full shadow-interactive hover:shadow-lifted transition duration-300 transform hover:-translate-y-1">
-                            View My Work <i class="fa-solid fa-camera-retro ml-2"></i>
-                        </a>
-                        <a href="#about" class="inline-flex items-center justify-center border-2 border-brand-text/50 hover:border-brand-text text-brand-text font-medium py-3 px-8 rounded-full hover:bg-brand-text/5 transition duration-300">
-                            Learn More <i class="fa-solid fa-arrow-down-long ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="relative h-80 lg:h-auto lg:aspect-w-1 lg:aspect-h-1 animate-scale-in" style="animation-delay: 0.2s;">
-                    <div class="absolute inset-0 overflow-hidden rounded-3xl lg:rounded-4xl shadow-lifted">
-                        <video
-                            autoplay
-                            loop
-                            muted
-                            playsinline
-                            class="absolute inset-0 w-full h-full object-cover"
-                            id="anotherVideo" >
-                            <source src="video2.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-tr from-brand-secondary to-brand-highlight rounded-full opacity-30 blur-2xl hidden lg:block"></div>
-                </div>
-            </div>
-            <div class="absolute top-1/4 -left-20 w-60 h-60 bg-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+                     <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight text-brand-text">
+                         Capturing Life's <span class="text-gradient-primary italic">Vibrant</span> Essence.
+                     </h1>
+                     <p class="text-lg sm:text-xl text-brand-text-muted mb-10 max-w-xl">
+                         Welcome! I'm Rohith Kumar, a photographer exploring the beauty in moments big and small. Let's discover the world through my lens.
+                     </p>
+                     <div class="flex flex-col sm:flex-row gap-4">
+                         <a href="#gallery" class="inline-flex items-center justify-center bg-brand-primary hover:bg-brand-primary-dark text-brand-text-on-accent font-semibold py-3 px-8 rounded-full shadow-interactive hover:shadow-lifted transition duration-300 transform hover:-translate-y-1">
+                             View My Work <i class="fa-solid fa-camera-retro ml-2"></i>
+                         </a>
+                         <a href="#about" class="inline-flex items-center justify-center border-2 border-brand-text/50 hover:border-brand-text text-brand-text font-medium py-3 px-8 rounded-full hover:bg-brand-text/5 transition duration-300">
+                             Learn More <i class="fa-solid fa-arrow-down-long ml-2 text-xs"></i>
+                         </a>
+                     </div>
+                 </div>
+                 <div class="relative h-80 lg:h-auto lg:aspect-w-1 lg:aspect-h-1 animate-scale-in" style="animation-delay: 0.2s;">
+                     <div class="absolute inset-0 overflow-hidden rounded-3xl lg:rounded-4xl shadow-lifted">
+                          <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover" id="anotherVideo" >
+                             <source src="video2.mp4" type="video/mp4"> Your browser does not support the video tag.
+                         </video>
+                     </div>
+                     <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-tr from-brand-secondary to-brand-highlight rounded-full opacity-30 blur-2xl hidden lg:block"></div>
+                 </div>
+             </div>
+             <div class="absolute top-1/4 -left-20 w-60 h-60 bg-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
         </section>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-            const backgroundVideo = document.getElementById('backgroundVideo');
 
-            const anotherVideo = document.getElementById('anotherVideo');
-            if (anotherVideo) {
-                anotherVideo.playbackRate = 0.6; // Example: Slow down to 60% speed
-            }
-            });
-        </script>
+         <script>
+             document.addEventListener('DOMContentLoaded', function() {
+             const anotherVideo = document.getElementById('anotherVideo');
+             if (anotherVideo) { anotherVideo.playbackRate = 0.6; }
+             });
+         </script>
 
         <section id="gallery" class="py-20 sm:py-28 bg-gradient-to-b from-white via-white to-brand-bg">
-            <div class="container mx-auto px-6 lg:px-8">
-                <div class="text-center mb-16 animate-fade-in-up">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Gallery</h2>
-                    <p class="text-lg text-brand-text-muted max-w-2xl mx-auto">A selection of moments captured through my lens. Click thumbnails for details or the main image for a larger view.</p>
-                </div>
+             <div class="container mx-auto px-6 lg:px-8">
+                 <div class="text-center mb-16 animate-fade-in-up">
+                     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Gallery</h2>
+                     <p class="text-lg text-brand-text-muted max-w-2xl mx-auto">A selection of moments captured through my lens. Click an image to pause and view the title.</p>
+                 </div>
 
-                <figure class="mb-16 sm:mb-20 rounded-none  p-4 md:p-6 lg:p-8 animate-scale-in group"> <div class="relative w-full h-auto flex justify-center items-center min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
-                        <div class="block w-full h-auto max-h-[80vh] object-contain cursor-pointer transition-all duration-300 ease-in-out ">
-                            <img id="mainImage" src="image1.jpg" alt="Main showcase image"
-                                 class="block w-full h-auto max-h-[80vh] object-contain cursor-pointer transition-all duration-300 ease-in-out transform group-hover:scale-[1.1]" style="border-radius: 10px;">
-                          </div>
-                    <figcaption id="mainImageCaption" class="mt-6 text-center animate-fade-in" style="animation-delay: 0.3s;">
-                        <h3 id="imageTitle" class="text-xl sm:text-2xl font-semibold mb-2 text-gradient-highlight">Image Title</h3>
-                        <p id="imageSummary" class="text-base sm:text-lg text-brand-text-muted max-w-3xl mx-auto px-4">Image summary goes here.</p>
-                    </figcaption>
-                </figure>
+                 <div class="relative animate-fade-in-up">
+                     <div class="swiper swiper-3d-gallery mx-auto" style="max-width: 90%; padding-top: 50px; padding-bottom: 50px;">
+                         <div class="swiper-wrapper">
+                         </div>
+                         <div class="swiper-button-prev text-brand-primary hover:text-brand-primary-dark -left-2 sm:left-0"></div>
+                         <div class="swiper-button-next text-brand-primary hover:text-brand-primary-dark -right-2 sm:right-0"></div>
 
-                <div id="thumbnailGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 animate-fade-in-up" style="animation-delay: 0.2s;">
-                    </div>
-            </div>
+                         <div id="enlarged-slide-overlay" class="absolute inset-0 bg-black/50 backdrop-blur-sm z-20 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+                              <div class="relative p-4">
+                                  <h3 id="enlarged-slide-title" class="text-white text-2xl font-semibold text-center mb-2 text-shadow-lg"></h3>
+                                  <button id="close-enlarged-slide" class="absolute -top-2 -right-2 text-white bg-black/50 rounded-full w-8 h-8 flex items-center justify-center text-xl hover:bg-black/80 transition-colors" aria-label="Close enlarged view">
+                                      &times;
+                                  </button>
+                              </div>
+                         </div>
+                     </div>
+                 </div>
+
+                 <div id="swiperCaption" class="mt-8 text-center animate-fade-in transition-opacity duration-300">
+                     <h3 id="swiperTitle" class="text-xl sm:text-2xl font-semibold mb-2 text-gradient-highlight"></h3>
+                     <p id="swiperSummary" class="text-base sm:text-lg text-brand-text-muted max-w-3xl mx-auto px-4"></p>
+                 </div>
+             </div>
         </section>
 
         <section id="about" class="py-20 sm:py-28 overflow-hidden bg-brand-surface relative">
-            <div class="absolute -top-20 -left-20 w-72 h-72 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-gradient-to-tl from-brand-highlight/10 to-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="container mx-auto px-6 lg:px-8 relative z-10">
-                <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
-                    <div class="lg:col-span-3 animate-fade-in-up">
-                        <span class="text-sm font-semibold uppercase tracking-wider text-brand-primary mb-2 block">Meet the Artist</span>
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">Rohith Kumar</h2>
-                        <div class="prose prose-lg text-brand-text-muted max-w-none space-y-6">
-                            <p>Hello! Based in Fredericton, NB, I'm driven by a love for visual storytelling...</p>
-                            <p>My style blends vibrant colors with authentic moments...</p>
-                            <p>Let's connect and create something memorable together!</p>
-                        </div>
-                        <a href="#contact" class="mt-8 inline-flex items-center text-brand-primary font-semibold group">
-                            Contact Me <i class="fa-solid fa-chevron-right ml-2 text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
-                        </a>
-                    </div>
-                    <div class="lg:col-span-2 relative h-96 lg:h-[600px] animate-scale-in" style="animation-delay: 0.2s;">
-                        <div class="absolute inset-0 overflow-hidden rounded-3xl shadow-lifted">
-                            <video
-                                autoplay
-                                loop
-                                muted
-                                playsinline
-                                class="absolute inset-0 w-full h-full object-cover"
-                                id="aboutVideo" >
-                                <source src="video1.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 from-brand-secondary  p-2 rounded-2xl shadow-lg text-brand-text-on-accent hover:bg-gray-50 hover:shadow-lg">
-                            <img src="ProfilePicture.jpg" width="60" height="45">
-                        </div>
-                    </div>
-                </div>
-            </div>
+             <div class="absolute -top-20 -left-20 w-72 h-72 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+             <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-gradient-to-tl from-brand-highlight/10 to-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+             <div class="container mx-auto px-6 lg:px-8 relative z-10">
+                 <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+                     <div class="lg:col-span-3 animate-fade-in-up">
+                         <span class="text-sm font-semibold uppercase tracking-wider text-brand-primary mb-2 block">Meet the Artist</span>
+                         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">Rohith Kumar</h2>
+                         <div class="prose prose-lg text-brand-text-muted max-w-none space-y-6">
+                             <p>Hello! Based in Fredericton, NB, I'm driven by a love for visual storytelling...</p>
+                             <p>My style blends vibrant colors with authentic moments...</p>
+                             <p>Let's connect and create something memorable together!</p>
+                         </div>
+                         <a href="#contact" class="mt-8 inline-flex items-center text-brand-primary font-semibold group">
+                             Contact Me <i class="fa-solid fa-chevron-right ml-2 text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
+                         </a>
+                     </div>
+                     <div class="lg:col-span-2 relative h-96 lg:h-[600px] animate-scale-in" style="animation-delay: 0.2s;">
+                         <div class="absolute inset-0 overflow-hidden rounded-3xl shadow-lifted">
+                             <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover" id="aboutVideo" >
+                                 <source src="video1.mp4" type="video/mp4"> Your browser does not support the video tag.
+                             </video>
+                         </div>
+                         <div class="absolute -bottom-6 -right-6 from-brand-secondary  p-2 rounded-2xl shadow-lg text-brand-text-on-accent hover:bg-gray-50 hover:shadow-lg">
+                             <img src="ProfilePicture.jpg" width="60" height="45">
+                         </div>
+                     </div>
+                 </div>
+             </div>
         </section>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-            // ... (Your existing JavaScript code for the home video) ...
 
-            const aboutVideo = document.getElementById('aboutVideo');
-            if (aboutVideo) {
-                aboutVideo.playbackRate = 0.6; // Example: Slow down to 75% speed
-            }
-            });
-        </script>
+         <script>
+             document.addEventListener('DOMContentLoaded', function() {
+             const aboutVideo = document.getElementById('aboutVideo');
+             if (aboutVideo) { aboutVideo.playbackRate = 0.6; }
+             });
+         </script>
 
         <section id="contact" class="py-20 sm:py-28 bg-gradient-to-br from-teal-600 via-teal-700 to-fuchsia-700 text-brand-text-on-accent">
-             <div class="container mx-auto px-6 lg:px-8 text-center">
-                <div class="animate-fade-in-up">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">Get In Touch</h2>
-                    <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10 opacity-90">
-                        Have a project in mind...
-                    </p>
-                    <a href="mailto:your.email@example.com" class="inline-block bg-white hover:bg-opacity-90 text-brand-primary font-bold py-4 px-10 rounded-full shadow-lifted transition duration-300 transform hover:scale-105 text-lg">
-                        <i class="fa-regular fa-paper-plane mr-2"></i> Send Email
-                    </a>
-                </div>
-                <div class="mt-12 flex justify-center space-x-6 animate-fade-in-up" style="animation-delay: 0.2s;">
-                     <a href="#" aria-label="LinkedIn Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
-                     <a href="#" aria-label="Instagram Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-instagram fa-2x"></i></a>
-                     <a href="#" aria-label="Twitter Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-twitter fa-2x"></i></a>
+              <div class="container mx-auto px-6 lg:px-8 text-center">
+                 <div class="animate-fade-in-up">
+                     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">Get In Touch</h2>
+                     <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10 opacity-90">
+                         Have a project in mind...
+                     </p>
+                     <a href="mailto:your.email@example.com" class="inline-block bg-white hover:bg-opacity-90 text-brand-primary font-bold py-4 px-10 rounded-full shadow-lifted transition duration-300 transform hover:scale-105 text-lg">
+                         <i class="fa-regular fa-paper-plane mr-2"></i> Send Email
+                     </a>
                  </div>
-            </div>
+                 <div class="mt-12 flex justify-center space-x-6 animate-fade-in-up" style="animation-delay: 0.2s;">
+                      <a href="#" aria-label="LinkedIn Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
+                      <a href="#" aria-label="Instagram Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-instagram fa-2x"></i></a>
+                      <a href="#" aria-label="Twitter Profile" class="text-white/70 hover:text-white hover:scale-110 transition-all duration-300"><i class="fab fa-twitter fa-2x"></i></a>
+                 </div>
+             </div>
         </section>
     </main>
 
     <footer class="py-10 bg-brand-text text-brand-text-on-accent/70">
-        <div class="container mx-auto px-6 lg:px-8 text-center text-sm">
+         <div class="container mx-auto px-6 lg:px-8 text-center text-sm">
              <p>&copy; <span id="current-year"></span> Rohith Kumar Photography. Crafted with <i class="fa-solid fa-heart text-brand-secondary/80 mx-1"></i> in Fredericton, NB.</p>
-             <p class="mt-2 opacity-60">Design powered by Tailwind CSS.</p>
-        </div>
+             <p class="mt-2 opacity-60">Design powered by Tailwind CSS & Swiper.js.</p>
+         </div>
     </footer>
 
     <div id="imageModal" class="fixed inset-0 z-[999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true" role="dialog" aria-modal="true">
-        <button id="modalClose" class="absolute top-5 right-5 sm:top-8 sm:right-8 text-white/70 hover:text-white z-[1001] text-4xl transition duration-300 hover:rotate-90" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
-        <button id="modalPrev" class="absolute left-3 sm:left-5 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-3 transition duration-300 hover:bg-white/10 rounded-full" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-        <button id="modalNext" class="absolute right-3 sm:right-5 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-3 transition duration-300 hover:bg-white/10 rounded-full" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
-        <div id="modalContentDetailed" class="relative max-w-full max-h-full animate-scale-in flex flex-col items-center">
-             <img id="modalImage" src="" alt="Full size view" class="block max-h-[80vh] max-w-[90vw] w-auto h-auto object-contain rounded-xl shadow-2xl mb-4">
-             <div id="modalCaption" class="text-center max-w-xl px-4">
-                <h3 id="modalTitle" class="text-white text-lg font-medium mb-1"></h3>
-                <p id="modalSummary" class="text-white/70 text-sm"></p>
-            </div>
-        </div>
+          <button id="modalClose" class="absolute top-5 right-5 sm:top-8 sm:right-8 text-white/70 hover:text-white z-[1001] text-4xl transition duration-300 hover:rotate-90" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
+          <button id="modalPrev" class="absolute left-3 sm:left-5 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-3 transition duration-300 hover:bg-white/10 rounded-full" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+          <button id="modalNext" class="absolute right-3 sm:right-5 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white text-3xl sm:text-5xl z-[1001] p-3 transition duration-300 hover:bg-white/10 rounded-full" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+          <div id="modalContentDetailed" class="relative max-w-full max-h-full animate-scale-in flex flex-col items-center">
+              <img id="modalImage" src="" alt="Full size view" class="block max-h-[80vh] max-w-[90vw] w-auto h-auto object-contain rounded-xl shadow-2xl mb-4">
+              <div id="modalCaption" class="text-center max-w-xl px-4">
+                  <h3 id="modalTitle" class="text-white text-lg font-medium mb-1"></h3>
+                  <p id="modalSummary" class="text-white/70 text-sm"></p>
+              </div>
+          </div>
     </div>
-
     <div id="simplePopupModal" class="fixed inset-0 z-[1000] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none" aria-hidden="true" role="dialog" aria-modal="true">
-         <button id="simplePopupClose" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/70 hover:text-white z-[1001] text-3xl transition duration-300 hover:scale-110" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
-         <div class="relative animate-scale-in">
-             <img id="simplePopupImage" src="" alt="Enlarged view" class="block w-auto h-auto object-contain rounded-lg shadow-xl">
-             </div>
+           <button id="simplePopupClose" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/70 hover:text-white z-[1001] text-3xl transition duration-300 hover:scale-110" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
+           <div class="relative animate-scale-in">
+               <img id="simplePopupImage" src="" alt="Enlarged view" class="block w-auto h-auto object-contain rounded-lg shadow-xl">
+               </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-        // --- Image Data ---
-        const imageDetails = [ /* ... Paste your imageDetails array here ... */
-             { src: 'image1.jpg', title: 'Golden Horizon', summary: '"An evening sky painted with hues of orange..."' },
-             { src: 'image2.jpg', title: 'Whispers of the Shore', summary: '"A riverside scene where tall grasses sway gently..."' },
-             { src: 'image3.jpg', title: 'Sunset Pathway', summary: '"The golden hour illuminates an empty roadway..."' },
-             { src: 'image4.jpeg', title: 'Reflections at Dusk', summary: '"City lights begin to shimmer on the river’s surface..."' },
-             { src: 'image5.jpg', title: 'Cinematic Skies', summary: '"A breathtaking display of clouds dances..."' },
-             { src: 'image6.jpeg', title: 'Whispers of the Shore II', summary: '"In a cinematic frame, river shore plants sway..."' },
-             { src: 'image7.jpeg', title: 'Stormy Crossings', summary: '"A bridge looms beneath a brooding sky..."' },
-             { src: 'image8.jpeg', title: 'Golden River', summary: '"The sunset casts a golden hue over the river..."' },
-             { src: 'image9.jpeg', title: 'Harmony of Nature', summary: '"Lush river shore, where vibrant plants meet..."' },
-             { src: 'image10.jpeg', title: 'Evening Run', summary: '"As dusk descends, runners chase the fading light..."' },
-             { src: 'image11.jpeg', title: 'Silent Blooms', summary: '"Delicate white flowers peek through the grass..."' },
-             { src: 'image12.jpeg', title: 'Architectural Wonder', summary: 'A magnificent architectural structure.' },
-             { src: 'image13.jpeg', title: 'Wildlife Beauty', summary: 'Majestic beauty of nature in a wildlife shot.' },
-             { src: 'image14.jpeg', title: 'Mountain Range', summary: 'A picturesque mountain range vista.' },
-             { src: 'image15.jpeg', title: 'Winter Wonderland', summary: 'A serene winter wonderland scene.' },
-             { src: 'image16.jpeg', title: 'Bustling Marketplace', summary: 'A vibrant marketplace full of life.' },
-             { src: 'image17.jpeg', title: 'Vibrant Autumn', summary: 'A vibrant autumn scene full of warm colors.' }
+        document.addEventListener('DOMContentLoaded', () => {
+            const introSlides = document.querySelectorAll('.intro-slideshow-container .intro-slide');
+            let introCurrentSlideIndex = 0;
+            const introSlideIntervalTime = 5000;
+
+            function introShowSlide(indexToShow) {
+                const currentActiveSlide = introSlides[introCurrentSlideIndex];
+                const nextSlide = introSlides[indexToShow];
+                if (!currentActiveSlide || !nextSlide || currentActiveSlide === nextSlide) { return; }
+                nextSlide.style.transition = 'none';
+                nextSlide.style.transform = 'translateY(100%)';
+                nextSlide.offsetHeight;
+                nextSlide.style.transition = '';
+                nextSlide.style.zIndex = 2;
+                currentActiveSlide.style.transform = 'translateY(100%)';
+                currentActiveSlide.style.zIndex = 1;
+                currentActiveSlide.classList.remove('active');
+                setTimeout(() => {
+                    nextSlide.style.transform = 'translateY(0%)';
+                    nextSlide.classList.add('active');
+                }, 20);
+                introCurrentSlideIndex = indexToShow;
+            }
+
+            function introNextSlideAuto() {
+                const nextIndex = (introCurrentSlideIndex + 1) % introSlides.length;
+                introShowSlide(nextIndex);
+            }
+
+            if (introSlides.length > 0) {
+                introSlides.forEach((slide, index) => {
+                    slide.style.transition = 'none';
+                    if (index === 0) {
+                        slide.style.transform = 'translateY(0)';
+                        slide.classList.add('active');
+                        slide.style.zIndex = 2;
+                    } else {
+                        slide.style.transform = 'translateY(100%)';
+                        slide.classList.remove('active');
+                        slide.style.zIndex = 1;
+                    }
+                    slide.offsetHeight;
+                });
+                setTimeout(() => {
+                     introSlides.forEach(slide => { slide.style.transition = ''; });
+                     if (introSlides.length > 1) {
+                         setInterval(introNextSlideAuto, introSlideIntervalTime);
+                     }
+                }, 50);
+            }
+        });
+    </script>
+
+    <script>
+        const imageDetails = [
+              { src: 'image1.jpg', title: 'Golden Horizon', summary: '"An evening sky painted with hues of orange..."' },
+              { src: 'image2.jpg', title: 'Whispers of the Shore', summary: '"A riverside scene where tall grasses sway gently..."' },
+              { src: 'image3.jpg', title: 'Sunset Pathway', summary: '"The golden hour illuminates an empty roadway..."' },
+              { src: 'image4.jpeg', title: 'Reflections at Dusk', summary: '"City lights begin to shimmer on the river’s surface..."' },
+              { src: 'image5.jpg', title: 'Cinematic Skies', summary: '"A breathtaking display of clouds dances..."' },
+              { src: 'image6.jpeg', title: 'Whispers of the Shore II', summary: '"In a cinematic frame, river shore plants sway..."' },
+              { src: 'image7.jpeg', title: 'Stormy Crossings', summary: '"A bridge looms beneath a brooding sky..."' },
+              { src: 'image8.jpeg', title: 'Golden River', summary: '"The sunset casts a golden hue over the river..."' },
+              { src: 'image9.jpeg', title: 'Harmony of Nature', summary: '"Lush river shore, where vibrant plants meet..."' },
+              { src: 'image10.jpeg', title: 'Evening Run', summary: '"As dusk descends, runners chase the fading light..."' },
+              { src: 'image11.jpeg', title: 'Silent Blooms', summary: '"Delicate white flowers peek through the grass..."' },
+              { src: 'image12.jpeg', title: 'Architectural Wonder', summary: 'A magnificent architectural structure.' },
+              { src: 'image13.jpeg', title: 'Wildlife Beauty', summary: 'Majestic beauty of nature in a wildlife shot.' },
+              { src: 'image14.jpeg', title: 'Mountain Range', summary: 'A picturesque mountain range vista.' },
+              { src: 'image15.jpeg', title: 'Winter Wonderland', summary: 'A serene winter wonderland scene.' },
+              { src: 'image16.jpeg', title: 'Bustling Marketplace', summary: 'A vibrant marketplace full of life.' },
+              { src: 'image17.jpeg', title: 'Vibrant Autumn', summary: 'A vibrant autumn scene full of warm colors.' }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DOM Elements ---
-            const mainImage = document.getElementById('mainImage');
-            const imageTitle = document.getElementById('imageTitle');
-            const imageSummary = document.getElementById('imageSummary');
-            const thumbnailGrid = document.getElementById('thumbnailGrid');
-            // Detailed Modal Elements
             const detailedModal = document.getElementById('imageModal');
             const detailedModalImage = document.getElementById('modalImage');
             const detailedModalTitle = document.getElementById('modalTitle');
@@ -319,66 +448,28 @@
             const detailedModalCloseBtn = document.getElementById('modalClose');
             const detailedModalPrevBtn = document.getElementById('modalPrev');
             const detailedModalNextBtn = document.getElementById('modalNext');
-            // Simple Popup Modal Elements - NEW
             const simplePopupModal = document.getElementById('simplePopupModal');
             const simplePopupImage = document.getElementById('simplePopupImage');
             const simplePopupCloseBtn = document.getElementById('simplePopupClose');
-            // Other elements
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const siteHeader = document.getElementById('site-header');
             const currentYearSpan = document.getElementById('current-year');
             const animatedElements = document.querySelectorAll('.animate-when-visible');
+            const swiperCaption = document.getElementById('swiperCaption');
+            const swiperTitle = document.getElementById('swiperTitle');
+            const swiperSummary = document.getElementById('swiperSummary');
+            const enlargedOverlay = document.getElementById('enlarged-slide-overlay');
+            const enlargedTitle = document.getElementById('enlarged-slide-title');
+            const closeEnlargedBtn = document.getElementById('close-enlarged-slide');
+            const swiperContainer = document.querySelector('.swiper-3d-gallery');
 
-            // --- State ---
             let currentIndex = 0;
-            let autoChangeInterval = null;
+            let isSlideSelected = false;
+            let selectedSlideElement = null;
+            let swiperInstance = null;
 
-            // --- Functions ---
-
-            function populateThumbnails() {
-                if (!thumbnailGrid) return;
-                thumbnailGrid.innerHTML = '';
-                imageDetails.forEach((detail, index) => {
-                    const thumbContainer = document.createElement('div');
-                    thumbContainer.className = 'aspect-w-16 aspect-h-10 group'; // Or your preferred aspect ratio
-                    const img = document.createElement('img');
-                    img.src = detail.src;
-                    img.alt = `Thumbnail: ${detail.title}`;
-                    img.dataset.index = index;
-                    img.loading = 'lazy';
-                    img.className = `thumbnail object-cover w-full h-full rounded-xl cursor-pointer border-4 border-transparent group-hover:border-brand-primary transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:shadow-interactive focus:outline-none focus:ring-4 focus:ring-brand-primary/50 focus:ring-offset-2 focus:ring-offset-brand-bg`;
-                    thumbContainer.appendChild(img);
-                    thumbnailGrid.appendChild(thumbContainer);
-                });
-                addThumbnailListeners(); // Add listeners after populating
-            }
-
-            function updateMainDisplay(index, smoothScroll = false) {
-                if (index < 0 || index >= imageDetails.length || !mainImage) return;
-                const detail = imageDetails[index];
-                mainImage.src = detail.src;
-                mainImage.alt = `${detail.title} - Main showcase image`;
-                if(imageTitle) imageTitle.textContent = detail.title;
-                if(imageSummary) imageSummary.textContent = detail.summary;
-                currentIndex = index;
-
-                document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
-                    thumb.classList.toggle('border-brand-primary', i === index);
-                    thumb.classList.toggle('shadow-interactive', i === index);
-                    thumb.classList.toggle('scale-105', i === index);
-                    thumb.classList.toggle('border-transparent', i !== index);
-                });
-
-                if (smoothScroll) {
-                    const galleryFigure = document.getElementById('gallery')?.querySelector('figure');
-                    galleryFigure?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                stopAutoChange();
-            }
-
-            // --- DETAILED Modal Functions ---
-             function updateDetailedModalContent(index) { // Renamed for clarity
+            function updateDetailedModalContent(index) {
                  if (index < 0 || index >= imageDetails.length) return;
                  const detail = imageDetails[index];
                  detailedModalImage.classList.add('opacity-0','transition-opacity','duration-150');
@@ -389,21 +480,21 @@
                  }, 150);
                  detailedModalTitle.textContent = detail.title;
                  detailedModalSummary.textContent = detail.summary;
-                 // currentIndex is updated before calling this or by nav buttons
-             }
-
+              }
              function openDetailedModal(index) {
                  if (!detailedModal) return;
-                 currentIndex = index; // Ensure index is correct
+                 if(isSlideSelected) deselectSlideAndResume(); // Close enlarged view if open
+                 currentIndex = index;
                  updateDetailedModalContent(currentIndex);
                  detailedModal.classList.remove('opacity-0', 'pointer-events-none');
                  detailedModal.classList.add('opacity-100');
                  detailedModal.querySelector('#modalContentDetailed').classList.add('animate-scale-in');
                  detailedModal.setAttribute('aria-hidden', 'false');
                  document.body.style.overflow = 'hidden';
-                 stopAutoChange();
-             }
-
+                 if (swiperInstance && swiperInstance.autoplay && swiperInstance.autoplay.running) {
+                     swiperInstance.autoplay.stop();
+                 }
+              }
              function closeDetailedModal() {
                  if (!detailedModal) return;
                  detailedModal.classList.add('opacity-0');
@@ -413,130 +504,227 @@
                      detailedModal.classList.add('pointer-events-none');
                      detailedModal.setAttribute('aria-hidden', 'true');
                      document.body.style.overflow = '';
+                     if (swiperInstance && swiperInstance.autoplay && !isSlideSelected) { // Resume only if not in selected state
+                         swiperInstance.autoplay.start();
+                     }
                  }, 300);
-             }
-
-            function showPrevDetailedModalImage() {
+              }
+             function showPrevDetailedModalImage() {
                  const newIndex = (currentIndex - 1 + imageDetails.length) % imageDetails.length;
                  currentIndex = newIndex;
                  updateDetailedModalContent(currentIndex);
-             }
+              }
              function showNextDetailedModalImage() {
                  const newIndex = (currentIndex + 1) % imageDetails.length;
                  currentIndex = newIndex;
                  updateDetailedModalContent(currentIndex);
+              }
+
+             function openSimplePopup() {
+                 if (!simplePopupModal || !simplePopupImage) return;
+                 const mainImage = document.getElementById('mainImage');
+                 if (!mainImage) return;
+                 if(isSlideSelected) deselectSlideAndResume(); // Close enlarged view if open
+
+                 simplePopupImage.src = mainImage.src;
+                 simplePopupImage.alt = mainImage.alt || "Enlarged view";
+                 simplePopupModal.classList.remove('opacity-0', 'pointer-events-none');
+                 simplePopupModal.classList.add('opacity-100');
+                 simplePopupModal.querySelector(':scope > div').classList.add('animate-scale-in');
+                 simplePopupModal.setAttribute('aria-hidden', 'false');
+                 document.body.style.overflow = 'hidden';
+                 if (swiperInstance && swiperInstance.autoplay && swiperInstance.autoplay.running) {
+                     swiperInstance.autoplay.stop();
+                 }
+              }
+             function closeSimplePopup() {
+                 if (!simplePopupModal) return;
+                 simplePopupModal.classList.add('opacity-0');
+                 simplePopupModal.classList.remove('opacity-100');
+                 simplePopupModal.querySelector(':scope > div').classList.remove('animate-scale-in');
+                 setTimeout(() => {
+                     simplePopupModal.classList.add('pointer-events-none');
+                     simplePopupModal.setAttribute('aria-hidden', 'true');
+                     document.body.style.overflow = '';
+                      if (swiperInstance && swiperInstance.autoplay && !isSlideSelected) {
+                         swiperInstance.autoplay.start();
+                     }
+                 }, 300);
              }
 
-            // --- SIMPLE Popup Modal Functions ---
-            function openSimplePopup() {
-                if (!simplePopupModal || !mainImage) return;
-                simplePopupImage.src = mainImage.src;
-                simplePopupImage.alt = mainImage.alt || "Enlarged view";
-                simplePopupModal.classList.remove('opacity-0', 'pointer-events-none');
-                simplePopupModal.classList.add('opacity-100');
-                simplePopupModal.querySelector(':scope > div').classList.add('animate-scale-in');
-                simplePopupModal.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
-                stopAutoChange();
+            function deselectSlideAndResume() {
+                if (!isSlideSelected) return;
+
+                swiperContainer?.classList.remove('selection-active');
+                selectedSlideElement?.classList.remove('selected-slide');
+                enlargedOverlay?.classList.remove('visible');
+
+                if(swiperCaption) {
+                    swiperCaption.style.opacity = '1';
+                    swiperCaption.style.pointerEvents = 'auto';
+                }
+
+                if (swiperInstance && swiperInstance.autoplay) {
+                    swiperInstance.autoplay.start();
+                }
+                isSlideSelected = false;
+                selectedSlideElement = null;
             }
 
-            function closeSimplePopup() {
-                if (!simplePopupModal) return;
-                simplePopupModal.classList.add('opacity-0');
-                simplePopupModal.classList.remove('opacity-100');
-                simplePopupModal.querySelector(':scope > div').classList.remove('animate-scale-in');
-                setTimeout(() => {
-                    simplePopupModal.classList.add('pointer-events-none');
-                    simplePopupModal.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
-                }, 300);
+            function initializeImageSwiper() {
+                const swiperWrapper = document.querySelector('.swiper-3d-gallery .swiper-wrapper');
+                if (!swiperWrapper || !swiperContainer) { return; }
+
+                swiperWrapper.innerHTML = '';
+                imageDetails.forEach((detail, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'swiper-slide';
+                    slide.style.aspectRatio = '3 / 4';
+                    slide.innerHTML = `
+                        <img src="${detail.src}"
+                             alt="${detail.title}"
+                             loading="lazy"
+                             class="block w-full h-full object-cover rounded-lg shadow-md cursor-pointer"
+                             data-index="${index}" />`;
+
+                    slide.addEventListener('click', (e) => {
+                        if (isSlideSelected && selectedSlideElement === slide) {
+                            deselectSlideAndResume(); // Click selected slide again to deselect
+                            return;
+                        }
+                        if (isSlideSelected) {
+                            deselectSlideAndResume();
+                            setTimeout(() => selectSlide(slide, index), 50);
+                            return;
+                        }
+                         selectSlide(slide, index);
+                    });
+                    swiperWrapper.appendChild(slide);
+                });
+
+                function selectSlide(slideElement, index){
+                    if(isSlideSelected) return;
+                    if (swiperInstance && swiperInstance.autoplay) { swiperInstance.autoplay.stop(); }
+
+                    isSlideSelected = true;
+                    selectedSlideElement = slideElement;
+                    currentIndex = index;
+
+                    swiperContainer.classList.add('selection-active');
+                    slideElement.classList.add('selected-slide');
+
+                    if(enlargedTitle) enlargedTitle.textContent = imageDetails[index].title;
+                    if(enlargedOverlay) enlargedOverlay.classList.add('visible');
+
+                     if(swiperCaption) {
+                         swiperCaption.style.opacity = '0';
+                         swiperCaption.style.pointerEvents = 'none';
+                    }
+                }
+
+                swiperInstance = new Swiper('.swiper-3d-gallery', {
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                    },
+                    coverflowEffect: {
+                        rotate: 40,
+                        stretch: 0,
+                        depth: 150,
+                        modifier: 1,
+                        slideShadows: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    on: {
+                        slideChange: function () {
+                            if (!isSlideSelected) {
+                                const activeIndex = this.realIndex;
+                                if (swiperTitle) swiperTitle.textContent = imageDetails[activeIndex].title;
+                                if (swiperSummary) swiperSummary.textContent = imageDetails[activeIndex].summary;
+                                 currentIndex = activeIndex;
+                            }
+                        },
+                    },
+                });
+
+                if (swiperTitle && swiperSummary && imageDetails.length > 0) {
+                    const initialIndex = swiperInstance.realIndex;
+                     swiperTitle.textContent = imageDetails[initialIndex].title;
+                     swiperSummary.textContent = imageDetails[initialIndex].summary;
+                     currentIndex = initialIndex;
+                }
+
+                closeEnlargedBtn?.addEventListener('click', deselectSlideAndResume);
+                enlargedOverlay?.addEventListener('click', (e) => {
+                    if (e.target === enlargedOverlay) { deselectSlideAndResume(); }
+                });
             }
 
-            // --- Auto Image Change ---
-            // function autoChangeImage() { /* ... no changes ... */ } // Logic is fine
-            // function startAutoChange(interval = 20000) { /* ... no changes ... */ } // Logic is fine
-            function stopAutoChange() {
-                 if (autoChangeInterval) {
-                     clearInterval(autoChangeInterval);
-                     autoChangeInterval = null;
-                 }
+            function toggleMobileMenu() {
+                if (mobileMenu) mobileMenu.classList.toggle('hidden');
             }
-            function toggleMobileMenu() { /* ... no changes ... */ }
 
-            // --- Scroll/Animation Observer ---
              const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
-            }, { threshold: 0.1 });
+                 entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+             }, { threshold: 0.1 });
              function observeAnimatedElements() { animatedElements.forEach(el => observer.observe(el)); }
-             function handleScroll() {
+
+            function handleScroll() {
                  if(siteHeader) {
-                    siteHeader.classList.toggle('shadow-md', window.scrollY > 50);
-                    siteHeader.classList.toggle('shadow-subtle', window.scrollY <= 50);
+                     // Shadow is now handled only by hover, not scroll
+                     // siteHeader.classList.toggle('shadow-md', window.scrollY > 50);
                  }
-             }
-             function updateFooterYear() { if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear(); }
-
-
-            // --- Add Thumbnail Event Listeners ---
-            function addThumbnailListeners() {
-                 document.querySelectorAll('.thumbnail').forEach(thumbnail => {
-                     const index = parseInt(thumbnail.dataset.index, 10);
-                     // THUMBNAILS open the DETAILED modal
-                     thumbnail.addEventListener('click', () => {
-                         updateMainDisplay(index, false); // Update main display but don't scroll page
-                        //  openDetailedModal(index);    // Open the detailed modal
-                     });
-                     thumbnail.addEventListener('keydown', (e) => {
-                         if (e.key === 'Enter' || e.key === ' ') {
-                             e.preventDefault();
-                             updateMainDisplay(index, false);
-                            //  openDetailedModal(index);
-                         }
-                     });
-                 });
+            }
+            function updateCurrentYear() {
+                 if(currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
             }
 
-            // --- Event Listeners Setup ---
-            if(mainImage) {
-                 // MAIN IMAGE opens the SIMPLE popup
-                 mainImage.addEventListener('click', openSimplePopup);
-                 mainImage.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSimplePopup(); } });
-             }
-             // Detailed Modal Listeners
-             if(detailedModalCloseBtn) detailedModalCloseBtn.addEventListener('click', closeDetailedModal);
-             if(detailedModalPrevBtn) detailedModalPrevBtn.addEventListener('click', showPrevDetailedModalImage);
-             if(detailedModalNextBtn) detailedModalNextBtn.addEventListener('click', showNextDetailedModalImage);
-             if(detailedModal) detailedModal.addEventListener('click', (e) => { if (e.target === detailedModal) closeDetailedModal(); });
-             // Simple Popup Listeners
-             if(simplePopupCloseBtn) simplePopupCloseBtn.addEventListener('click', closeSimplePopup);
-             if(simplePopupModal) simplePopupModal.addEventListener('click', (e) => { if (e.target === simplePopupModal) closeSimplePopup(); });
+            function addEventListeners() {
+                detailedModalCloseBtn?.addEventListener('click', closeDetailedModal);
+                detailedModalPrevBtn?.addEventListener('click', showPrevDetailedModalImage);
+                detailedModalNextBtn?.addEventListener('click', showNextDetailedModalImage);
+                detailedModal?.addEventListener('click', (e) => { if(e.target === detailedModal) closeDetailedModal(); });
 
-             // Combined Keyboard listener
-             document.addEventListener('keydown', (e) => {
-                 if (detailedModal && !detailedModal.classList.contains('pointer-events-none')) {
-                     if (e.key === 'Escape') closeDetailedModal();
-                     else if (e.key === 'ArrowLeft') showPrevDetailedModalImage();
-                     else if (e.key === 'ArrowRight') showNextDetailedModalImage();
-                 } else if (simplePopupModal && !simplePopupModal.classList.contains('pointer-events-none')) {
-                     if (e.key === 'Escape') closeSimplePopup();
-                 }
-             });
+                simplePopupCloseBtn?.addEventListener('click', closeSimplePopup);
+                simplePopupModal?.addEventListener('click', (e) => { if(e.target === simplePopupModal) closeSimplePopup(); });
 
-             // Other listeners
-             if(menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
-             if(mobileMenu) mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMobileMenu));
-             window.addEventListener('scroll', handleScroll, { passive: true });
-             document.addEventListener('contextmenu', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); }, false);
+                menuToggle?.addEventListener('click', toggleMobileMenu);
+                mobileMenu?.addEventListener('click', (e) => { if (e.target.tagName === 'A') toggleMobileMenu(); });
 
-            // --- Initialisation ---
-            populateThumbnails();
-            if (imageDetails.length > 0) updateMainDisplay(0);
-            updateFooterYear();
-            // startAutoChange(); // Auto-start optional
-            handleScroll();
+                window.addEventListener('scroll', handleScroll);
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                          if (detailedModal && detailedModal.getAttribute('aria-hidden') === 'false') {
+                              closeDetailedModal();
+                          } else if (simplePopupModal && simplePopupModal.getAttribute('aria-hidden') === 'false') {
+                              closeSimplePopup();
+                          } else if (isSlideSelected) {
+                              deselectSlideAndResume();
+                          }
+                     }
+                     if (detailedModal && detailedModal.getAttribute('aria-hidden') === 'false') {
+                          if (e.key === 'ArrowLeft') showPrevDetailedModalImage();
+                          if (e.key === 'ArrowRight') showNextDetailedModalImage();
+                     }
+                });
+            }
+
+            initializeImageSwiper();
+            addEventListeners();
             observeAnimatedElements();
-
-        }); // End DOMContentLoaded
+            updateCurrentYear();
+            handleScroll();
+        });
     </script>
 
 </body>
